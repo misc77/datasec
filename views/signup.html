@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="datasec">
+    <head>
+        <title>User Login and Sessions Signup</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/static/css/styles.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
+        <script src="../static/js/datasec.js"></script>
+    </head>
+    <body>
+        <div class="form-container" ng-controller="myController">
+            <p class="form-header">Sign Up</p>
+            <form method="POST" >
+                <label>Username:</label>
+                <input type="text" name="username"><br>
+                <label>Password:</label>
+                <input type="password" name="password"><br>
+                <label>Email:</label>
+                <input type="email" name="email"><br>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <hr>
+        <span ng-bind-html="message"></span>
+    </body>
+</html>

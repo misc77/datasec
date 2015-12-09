@@ -1,0 +1,20 @@
+<submenu>
+    <div><h4>Filter:</h4><input type="text" ng-model="filter"></div>
+    
+    <div ng-switch="submenu">
+        <!-- Berechtigung --> 
+        <div ng-switch-when="berechtigungen">
+            <p> Berechtigung </p>
+        </div>
+
+        <!-- Mitarbeiter -->
+        <div ng-switch-when="mitarbeiter">
+            <button ng-click="create_mitarbeiter()">Mitarbeiter anlegen</button>
+        </div>
+
+        <!-- Default --> 
+        <div ng-switch-default>
+            <p></p>
+        </div>
+    </div>
+</submenu>

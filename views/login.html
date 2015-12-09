@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="datasec">
+    <head>
+        <title>User Login and Sessions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/static/css/styles.css"/>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+        <script type="text/javascript" src="../static/js/datasec.js"></script>
+    </head>
+    <body ng-controller="myController">
+        <div class="form-container">
+            <p class="form-header">Login</p>
+            <form method="POST">
+                <label>Username:</label>
+                <input type="text" name="username"><br>
+                <label>Password:</label>
+                <input type="password" name="password"><br>
+                <input type="submit" value="Login"> 
+            </form>
+            <a href="/signup">Signup</a>
+        </div>
+        <hr>
+        Message: <span ng-bind="message"></span> 
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<nav> 
+                <div>
+                    <div><h4>Menu</h4></div>
+                    <ul>
+                        <li><div><button ng-click="call_submenu('berechtigungen')">Berechtigungen</button></div></li>
+                        <li><div><button ng-click="call_submenu('auswertungen')">Auswertungen</button></div></li>
+                        <li><div>Stammdaten</div>
+                            <ul>
+                                <li><div><button ng-click="call_submenu('befugnisse')">Befugnisse</button></div></li>
+                                <li><div><button ng-click="call_submenu('dokumente')">Dokumente</button></div></li>
+                                <li><div><button ng-click="call_submenu('mitarbeiter')">Mitarbeiter</button></div></li>
+                                <li><div><button ng-click="call_submenu('objekte')">Objekte</button></div></li>
+                                <li><div><button ng-click="call_subemnu('rollen')">Rollen</button></div></li>
+                            </ul>                            
+                        <li>
+                            <div>Administration</div>
+                            <ul>
+                                <li><div><button ng-click="call_submenu('einstellung')">Einstellung</button></div></li>
+                                <li><div><button ng-click="call_submenu('benutzer')">Benutzer</button></div></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>

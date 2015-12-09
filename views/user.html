@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="datasec">
+    <head>
+        <title>User Login and Sessions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/static/css/styles.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
+        <script src="../static/js/datasec.js"></script>
+    </head>
+    <body >
+        <div class="form-container" ng-controller="myController">
+            <p class="form-header">User Profile</p>
+            <form method="POST" action="/user/update">
+                <label>Username:</label>
+                <input type="text" name="username" ng-model="data" disabled><br>
+                <label>Email:</label>
+                <input type="email" name="email" ng-model="user.email"><br>
+                <input type="submit" value="Save">
+            </form>
+        </div>
+        <form method="POST" action="/user/delete">
+            <input type="submit" value="Delete User">
+        </form>
+        <hr>
+        <span ng-bind-html="message"></span>
+    </body>
+</html>
