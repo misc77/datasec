@@ -17,7 +17,7 @@ function hashPW(pwd){
 /*
  * SIGNUP
  */
-exports.signup = function(req, res, dataService){
+exports.signup = function(req, res){
     console.log('in signup...');
     var user = new User();
     console.log('name: ' + req.body.username);
@@ -69,9 +69,9 @@ exports.login = function(req, res){
 /*
  * Get User
  */
-exports.getUserProfile = function(req, res, dataService){
+exports.getUserProfile = function(req, res){
     User.findOne({ _id: req.session.user })
-            .exec(function(err, user, dataService){
+            .exec(function(err, user){
                 if(user){
                     res.json(404, {err: 'User Not Found!'});
                 } else {

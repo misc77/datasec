@@ -71,6 +71,7 @@ var Ressource = mongoose.model("ressource", ressourceSchema);
 
 /* Mitarbeiter */
 var mitarbeiterSchema = new Schema({
+    mitarbeiter_nr:     String,
     vorname:            String,
     nachname:           String,
     geburtsdatum:       Date,

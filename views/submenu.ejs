@@ -7,9 +7,19 @@
             <p> Berechtigung </p>
         </div>
 
+        <!-- Standort --> 
+        <div ng-switch-when="standort">
+             <button ng-click="call_content('create_standort')">Standort anlegen</button>
+             <ul>
+                <li ng-repeat="item in standortListe">
+                    {{ item.bezeichnung }}
+                </li>
+             </ul>
+        </div>
+
         <!-- Mitarbeiter -->
         <div ng-switch-when="mitarbeiter">
-            <button ng-click="create_mitarbeiter()">Mitarbeiter anlegen</button>
+            <button ng-click="call_content('create_mitarbeiter')">Mitarbeiter anlegen</button>
         </div>
 
         <!-- Default --> 
