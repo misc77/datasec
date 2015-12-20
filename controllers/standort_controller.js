@@ -6,21 +6,26 @@ var Standort = Model.Standort;
 
 exports.create = function (req, res){
     console.log('in standort create');
-    console.log('req.body: ' + req.body.toString());
-    console.log('req.body.data '+ req.body.data);
-    console.log('param1: ' + req.body.data.bezeichnung);
-    console.log('param2: ' + req.body.data.land);
-    console.log('param3: ' + req.body.data.hauptstandort);
-    console.log('param4: ' + req.body.data.gruendung);
-    console.log('param5: ' + req.body.data.schliessung);
+    console.log('param1: ' + req.body.bezeichnung);
+    console.log('param2: ' + req.body.land);
+    console.log('param3: ' + req.body.hauptstandort);
+    console.log('param4: ' + req.body.gruendung);
+    console.log('param5: ' + req.body.schliessung);
      
     var standort = new Standort();
-    standort.set('bezeichnung', req.body.data.bezeichnung);
-    standort.set('land', req.body.data.land);
-    standort.set('hauptstandort', req.body.data.hauptstandort);
-    standort.set('gruendung', req.body.data.gruendung);
-    standort.set('schliessung', req.body.data.schliessung);
-    standort.save();
+    standort.set('bezeichnung', req.body.bezeichnung);
+    standort.set('land', req.body.land);
+   
+    standort.set('hauptstandort', req.body.hauptstandort.toString());
+    standort.set('gruendung', req.body.gruendung);
+    standort.set('schliessung', req.body.schliessung);
+    standort.save(function(err){
+        if(err){
+            console.log('err: ' + err);
+        } else {
+            res.json(standort);
+        }
+    });
 };
 
 exports.list = function(req, res){
@@ -34,6 +39,22 @@ exports.list = function(req, res){
         } else {
             console.log('standorte: ' + standorte );
             res.send(standorte);
+        }
+    });
+};
+
+exports.get = function(req,res){
+    console.log('in get..');
+    console.log('find: ' + req.body.standort);
+    Standort.find({_id: req.body.standort}).exec(function(err, standort) {
+        if (err) {
+            console.log('err: ' + err);
+            return res.status(400).send({
+                msg: err.getErrorMessage(err)
+            });
+        } else {
+            console.log('standort: ' + standort );
+            res.send(standort);
         }
     });
 };

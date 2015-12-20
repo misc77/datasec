@@ -22,6 +22,8 @@ module.exports = function(app) {
     
     app.get('/api/standort/list', standort.list) ;
     
+    app.get('/api/standort/id', standort.get) ;
+    
     /**************************
      *      Mitarbeiter Routes 
      ***************************/

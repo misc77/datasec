@@ -1,7 +1,7 @@
 <submenu>
-    <div><h4>Filter:</h4><input type="text" ng-model="filter"></div>
+    <!--<div><h4>Filter:</h4><input type="text" ng-model="filter"></div>-->
     
-    <div ng-switch="submenu">
+    <div ng-switch="appdata.submenu">
         <!-- Berechtigung --> 
         <div ng-switch-when="berechtigungen">
             <p> Berechtigung </p>
@@ -9,10 +9,12 @@
 
         <!-- Standort --> 
         <div ng-switch-when="standort">
-             <button ng-click="call_content('create_standort')">Standort anlegen</button>
-             <ul>
+            <button ng-click="call_content('create_standort')">Standort anlegen</button>
+            <p></p> 
+            Angelegte Standorte:
+            <ul>
                 <li ng-repeat="item in standortListe">
-                    {{ item.bezeichnung }}
+                    <a ng-click="call_content('edit_standort', item._id)">{{ item.bezeichnung }}</a><button ng-click="call_content('delete_standort') ng-model="formData.standort">Löschen</button>
                 </li>
              </ul>
         </div>

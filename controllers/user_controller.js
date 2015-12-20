@@ -27,7 +27,7 @@ exports.signup = function(req, res){
     console.log('user set');
     user.set('pwd', hashPW(req.body.password));
     user.set('email', req.body.email);
-    user.save(function(err, dataService){
+    user.save(function(err){
         if(err){
             console.log('err: ' + err);
             res.redirect(user, '/signup');

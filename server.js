@@ -16,18 +16,8 @@ var mongoStore = new MongoDBStore(
 var mongoose = require('mongoose');
 require('./models/models.js');
 var app = express();
-//var hbs = require('express-handlebars');
-// configure the view engine 
-//app.engine('hbs', hbs.express4({  
-//  defaultLayout: __dirname + '/views/layouts/default.hbs',
-//  partialsDir: __dirname + '/views/partials',
-//  layoutsDir: __dirname + '/views/layouts'
-//}));
-// configure views path
-//app.set('views', path.join(__dirname,'/views'));
 app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
-//app.set('view engine', 'hbs');
 app.set('view engine', 'html');
 app.set('view cache', false);
 app.use(bodyParser.urlencoded({ extended: false }));
