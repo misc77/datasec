@@ -44,6 +44,7 @@ app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $
     $scope.formData = init();
     
     $scope.init = function(){
+        alert('in init - object: ' + appdata.object);
         if (appdata.object !== null & appdata.object !== undefined) {
             $http.get('/api/standort/id', appdata.object).then( 
               function(res) { 
@@ -51,8 +52,8 @@ app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $
                   $scope.formData.land = res.data.land;
                   $scope.formData.hauptstandort = res.data.hauptstandort;
                   $scope.formData.gruendung = res.data.gruendung;
-                  $scope.formdata.schliessung = res.data.schliessung;
-                  $scope.standort = res.data._id;
+                  $scope.formData.schliessung = res.data.schliessung;
+                  $scope.formData.object_id = appdata.object;
             });
         } else {
             $scope.formData.bezeichnung = '';
@@ -60,19 +61,30 @@ app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $
             $scope.formData.hauptstandort = false;
             $scope.formData.gruendung = '';
             $scope.formData.schliessung = '';
+            $scope.formData.object_id = undefined;
         }
     };
         
     //Create Form
     $scope.save_standort = function(){
         alert('formData: ' + $scope.formData.toString());
-        $http.post('/api/standort/create', $scope.formData).success( function(data, status, headers, config){
-            appdata.msg = 'Standort gespeichert!';
-            appdata.content = 'default';
-            appdata.submenu = 'standort';
-        }).error(function(data, status, headers, config){
-            alert("Fehler beim Speichern: " + data);
-        });
+        if ($scope.formData.object_id === undefined) {
+            $http.post('/api/standort/create', $scope.formData).success( function(data, status, headers, config){
+                appdata.msg = 'Standort angelegt!';
+                appdata.content = 'default';
+                appdata.submenu = 'standort';
+            }).error(function(data, status, headers, config){
+                alert("Fehler beim Speichern: " + data);
+            });
+        } else {
+           $http.post('/api/standort/save', $scope.formData).success( function(data, status, headers, config){
+                appdata.msg = 'Standort gespeichert!';
+                appdata.content = 'default';
+                appdata.submenu = 'standort';
+            }).error(function(data, status, headers, config){
+                alert("Fehler beim Speichern: " + data);
+            }); 
+        }
     };
 }]);
 

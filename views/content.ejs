@@ -3,8 +3,8 @@
 
 
                     <!-- Standort Create Form -->
-                    <div ng-switch-when="create_standort">
-                        <form name="standortanlage" ng-controller="standortCtrl" ng-submit="save_standort()">
+                    <div ng-switch-when="edit_standort">
+                        <form name="standortanlage" ng-controller="standortCtrl" ng-submit="save_standort()" ng-init="init()">
                             <p>Standort anlegen:</p>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
