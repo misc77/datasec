@@ -20,9 +20,11 @@ module.exports = function(app) {
      ***************************/
     app.post('/api/standort/create', standort.create); 
     
+    app.post('/api/standort/save', standort.save); 
+    
     app.get('/api/standort/list', standort.list) ;
     
-    app.get('/api/standort/id', standort.get) ;
+    app.get('/api/standort/get', standort.get) ;
     
     /**************************
      *      Mitarbeiter Routes 
