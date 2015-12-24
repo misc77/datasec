@@ -20,6 +20,16 @@ exports.create = function (req, res){
     });
 };
 
+exports.delete = function (req, res){
+    Standort.findOneAndRemove({_id: req.body._id}, function(err){
+        if (err){
+            console.log('err: ' + err);
+        } else {
+            res.json({msg: 'Objekt gelöscht'});
+        }
+    });
+};
+
 exports.save = function (req, res){
     Standort.findOne({_id: req.body._id}).exec(function(err, standort) {
         if (err) {

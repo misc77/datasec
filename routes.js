@@ -18,13 +18,11 @@ module.exports = function(app) {
     /**************************
      *      Standort Routes 
      ***************************/
-    app.post('/api/standort/create', standort.create); 
-    
-    app.post('/api/standort/save', standort.save); 
-    
-    app.get('/api/standort/list', standort.list) ;
-    
-    app.get('/api/standort/get', standort.get) ;
+    app.post('/api/standort/create',    standort.create); 
+    app.post('/api/standort/save',      standort.save); 
+    app.post('/api/standort/delete',    standort.delete); 
+    app.get('/api/standort/list',       standort.list) ;
+    app.get('/api/standort/get',        standort.get) ;
     
     /**************************
      *      Mitarbeiter Routes 

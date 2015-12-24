@@ -26,37 +26,27 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
             }
             appdata.content = $content;
         };
-        
-        /* Mitarbeiter */
-        //save new Mitarbeiter
-//        $scope.save_mitarbeiter = function(){
-//             $http.post('/api/mitarbeiter/create').success(function(data, status, headers, config){
-//                appdata.msg = 'Mitarbeiter angelegt!';
-//            }).error(function(data, status, headers, config){
-//                //error
-//            });
-//        };
 }]);
 
 /* Standort */
 app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
     $scope.formData = {};
     $scope.object_id = undefined;
-    $scope.title = 'anlegen';
-    
+    $scope.title = appdata.submenu + ' anlegen';
+        
     // init
     $scope.init = function(){
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
-            $http.get('/api/standort/get',{params: { id : appdata.object}}).success( 
+            $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 
                   $scope.formData = data.standort[0];
-                  $scope.title = 'ändern'; 
+                  $scope.title = appdata.submenu + ' ändern'; 
                   $scope.object_id = appdata.object;
             });
         } else {
             $scope.formData = '';
             $scope.object_id = undefined;
-            $scope.title = 'anlegen';
+            $scope.title = appdata.submenu + ' anlegen';
         }
     };
     
@@ -71,19 +61,30 @@ app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $
     //Create Form
     $scope.save_standort = function(){
         if ($scope.object_id === undefined) {
-            $http.post('/api/standort/create', $scope.formData).success( function(data, status, headers, config){
-                appdata.msg = 'Standort gespeichert!';
+            $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
+                appdata.msg = appdata.submenu + ' gespeichert!';
                 $scope.reset();
             }).error(function(data, status, headers, config){
                 alert("Fehler beim Speichern: " + data);
             });
         } else {
-           $http.post('/api/standort/save', $scope.formData).success( function(data, status, headers, config){
-                appdata.msg = 'Standort gespeichert!';
+           $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
+                appdata.msg = appdata.submenu + ' gespeichert!';
                 $scope.reset();
             }).error(function(data, status, headers, config){
                 alert("Fehler beim Speichern: " + data);
             }); 
+        }
+    };
+    
+    $scope.delete_standort = function(){
+        if ($scope.object_id !== undefined){
+            $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
+                appdata.msg = appdata.submenu + ' gelöscht!';
+                $scope.reset();
+            }).error(function(data, status, headers, config){
+                alert("Fehler beim Löschen: " + data);
+            });
         }
     };
     

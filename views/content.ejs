@@ -5,7 +5,7 @@
                     <!-- Standort Form -->
                     <div ng-switch-when="edit_standort">
                         <form ng-controller="standortCtrl" ng-submit="save_standort()">
-                            <p>Standort {{title}}:</p>
+                            <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
                                 <input type="text" class="form-control" placeholder="Standortbezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
@@ -27,7 +27,18 @@
                                 <input type="text" class="form-control" placeholder="Schließung des Standorts" aria-describedby="basic-addon1" name="schliessung" ng-model="formData.schliessung">
                             </div>
                             <div class="input-group">
-                                <input type="submit" class="form-control" value="Speichere Standort">
+                                <input type="submit" class="form-control" value="Speichere Standort"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div ng-switch-when="delete_standort">
+                        <form ng-controller="standortCtrl" ng-submit="delete_standort()">
+                            <p class='title'>{{title}}</h3>
+                            <h4>Wollen Sie den Standort "{{formData.bezeichnung}}" wirklich löschen?</h4>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Löschen"> 
+                                <button ng-click='reset()'>Abbrechen</button>
                             </div>
                         </form>
                     </div>
