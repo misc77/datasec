@@ -1,0 +1,23 @@
+                        <form>
+                            <p>Mitarbeiter anlegen:</p>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">Mitarbeiter Nr:</span>
+                              <input type="text" class="form-control" placeholder="Mitarbeiter Nummer" aria-describedby="basic-addon1" ng-model="mitarbeiternr">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">Vorname:</span>
+                              <input type="text" class="form-control" placeholder="Vorname" aria-describedby="basic-addon1" ng-model="vorname">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1">Nachname:</span>
+                              <input type="text" class="form-control" placeholder="Nachname" aria-describedby="basic-addon1" ng-model="nachname">
+                            </div>
+                            <div class="input-group date" data-provide="datepicker">
+                               <span class="input-group-addon" id="basic-addon1">Geburtsdatum:</span>
+                               <input type="text" class="form-control">
+                               <div class="input-group-addon">
+                                   <span class="glyphicon glyphicon-th"></span>
+                               </div>
+                           </div>                                               
+                           <button ng-click="save_mitarbeiter()">Speichere Mitarbeiter</button>
+                        </form>        

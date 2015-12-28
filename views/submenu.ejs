@@ -7,13 +7,13 @@
 
         <!-- Standort --> 
         <div ng-switch-when="standort">
-            <h3>Standorte</h3>
+            <center><h3>Standorte</h3></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
                 <tr ng-repeat="item in list | filter:filter">
                     <td><a ng-click="call_content('edit_standort', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete_standort', item._id)">X</button></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
                 </tr>
                 <tr> </tr>
                 <tr><td colspan="2"><button ng-click="call_content('edit_standort')">Standort anlegen</button></td></tr>

@@ -1,0 +1,27 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
+                                <input type="text" class="form-control" placeholder="Standortbezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Land:</span>
+                                <input type="text" class="form-control" placeholder="Land" aria-describedby="basic-addon1" name="land" ng-model="formData.land">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Hauptstandort:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="hauptstandort" ng-model="formData.hauptstandort">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Gründung:</span>
+                                <input type="text" class="form-control" placeholder="Standortgründung" aria-describedby="basic-addon1" name="gruendung" ng-model="formData.gruendung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Schließung:</span>
+                                <input type="text" class="form-control" placeholder="Schließung des Standorts" aria-describedby="basic-addon1" name="schliessung" ng-model="formData.schliessung">
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichere Standort"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>

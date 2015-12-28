@@ -1,3 +1,4 @@
+/* Main Controller */
 var app = angular.module('datasec', []);
 app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: undefined});
 app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
@@ -8,10 +9,7 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
             if ($name === undefined | $name === null) {
                 $name = 'default';
             };            
-            if ($name === 'standort'){
-                $http.get('/api/'+$name+'/list').then( 
-                     function(res) { $scope.list = res.data; });
-            }
+            $http.get('/api/'+$name+'/list').then( function(res) { $scope.list = res.data; });
             appdata.submenu = $name;
             appdata.content = 'default';
             appdata.msg = $name;
@@ -21,26 +19,30 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
             if ($content === undefined | $content === null) {
                 $content = 'default';
             };
-            if ($object !== null & $object !== undefined) {
+            if ($object !== undefined) {
                 appdata.object = $object;
             }
             appdata.content = $content;
         };
 }]);
 
-/* Standort */
-app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
+/* Stammdaten Controller*/
+app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
     $scope.formData = {};
     $scope.object_id = undefined;
     $scope.title = appdata.submenu + ' anlegen';
         
-    // init
+    //INIT
     $scope.init = function(){
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 
-                  $scope.formData = data.standort[0];
-                  $scope.title = appdata.submenu + ' ändern'; 
+                  $scope.formData = data.object[0];
+                  if (appdata.content === 'delete' ){
+                      $scope.title = appdata.submenu + ' löschen';
+                  } else{
+                      $scope.title = appdata.submenu + ' ändern'; 
+                  }
                   $scope.object_id = appdata.object;
             });
         } else {
@@ -50,16 +52,15 @@ app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $
         }
     };
     
-    //reset
+    //Reset
     $scope.reset = function(){
         appdata.object = undefined;
-        appdata.content = 'default';
-        appdata.submenu = 'standort';
+        $scope.call_submenu(appdata.submenu);
         $scope.init();
     };
         
-    //Create Form
-    $scope.save_standort = function(){
+    //Create or Update
+    $scope.save = function(){
         if ($scope.object_id === undefined) {
             $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
@@ -77,8 +78,10 @@ app.controller('standortCtrl', ['$scope', '$http', 'appdata', function($scope, $
         }
     };
     
-    $scope.delete_standort = function(){
-        if ($scope.object_id !== undefined){
+    //Delete
+    $scope.delete = function(){
+        alert('object: ' + $scope.object_id + ' ' + appdata.object);
+        if (appdata.object !== undefined){
             $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gelöscht!';
                 $scope.reset();

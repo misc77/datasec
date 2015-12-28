@@ -4,70 +4,15 @@
 
                     <!-- Standort Form -->
                     <div ng-switch-when="edit_standort">
-                        <form ng-controller="standortCtrl" ng-submit="save_standort()">
-                            <p class='title'>{{title}}</h3>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Standortbezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Land:</span>
-                                <input type="text" class="form-control" placeholder="Land" aria-describedby="basic-addon1" name="land" ng-model="formData.land">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Hauptstandort:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="hauptstandort" ng-model="formData.hauptstandort">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Gründung:</span>
-                                <input type="text" class="form-control" placeholder="Standortgründung" aria-describedby="basic-addon1" name="gruendung" ng-model="formData.gruendung">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Schließung:</span>
-                                <input type="text" class="form-control" placeholder="Schließung des Standorts" aria-describedby="basic-addon1" name="schliessung" ng-model="formData.schliessung">
-                            </div>
-                            <div class="input-group">
-                                <input type="submit" class="form-control" value="Speichere Standort"> 
-                                <button ng-click='reset()'>Schließen</button>
-                            </div>
-                        </form>
+                        <% include standort.ejs %>
                     </div>
-                    <div ng-switch-when="delete_standort">
-                        <form ng-controller="standortCtrl" ng-submit="delete_standort()">
-                            <p class='title'>{{title}}</h3>
-                            <h4>Wollen Sie den Standort "{{formData.bezeichnung}}" wirklich löschen?</h4>
-                            <div class="input-group">
-                                <input type="submit" class="form-control" value="Löschen"> 
-                                <button ng-click='reset()'>Abbrechen</button>
-                            </div>
-                        </form>
+                    <div ng-switch-when="delete">
+                        <% include delete.ejs %>
                     </div>
 
                     <!-- Mitarbeiter Create Form --> 
                     <div ng-switch-when="create_mitarbeiter">
-                        <form>
-                            <p>Mitarbeiter anlegen:</p>
-                            <div class="input-group">
-                              <span class="input-group-addon" id="basic-addon1">Mitarbeiter Nr:</span>
-                              <input type="text" class="form-control" placeholder="Mitarbeiter Nummer" aria-describedby="basic-addon1" ng-model="mitarbeiternr">
-                            </div>
-                            <div class="input-group">
-                              <span class="input-group-addon" id="basic-addon1">Vorname:</span>
-                              <input type="text" class="form-control" placeholder="Vorname" aria-describedby="basic-addon1" ng-model="vorname">
-                            </div>
-                            <div class="input-group">
-                              <span class="input-group-addon" id="basic-addon1">Nachname:</span>
-                              <input type="text" class="form-control" placeholder="Nachname" aria-describedby="basic-addon1" ng-model="nachname">
-                            </div>
-                            <div class="input-group date" data-provide="datepicker">
-                               <span class="input-group-addon" id="basic-addon1">Geburtsdatum:</span>
-                               <input type="text" class="form-control">
-                               <div class="input-group-addon">
-                                   <span class="glyphicon glyphicon-th"></span>
-                               </div>
-                           </div>                                               
-                           <button ng-click="save_mitarbeiter()">Speichere Mitarbeiter</button>
-                        </form>                     
+                        <% include mitarbeiter.ejs %>                
                     </div>
                     <div ng-switch-default></div>
                 </div>

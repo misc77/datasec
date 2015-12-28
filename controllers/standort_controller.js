@@ -5,10 +5,13 @@ var Model = require('../models/models.js');
 var Standort = Model.Standort;
 
 exports.create = function (req, res){
+    console.log('hs: ' + req.body.hauptstandort);
+    console.log('bez: ' + req.body.bezeichnung);
+    
     var standort = new Standort();
     standort.set('bezeichnung', req.body.bezeichnung);
     standort.set('land', req.body.land); 
-    standort.set('hauptstandort', req.body.hauptstandort.toString());
+    standort.set('hauptstandort', req.body.hauptstandort);
     standort.set('gruendung', req.body.gruendung);
     standort.set('schliessung', req.body.schliessung);
     standort.save(function(err){
@@ -91,7 +94,7 @@ exports.get = function(req, res){
             });
         } else {
             console.log('standort: ' + standort );
-            res.json({standort : standort});
+            res.json({object : standort});
         }
     });
 };

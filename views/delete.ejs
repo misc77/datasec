@@ -1,0 +1,10 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="delete()">
+                            <table>
+                                <th><p class='title'>{{title}}</p></th>
+                                <tr><td colspan="2"><h4>Wollen Sie den Datensatz "{{formData.bezeichnung}}" wirklich löschen?</h4></td></tr>
+                                <tr>
+                                    <td><input type="submit" class="form-control" value="Löschen"></td>
+                                    <td><button ng-click='reset()' class="form-control">Abbrechen</button></td>
+                                </tr>
+                            </table>
+                        </form>
