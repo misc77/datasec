@@ -2,9 +2,14 @@
                  <div ng-switch="appdata.content">
 
 
-                    <!-- Standort Form -->
                     <div ng-switch-when="edit_standort">
                         <% include standort.ejs %>
+                    </div>
+                    <div ng-switch-when="edit_aufgabe">
+                        <% include aufgabe.ejs %>
+                    </div>
+                    <div ng-switch-when="edit_rolle">
+                        <% include rolle.ejs %>
                     </div>
                     <div ng-switch-when="delete">
                         <% include delete.ejs %>

@@ -10,7 +10,7 @@ module.exports = function(app) {
     var user = require('./controllers/user_controller');
     var mitarbeiter = require('./controllers/mitarbeiter_controller');
     var standort = require('./controllers/standort_controller');
-    
+    var aufgabe = require('./controllers/aufgabe_controller');
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
@@ -23,6 +23,15 @@ module.exports = function(app) {
     app.post('/api/standort/delete',    standort.delete); 
     app.get('/api/standort/list',       standort.list) ;
     app.get('/api/standort/get',        standort.get) ;
+    
+     /**************************
+     *      Aufgabe Routes 
+     ***************************/
+    app.post('/api/aufgabe/create',    aufgabe.create); 
+    app.post('/api/aufgabe/save',      aufgabe.save); 
+    app.post('/api/aufgabe/delete',    aufgabe.delete); 
+    app.get('/api/aufgabe/list',       aufgabe.list) ;
+    app.get('/api/aufgabe/get',        aufgabe.get) ;
     
     /**************************
      *      Mitarbeiter Routes 

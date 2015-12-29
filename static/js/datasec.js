@@ -80,7 +80,6 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     
     //Delete
     $scope.delete = function(){
-        alert('object: ' + $scope.object_id + ' ' + appdata.object);
         if (appdata.object !== undefined){
             $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gelöscht!';

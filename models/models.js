@@ -44,7 +44,9 @@ var fahrzeugSchema = new Schema({
     aktiv:          Boolean,
     navigation:     Boolean,
     reset:          Boolean,
-    protokoll:      [{type: Schema.Types.ObjectId, ref: 'Protokoll'}]
+    protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'Protokoll'},
+                       eintrag:   String,
+                       datum:     Date }]
 });
 var Fahrzeug = mongoose.model("fahrzeug", fahrzeugSchema);
 
@@ -57,7 +59,9 @@ var hardwareSchema = new Schema({
     quittierung:        Boolean,
     verwendungszweck:   String,
     mobiledevmgmt:      Boolean,
-    protokoll:          [{type: Schema.Types.ObjectId, ref: 'Protokoll'}]
+    protokoll:          [{ user:      {type: Schema.Types.ObjectId, ref: 'Protokoll'},
+                           eintrag:   String,
+                           datum:     Date }]
 });
 var Hardware = mongoose.model("hardware", hardwareSchema);
 
@@ -82,7 +86,9 @@ var mitarbeiterSchema = new Schema({
     urlaubsvertretung:  {type: Schema.Types.ObjectId, ref: 'Mitarbeiter'},
     vertretungSeit:     Date,
     vertretungBis:      Date,
-    protokoll:          [{type: Schema.Types.ObjectId, ref: 'Protokoll'}]
+    protokoll:          [ { user:      {type: Schema.Types.ObjectId, ref: 'Protokoll'},
+                            eintrag:   String,
+                            datum:     Date }]
 });
 var Mitarbeiter = mongoose.model("mitarbeiter", mitarbeiterSchema);
 
@@ -93,17 +99,11 @@ var papierdokumentSchema = new Schema({
     aktiv:          Boolean,
     daten:          [{type: Schema.Types.ObjectId, ref: 'Daten'}],
     dokumente:      [{type: Schema.Types.ObjectId, ref: 'Dokument'}],
-    protokoll:      [{type: Schema.Types.ObjectId, ref: 'Protokoll'}]
+    protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'Protokoll'},
+                       eintrag:   String,
+                       datum:     Date }]
 });
 var Papierdokument = mongoose.model("papierdokument", papierdokumentSchema);
-
-/* Protokolleintrag */
-var protokollSchema = new Schema({
-    eintrag:        String,
-    datum:          Date,
-    user:           {type: Schema.Types.ObjectId, ref: 'User'}
-});
-var Protokoll = mongoose.model("protokoll", protokollSchema);
 
 /* Rolle */
 var rolleSchema = new Schema({
@@ -154,7 +154,9 @@ var zutrittsmittelSchema = new Schema({
     ausgabe:      Date,
     rueckgabe:    Date,
     status:       String,
-    protokoll:    [{type: Schema.Types.ObjectId, ref: 'Protokoll'}]
+    protokoll:    [{ user:      {type: Schema.Types.ObjectId, ref: 'Protokoll'},
+                     eintrag:   String,
+                     datum:     Date }]
 });
 var Zutrittsmittel = mongoose.model("zutrittsmittel", zutrittsmittelSchema);
 
@@ -197,7 +199,9 @@ var befugnissSchema = new Schema({
     fernzugriff:     Boolean,
     berechtigung:    [{type: Schema.Types.ObjectId, ref: 'Berechtigung'}],
     ressource:       [{type: Schema.Types.ObjectId, ref: 'Ressource'}],
-    protokoll:       [{type: Schema.Types.ObjectId, ref: 'Protokoll'}]
+    protokoll:       [{ user:      {type: Schema.Types.ObjectId, ref: 'Protokoll'},
+                        eintrag:   String,
+                        datum:     Date }]
 });
 var Befugniss = mongoose.model("befugniss", befugnissSchema);
 

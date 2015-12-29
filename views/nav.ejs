@@ -1,35 +1,34 @@
 <nav> 
                 <div>
                     <div><h4>Menu</h4></div>
-                    <ul>
-                        <li><div><button ng-click="call_submenu('befugnisse')">Befugnisse</button></div></li>
-                        <li><div><button ng-click="call_submenu('auswertungen')">Auswertungen</button></div></li>
-                        <li><div>Stammdaten</div>
-                            <ul>
-                                <li><div><button ng-click="call_submenu('aufgabe')">Aufgabe</button></div></li>
-                                <li><div><button ng-click="call_submenu('aufgabenbefugnisse')">Aufgabenbezogene Befugnisse</button></div></li>
-                                <li><div><button ng-click="call_submenu('berechtigungen')">Berechtigungen</button></div></li>
-                                <li><div><button ng-click="call_submenu('daten')">Daten</button></div></li>
-                                <li><div><button ng-click="call_submenu('dokumente')">Datenschlutzerklärungs Dokumente</button></div></li>
-                                <li><div><button ng-click="call_submenu('fahrzeug')">Fahrzeug</button></div></li>
-                                <li><div><button ng-click="call_submenu('ithardware')">IT-Hardware</button></div></li>
-                                <li><div><button ng-click="call_submenu('itressourcen')">IT-Ressourcen</button></div></li>
-                                <li><div><button ng-click="call_submenu('mitarbeiter')">Mitarbeiter</button></div></li>
-                                <li><div><button ng-click="call_submenu('papierdokumente')">Papierdokumente</button></div></li>
-                                <li><div><button ng-click="call_submenu('raum')">Raum</button></div></li>
-                                <li><div><button ng-click="call_submenu('rollen')">Rollen</button></div></li>
-                                <li><div><button ng-click="call_submenu('standort')">Standort</button></div></li>
-                                <li><div><button ng-click="call_submenu('status')">MitarbeiterStatus</button></div></li>
-                                <li><div><button ng-click="call_submenu('tresor')">Tresor</button></div></li>
-                                <li><div><button ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</button></div></li>
-                            </ul>                            
-                        <li>
-                            <div>Administration</div>
-                            <ul>
-                                <li><div><button ng-click="call_submenu('einstellung')">Einstellung</button></div></li>
-                                <li><div><button ng-click="call_submenu('benutzer')">Benutzeradministration</button></div></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="btn-group-vertical">
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('befugnisse')">Befugnisse</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('auswertungen')">Auswertungen</button></div>
+                    </div>
+                        
+                    <div><h5>Stammdaten</h5></div>
+                    <div class="btn-group-vertical">
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('aufgabe')">Aufgabe</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('aufgabenbefugnisse')">Aufgabenbezogene Befugnisse</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('berechtigungen')">Berechtigungen</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('daten')">Daten</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('dokumente')">Datenschlutzerklärungsdokumente</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('fahrzeug')">Fahrzeug</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('ithardware')">IT-Hardware</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('itressourcen')">IT-Ressourcen</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('papierdokumente')">Papierdokumente</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('raum')">Raum</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('rolle')">Rollen</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('standort')">Standort</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('status')">MitarbeiterStatus</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('tresor')">Tresor</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</button></div>
+                    </div>       
+                    <div><h5>Administration</h5></div>
+                    <div class="btn-group-vertical">
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('einstellung')">Einstellung</button></div>
+                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('benutzer')">Benutzeradministration</button></div>
+                    </div>                          
                 </div>
             </nav>
