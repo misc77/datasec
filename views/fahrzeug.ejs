@@ -1,0 +1,36 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Kennzeichen:</span>
+                                <input type="text" class="form-control" placeholder="Kennzeichen des Fahrzeugs" aria-describedby="basic-addon1" name="kennzeichen" ng-model="formData.kennzeichen">
+                            </div>
+                           <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Standort:</span>
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._standort = { _id: formData.standortID}" 
+                                        ng-change="formData.standortID = formData.standort._id" 
+                                        ng-model="formData.standort" 
+                                        ng-options="standort._id as standort.bezeichnung for standort in standorte track by standort._id">
+                                </select>               
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">aktiv:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">navigation:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="navigation" ng-model="formData.navigation">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">reset:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="reset" ng-model="formData.reset">
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichere Fahrzeug"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>

@@ -11,6 +11,9 @@ module.exports = function(app) {
     var mitarbeiter = require('./controllers/mitarbeiter_controller');
     var standort = require('./controllers/standort_controller');
     var aufgabe = require('./controllers/aufgabe_controller');
+    var daten = require('./controllers/daten_controller');
+    var rolle = require('./controllers/rolle_controller');
+    var fahrzeug = require('./controllers/fahrzeug_controller');
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
@@ -24,7 +27,7 @@ module.exports = function(app) {
     app.get('/api/standort/list',       standort.list) ;
     app.get('/api/standort/get',        standort.get) ;
     
-     /**************************
+    /**************************
      *      Aufgabe Routes 
      ***************************/
     app.post('/api/aufgabe/create',    aufgabe.create); 
@@ -32,6 +35,33 @@ module.exports = function(app) {
     app.post('/api/aufgabe/delete',    aufgabe.delete); 
     app.get('/api/aufgabe/list',       aufgabe.list) ;
     app.get('/api/aufgabe/get',        aufgabe.get) ;
+    
+    /**************************
+     *      Daten Routes 
+     ***************************/
+    app.post('/api/daten/create',    daten.create); 
+    app.post('/api/daten/save',      daten.save); 
+    app.post('/api/daten/delete',    daten.delete); 
+    app.get('/api/daten/list',       daten.list) ;
+    app.get('/api/daten/get',        daten.get) ;
+    
+     /**************************
+     *      Rollen Routes 
+     ***************************/
+    app.post('/api/rolle/create',    rolle.create); 
+    app.post('/api/rolle/save',      rolle.save); 
+    app.post('/api/rolle/delete',    rolle.delete); 
+    app.get('/api/rolle/list',       rolle.list) ;
+    app.get('/api/rolle/get',        rolle.get) ;
+    
+     /**************************
+     *      Fahrzeug Routes 
+     ***************************/
+    app.post('/api/fahrzeug/create', fahrzeug.create); 
+    app.post('/api/fahrzeug/save',   fahrzeug.save); 
+    app.post('/api/fahrzeug/delete', fahrzeug.delete); 
+    app.get('/api/fahrzeug/list',    fahrzeug.list) ;
+    app.get('/api/fahrzeug/get',     fahrzeug.get) ;
     
     /**************************
      *      Mitarbeiter Routes 

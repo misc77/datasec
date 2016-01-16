@@ -6,6 +6,15 @@ div.form-container{
     margin: 10px;
 }
 
+div.center_container{
+    display:inline-block;
+    border: 4px ridge blue;
+    width: 500px;
+    border-radius: 10px;
+    margin: 10px;
+    align-content: center;
+}
+
 p.form-header{
     margin: 0px;
     font: 24px bold;

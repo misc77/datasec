@@ -5,6 +5,7 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
         $scope.appdata = appdata;
         $scope.list = '';
         
+        //Call Submenu
         $scope.call_submenu = function($name){
             if ($name === undefined | $name === null) {
                 $name = 'default';
@@ -15,6 +16,7 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
             appdata.msg = $name;
         };
         
+        //Call Content
         $scope.call_content = function($content, $object){
             if ($content === undefined | $content === null) {
                 $content = 'default';
@@ -24,6 +26,12 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
             }
             appdata.content = $content;
         };
+        
+        //Reset Content
+        $scope.reset = function(){
+            appdata.object = undefined;
+            $scope.call_submenu(appdata.submenu);
+        };
 }]);
 
 /* Stammdaten Controller*/
@@ -31,9 +39,11 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.formData = {};
     $scope.object_id = undefined;
     $scope.title = appdata.submenu + ' anlegen';
+    $scope.standorte = {};
         
     //INIT
     $scope.init = function(){
+        $http.get('/api/standort/list').then( function(res) { $scope.standorte = res.data; });
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 

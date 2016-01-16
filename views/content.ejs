@@ -14,8 +14,12 @@
                     <div ng-switch-when="delete">
                         <% include delete.ejs %>
                     </div>
-
-                    <!-- Mitarbeiter Create Form --> 
+                    <div ng-switch-when="edit_daten">
+                        <% include daten.ejs %>
+                    </div>
+                    <div ng-switch-when="edit_fahrzeug">
+                        <% include fahrzeug.ejs %>
+                    </div>
                     <div ng-switch-when="create_mitarbeiter">
                         <% include mitarbeiter.ejs %>                
                     </div>
