@@ -55,7 +55,7 @@ input[type=submit]{
 /*<!-- MENU --> */
 
 #main {
- min-height: 600px;
+ min-height: 400px;
  margin: 0px;
  padding: 0px;
  display: -webkit-flex;
@@ -71,8 +71,8 @@ input[type=submit]{
  border: 1px solid #e5e5e5;
  border-radius: 5pt;
  background: #f2f2f2;
- -webkit-flex: 3 1 75%;
-         flex: 3 1 75%;
+ -webkit-flex: 3 1 70%;
+         flex: 3 1 70%;
  -webkit-order: 3;
          order: 3;
  }
@@ -95,8 +95,8 @@ input[type=submit]{
  border: 1px solid #999999;
  border-radius: 5pt;
  background: #e6e6e6;
- -webkit-flex: 1 6 10%;
-         flex: 1 6 10%;
+ -webkit-flex: 1 6 15%;
+         flex: 1 6 15%;
  -webkit-order: 2;
          order: 2;
  }
@@ -105,7 +105,7 @@ header, footer {
  display: block;
  margin: 4px;
  padding: 5px;
- min-height: 100px;
+ min-height: 50px;
  border: 1px solid #4d4dff;
  border-radius: 5pt;
  background: #9999ff;

@@ -14,6 +14,7 @@ module.exports = function(app) {
     var daten = require('./controllers/daten_controller');
     var rolle = require('./controllers/rolle_controller');
     var fahrzeug = require('./controllers/fahrzeug_controller');
+    var hardware = require('./controllers/hardware_controller');
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
@@ -45,7 +46,7 @@ module.exports = function(app) {
     app.get('/api/daten/list',       daten.list) ;
     app.get('/api/daten/get',        daten.get) ;
     
-     /**************************
+    /**************************
      *      Rollen Routes 
      ***************************/
     app.post('/api/rolle/create',    rolle.create); 
@@ -54,7 +55,7 @@ module.exports = function(app) {
     app.get('/api/rolle/list',       rolle.list) ;
     app.get('/api/rolle/get',        rolle.get) ;
     
-     /**************************
+    /**************************
      *      Fahrzeug Routes 
      ***************************/
     app.post('/api/fahrzeug/create', fahrzeug.create); 
@@ -62,6 +63,15 @@ module.exports = function(app) {
     app.post('/api/fahrzeug/delete', fahrzeug.delete); 
     app.get('/api/fahrzeug/list',    fahrzeug.list) ;
     app.get('/api/fahrzeug/get',     fahrzeug.get) ;
+    
+    /**************************
+     *      Hardware Routes 
+     ***************************/
+    app.post('/api/hardware/create', hardware.create); 
+    app.post('/api/hardware/save',   hardware.save); 
+    app.post('/api/hardware/delete', hardware.delete); 
+    app.get('/api/hardware/list',    hardware.list) ;
+    app.get('/api/hardware/get',     hardware.get) ;
     
     /**************************
      *      Mitarbeiter Routes 

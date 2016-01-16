@@ -1,0 +1,36 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Inventar Nummer:</span>
+                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="inventarNr" ng-model="formData.inventarNr">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
+                                <input type="text" class="form-control" placeholder="Hardwarebezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Verwendungszweck:</span>
+                                <input type="text" class="form-control" placeholder="Verwendungszweck" aria-describedby="basic-addon1" name="verwendungszweck" ng-model="formData.verwendungszweck">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                            </div>        
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Mobile Device Management:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="mobiledevmgmt" ng-model="formData.mobiledevmgmt">
+                            </div>                  
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Quittiert:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="quittierung" ng-model="formData.quittierung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Deaktiviert Am:</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="deaktiviertAm" ng-model="formData.deaktiviertAm">
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichere Hardware"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>
+

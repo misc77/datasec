@@ -39,7 +39,7 @@ exports.save = function (req, res){
                 rolle.bezeichnung = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
-                rolle.land = req.body.beschreibung;
+                rolle.beschreibung = req.body.beschreibung;
             }
             if (req.body.aktiv === undefined | req.body.aktiv === null ){
                 rolle.aktiv = false;
