@@ -95,7 +95,8 @@ var mitarbeiterSchema = new Schema({
     geburtsdatum:       Date,
     standort:           [{type: Schema.Types.ObjectId, ref: 'standort'}],
     aufgabe:            {type: Schema.Types.ObjectId, ref: 'aufgabe'},
-    status:             {type: Schema.Types.ObjectId, ref: 'status'},
+    status:             {type: Schema.Types.ObjectId, ref: 'mitarbeiterStatus'},
+    statusSeit:         Date,
     rolle:              {type: Schema.Types.ObjectId, ref: 'rolle'},
     urlaubsvertretung:  {type: Schema.Types.ObjectId, ref: 'mitarbeiter'},
     vertretungSeit:     Date,
@@ -155,13 +156,12 @@ standortSchema.statics.findByName = function(name, cb){
 var Standort = mongoose.model("standort", standortSchema);
 
 /* Status */
-var statusSchema = new Schema({
+var mitarbeiterStatusSchema = new Schema({
    bezeichnung:   String, 
    beschreibung:  String,
-   begin:         Date,
-   ende:          Date
+   aktiv_status:  Boolean
 });
-var Status = mongoose.model("status", statusSchema);
+var MitarbeiterStatus = mongoose.model("mitarbeiterStatus", mitarbeiterStatusSchema);
 
 /* Zutrittsmittel */
 var zutrittsmittelSchema = new Schema({
@@ -187,8 +187,9 @@ var ZutrittsmittelStatus = mongoose.model("zutrittsmittelStatus", zutrittsmittel
 /* Raum */
 var raumSchema = new Schema({
    bezeichnung:    String,
-   art:            String,
    beschraenkt:    Boolean,
+   zutrittvon:     Date,
+   zutrittbis:     Date,
    daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
    zutrittsmittel: [{type: Schema.Types.ObjectId, ref: 'zutrittsmittel'}]
 });
@@ -277,7 +278,7 @@ module.exports = {    Aufgabenbefugniss : Aufgabenbefugniss
                     , Ressource : Ressource
                     , Rolle : Rolle
                     , Standort: Standort
-                    , Status  : Status     
+                    , MitarbeiterStatus  : MitarbeiterStatus     
                     , Tresor  : Tresor
                     , User : User
                     , Zutrittsmittel : Zutrittsmittel

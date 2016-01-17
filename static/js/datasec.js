@@ -42,12 +42,14 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.standorte = {};
     $scope.daten = {};
     $scope.statusliste = {};
+    $scope.zutrittsmittelliste = {};
         
     //INIT
     $scope.init = function(){
         $http.get('/api/standort/list_active').then( function(res) { $scope.standorte = res.data; });
         $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
         $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });
+        $http.get('/api/zutrittsmittel/list').then( function(res) { $scope.zutrittsmittelliste = res.data; });
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 

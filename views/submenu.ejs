@@ -175,6 +175,36 @@
              </table>
         </div>
 
+        <!-- Mitarbeiter Status -->
+        <div ng-switch-when="mitarbeiterstatus">
+            <center><h3>Mitarbeiter Status</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_mitarbeiterstatus', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_mitarbeiterstatus')">Status erfassen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Mitarbeiter Status -->
+        <div ng-switch-when="raum">
+            <center><h3>Räumlichkeiten</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_raum', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_raum')">Raum erfassen</button></td></tr>
+             </table>
+        </div>
+
         <!-- Default --> 
         <div ng-switch-default>
             <p></p>

@@ -20,6 +20,8 @@ module.exports = function(app) {
     var papierdokumente = require('./controllers/papierdokument_controller');
     var zutrittsmittel = require('./controllers/zutrittsmittel_controller');
     var zutrittsmittelStatus = require('./controllers/zutrittsmittelStatus_controller');
+    var mitarbeiterStatus = require('./controllers/mitarbeiterStatus_controller');
+    var raum = require('./controllers/raum_controller');
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
@@ -119,13 +121,31 @@ module.exports = function(app) {
     app.get('/api/zutrittsmittel/get',          zutrittsmittel.get) ;
     
      /**************************
-     *      Status Routes 
+     *     Zutrittsmittel Status Routes 
      ***************************/
     app.post('/api/zutrittsmittelstatus/create',  zutrittsmittelStatus.create); 
     app.post('/api/zutrittsmittelstatus/save',    zutrittsmittelStatus.save); 
     app.post('/api/zutrittsmittelstatus/delete',  zutrittsmittelStatus.delete); 
     app.get('/api/zutrittsmittelstatus/list',     zutrittsmittelStatus.list) ;
     app.get('/api/zutrittsmittelstatus/get',      zutrittsmittelStatus.get) ;
+    
+    /**************************
+     *     Mitarbeiter Status Routes 
+     ***************************/
+    app.post('/api/mitarbeiterstatus/create',  mitarbeiterStatus.create); 
+    app.post('/api/mitarbeiterstatus/save',    mitarbeiterStatus.save); 
+    app.post('/api/mitarbeiterstatus/delete',  mitarbeiterStatus.delete); 
+    app.get('/api/mitarbeiterstatus/list',     mitarbeiterStatus.list) ;
+    app.get('/api/mitarbeiterstatus/get',      mitarbeiterStatus.get) ;
+    
+     /**************************
+     *     Raum Routes 
+     ***************************/
+    app.post('/api/raum/create',  raum.create); 
+    app.post('/api/raum/save',    raum.save); 
+    app.post('/api/raum/delete',  raum.delete); 
+    app.get('/api/raum/list',     raum.list) ;
+    app.get('/api/raum/get',      raum.get) ;
     
     /**************************
      *      Mitarbeiter Routes 

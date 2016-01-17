@@ -1,0 +1,44 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
+                                <input type="text" class="form-control" placeholder="Bezeichnung der Ressource" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Generell beschränkter Zugang:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="beschraenkt" ng-model="formData.beschraenkt">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Zugang von:</span>
+                                <input type="text" class="form-control" placeholder="Uhrzeit" aria-describedby="basic-addon1" name="zugangvon" ng-model="formData.zugangvon">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Zugang bis:</span>
+                                <input type="text" class="form-control" placeholder="Uhrzeit" aria-describedby="basic-addon1" name="zugangbis" ng-model="formData.zugangbis">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Zutrittsmittel:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.zutrittsmittel" 
+                                        ng-options="zutrittsmittel as zutrittsmittel.bezeichnung for zutrittsmittel in zutrittsmittelliste track by zutrittsmittel._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Datentypen:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.daten" 
+                                        ng-options="data as data.bezeichnung for data in daten track by data._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichern"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>
+
