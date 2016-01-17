@@ -1,7 +1,5 @@
             <content>
                  <div ng-switch="appdata.content">
-
-
                     <div ng-switch-when="edit_standort">
                         <% include standort.ejs %>
                     </div>
@@ -25,6 +23,21 @@
                     </div>
                     <div ng-switch-when="edit_hardware">
                         <% include hardware.ejs %>                
+                    </div>
+                    <div ng-switch-when="edit_ressource">
+                        <% include itressource.ejs %>                
+                    </div>
+                    <div ng-switch-when="edit_tresor">
+                        <% include tresor.ejs %>                
+                    </div>
+                    <div ng-switch-when="edit_papierdokumente">
+                        <% include papierdokumente.ejs %>                
+                    </div>
+                    <div ng-switch-when="edit_zutrittsmittelstatus">
+                        <% include zutrittsmittelstatus.ejs %>                
+                    </div>
+                    <div ng-switch-when="edit_zutrittsmittel">
+                        <% include zutrittsmittel.ejs %>                
                     </div>
                     <div ng-switch-default></div>
                 </div>

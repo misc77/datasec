@@ -1,0 +1,32 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
+                                <input type="text" class="form-control" placeholder="Bezeichnung des Zutrittsmittels" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
+                                <input type="text" class="form-control" placeholder="Beschreibung des Zutrittsmittels" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.beschreibung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Status:</span>
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._status = { _id: formData.statusID}" 
+                                        ng-change="formData.statusID = formData.status._id" 
+                                        ng-model="formData.status" 
+                                        ng-options="status._id as status.bezeichnung for status in statusliste track by status._id">
+                                </select>               
+                            </div>
+                           <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Ausgabe:</span>
+                                <input type="text" class="form-control" placeholder="Ausgabedatum" aria-describedby="basic-addon1" name="gruendung" ng-model="formData.ausgabe">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Rückgabe:</span>
+                                <input type="text" class="form-control" placeholder="Rückgabedatum" aria-describedby="basic-addon1" name="schliessung" ng-model="formData.rueckgabe">
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichern"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>

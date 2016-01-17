@@ -40,10 +40,14 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.object_id = undefined;
     $scope.title = appdata.submenu + ' anlegen';
     $scope.standorte = {};
+    $scope.daten = {};
+    $scope.statusliste = {};
         
     //INIT
     $scope.init = function(){
-        $http.get('/api/standort/list').then( function(res) { $scope.standorte = res.data; });
+        $http.get('/api/standort/list_active').then( function(res) { $scope.standorte = res.data; });
+        $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
+        $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 

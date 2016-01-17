@@ -85,6 +85,19 @@ exports.list = function(req, res){
     });
 };
 
+exports.list_active = function(req, res){
+    Standort.find({schliessung: null}).exec(function(err, standorte) {
+        if (err) {
+            console.log('err: ' + err);
+            return res.status(400).send({
+                msg: err.getErrorMessage(err)
+            });
+        } else {
+            res.send(standorte);
+        }
+    });
+};
+
 exports.get = function(req, res){
     Standort.find({_id: req.query['id']}).exec(function(err, standort) {
         if (err) {

@@ -1,0 +1,30 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
+                                <input type="text" class="form-control" placeholder="Bezeichnung der Ressource" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
+                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Datentypen:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.daten" 
+                                        ng-options="data as data.bezeichnung for data in daten track by data._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                            </div>   
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichern"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>
+

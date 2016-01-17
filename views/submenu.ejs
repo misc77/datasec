@@ -100,6 +100,81 @@
              </table>
         </div>
 
+        <!-- IT - Ressourcen -->
+        <div ng-switch-when="ressourcen">
+            <center><h3>IT - Ressourcen</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_ressource', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_ressource')">IT-Ressource erfassen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Tresor -->
+        <div ng-switch-when="tresor">
+            <center><h3>Tresorverwaltung</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_tresor', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_tresor')">Tresor anlegen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Papierdokumente -->
+        <div ng-switch-when="papierdokumente">
+            <center><h3>Papierdokumente</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_papierdokumente', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_papierdokumente')">Papierdokument erfassen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- zutrittsmittelstatus -->
+        <div ng-switch-when="zutrittsmittelstatus">
+            <center><h3>Zutrittsmittel Status</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_zutrittsmittelstatus', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_zutrittsmittelstatus')">Status anlegen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Zutrittsmittel -->
+        <div ng-switch-when="zutrittsmittel">
+            <center><h3>Zutrittsmittel</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_zutrittsmittel', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_zutrittsmittel')">Zutrittsmittel erfassen</button></td></tr>
+             </table>
+        </div>
+
         <!-- Default --> 
         <div ng-switch-default>
             <p></p>

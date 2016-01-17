@@ -24,11 +24,20 @@ var Berechtigung = mongoose.model("berechtigung", berechtigungSchema);
 var dokumentSchema = new Schema({
     bezeichnung:    String,
     beschreibung:   String,
-    template:       String,  //link
-    sensibel:       Boolean,
-    unterzeichnet:  Date
+    binary:         String,  //Document in binary representation
+    unterzeichnet:  Date,
+    dokumentTyp:    {type: Schema.Types.ObjectId, ref: 'dokumentTyp'}
 });
 var Dokument = mongoose.model("dokument", dokumentSchema);
+
+var dokumentTypSchema = new Schema({
+    bezeichnung:    String,
+    beschreibung:   String,
+    template:       String,
+    version:        String,
+    obligatorisch:  Boolean
+});
+var DokumentTyp = mongoose.model("dokumentTyp", dokumentTypSchema);
 
 /* Daten */
 var datenSchema = new Schema({
@@ -70,7 +79,11 @@ var Hardware = mongoose.model("hardware", hardwareSchema);
 var ressourceSchema = new Schema({
     bezeichnung:   String,
     beschreibung:  String,
-    daten:         [{type: Schema.Types.ObjectId, ref: 'daten'}]    
+    aktiv:         String,
+    daten:         [{type: Schema.Types.ObjectId, ref: 'daten'}],
+    protokoll:     [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
+                       eintrag:   String,
+                       datum:     Date }]
 });
 var Ressource = mongoose.model("ressource", ressourceSchema);
 
@@ -99,7 +112,6 @@ var papierdokumentSchema = new Schema({
     beschreibung:   String,
     aktiv:          Boolean,
     daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
-    dokumente:      [{type: Schema.Types.ObjectId, ref: 'dokument'}],
     protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
                        eintrag:   String,
                        datum:     Date }]
@@ -118,7 +130,11 @@ var Rolle = mongoose.model("rolle", rolleSchema);
 var tresorSchema = new Schema({
     bezeichnung:    String,
     beschreibung:   String,
-    daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}]
+    aktiv:          Boolean,
+    daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
+    protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
+                       eintrag:   String,
+                       datum:     Date }]
 });
 var Tresor = mongoose.model("tresor", tresorSchema);
 
@@ -151,15 +167,22 @@ var Status = mongoose.model("status", statusSchema);
 var zutrittsmittelSchema = new Schema({
     bezeichnung:  String,
     beschreibung: String,
-    aktiv:        Boolean,
     ausgabe:      Date,
     rueckgabe:    Date,
-    status:       String,
+    status:       { type: Schema.Types.ObjectId, ref : 'zutrittsmittelStatus' },
     protokoll:    [{ user:      {type: Schema.Types.ObjectId, ref: 'User'},
                      eintrag:   String,
                      datum:     Date }]
 });
 var Zutrittsmittel = mongoose.model("zutrittsmittel", zutrittsmittelSchema);
+
+/* Zutrittsmittel Status */
+var zutrittsmittelsStatusSchema = new Schema({
+    bezeichnung:  String,
+    beschreibung: String,
+    gueltig:      Boolean
+});
+var ZutrittsmittelStatus = mongoose.model("zutrittsmittelStatus", zutrittsmittelsStatusSchema);
 
 /* Raum */
 var raumSchema = new Schema({
@@ -244,6 +267,7 @@ module.exports = {    Aufgabenbefugniss : Aufgabenbefugniss
                     , Befugniss : Befugniss
                     , Daten : Daten
                     , Dokument : Dokument
+                    , DokumentTyp : DokumentTyp
                     , Fahrzeug : Fahrzeug
                     , Hardware : Hardware
                     , Log : Log
@@ -256,4 +280,5 @@ module.exports = {    Aufgabenbefugniss : Aufgabenbefugniss
                     , Status  : Status     
                     , Tresor  : Tresor
                     , User : User
-                    , Zutrittsmittel : Zutrittsmittel };
+                    , Zutrittsmittel : Zutrittsmittel
+                    , ZutrittsmittelStatus : ZutrittsmittelStatus};
