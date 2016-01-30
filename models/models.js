@@ -13,6 +13,14 @@ var aufgabeSchema = new Schema({
 });
 var Aufgabe = mongoose.model("aufgabe", aufgabeSchema);
 
+/* Beschäftigungsverhältnis */
+var beschaeftigungSchema = new Schema({
+    bezeichnung:    String,
+    beschreibung:   String,
+    aktiv:          Boolean
+});
+var Beschaeftigung = mongoose.model("beschaeftigung", beschaeftigungSchema);
+
 /* Berechtigung */
 var berechtigungSchema = new Schema({
     bezeichnung:    String,
@@ -266,6 +274,7 @@ module.exports = {    Aufgabenbefugniss : Aufgabenbefugniss
                     , Berechtigung : Berechtigung
                     , Aufgabe : Aufgabe 
                     , Befugniss : Befugniss
+                    , Beschaeftigung : Beschaeftigung
                     , Daten : Daten
                     , Dokument : Dokument
                     , DokumentTyp : DokumentTyp

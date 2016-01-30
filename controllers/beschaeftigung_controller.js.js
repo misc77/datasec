@@ -2,24 +2,24 @@
  * Initation
  */
 var Model = require('../models/models.js');
-var Aufgabe = Model.Aufgabe;
+var Beschaeftigung = Model.Beschaeftigung;
 
 exports.create = function (req, res){
-   var aufgabe = new Aufgabe();
-    aufgabe.set('bezeichnung', req.body.bezeichnung);
-    aufgabe.set('beschreibung', req.body.beschreibung); 
-    aufgabe.set('aktiv', req.body.aktiv);
-    aufgabe.save(function(err){
+   var beschaeftigung = new Beschaeftigung();
+    beschaeftigung.set('bezeichnung', req.body.bezeichnung);
+    beschaeftigung.set('beschreibung', req.body.beschreibung); 
+    beschaeftigung.set('aktiv', req.body.aktiv);
+    beschaeftigung.save(function(err){
         if(err){
             console.log('err: ' + err);
         } else {
-            res.json(aufgabe);
+            res.json(beschaeftigung);
         }
     });
 };
 
 exports.delete = function (req, res){
-    Aufgabe.findOneAndRemove({_id: req.body._id}, function(err){
+    Beschaeftigung.findOneAndRemove({_id: req.body._id}, function(err){
         if (err){
             console.log('err: ' + err);
         } else {
@@ -29,29 +29,29 @@ exports.delete = function (req, res){
 };
 
 exports.save = function (req, res){
-    Aufgabe.findOne({_id: req.body._id}).exec(function(err, aufgabe) {
+    Beschaeftigung.findOne({_id: req.body._id}).exec(function(err, beschaeftigung) {
         if (err) {
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
-                aufgabe.bezeichnung = req.body.bezeichnung;
+                beschaeftigung.bezeichnung = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
-                aufgabe.beschreibung = req.body.beschreibung;
+                beschaeftigung.beschreibung = req.body.beschreibung;
             }
             if (req.body.aktiv === undefined | req.body.aktiv === null ){
-                aufgabe.aktiv = false;
+                beschaeftigung.aktiv = false;
             } else {
-                aufgabe.aktiv = true;
+                beschaeftigung.aktiv = true;
             }
-            aufgabe.save(
+            beschaeftigung.save(
                 function(err){
                     if(err){
                         console.log('err: ' + err);
                     } else {
-                        res.json(aufgabe);
+                        res.json(beschaeftigung);
                     }
                 }
             );
@@ -60,27 +60,27 @@ exports.save = function (req, res){
 };
 
 exports.list = function(req, res){
-    Aufgabe.find().exec(function(err, aufgaben) {
+    Beschaeftigung.find().exec(function(err, beschaeftigung) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
-            res.send(aufgaben);
+            res.send(beschaeftigung);
         }
     });
 };
 
 exports.get = function(req, res){
-    Aufgabe.find({_id: req.query['id']}).exec(function(err, aufgabe) {
+    Beschaeftigung.find({_id: req.query['id']}).exec(function(err, beschaeftigung) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
-            res.json({object : aufgabe});
+            res.json({object : beschaeftigung});
         }
     });
 };
