@@ -11,7 +11,7 @@ module.exports = function(app) {
     var mitarbeiter = require('./controllers/mitarbeiter_controller');
     var standort = require('./controllers/standort_controller');
     var aufgabe = require('./controllers/aufgabe_controller');
-    var beschaeftigung = require('./controllers/beschaeftigung_controller.js');
+    var beschaeftigung = require('./controllers/beschaeftigung_controller');
     var daten = require('./controllers/daten_controller');
     var rolle = require('./controllers/rolle_controller');
     var fahrzeug = require('./controllers/fahrzeug_controller');
@@ -160,7 +160,12 @@ module.exports = function(app) {
     /**************************
      *      Mitarbeiter Routes 
      ***************************/
-    app.post('/api/mitarbeiter/create', mitarbeiter.create );
+    app.post('/api/mitarbeiter/create',  mitarbeiter.create );
+    app.post('/api/mitarbeiter/save',    mitarbeiter.save); 
+    app.post('/api/mitarbeiter/delete',  mitarbeiter.delete); 
+    app.get('/api/mitarbeiter/list',     mitarbeiter.list) ;
+    app.get('/api/mitarbeiter/get',      mitarbeiter.get) ;
+    
     
     /**************************
      *      USER Routes 

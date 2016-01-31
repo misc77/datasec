@@ -43,6 +43,11 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.daten = {};
     $scope.statusliste = {};
     $scope.zutrittsmittelliste = {};
+    $scope.mitarbeiterliste = {};
+    $scope.aufgabenliste = {};
+    $scope.mitarbeiterstatusliste = {};
+    $scope.rollenliste = {};
+    $scope.beschaeftigungliste = {};
         
     //INIT
     $scope.init = function(){
@@ -50,6 +55,11 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
         $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
         $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });
         $http.get('/api/zutrittsmittel/list').then( function(res) { $scope.zutrittsmittelliste = res.data; });
+        $http.get('/api/mitarbeiter/list').then( function(res) { $scope.mitarbeiterliste = res.data; });
+        $http.get('/api/aufgabe/list').then( function(res) { $scope.aufgabenliste = res.data; });
+        $http.get('/api/mitarbeiterstatus/list').then( function(res) { $scope.mitarbeiterstatusliste = res.data; });
+        $http.get('/api/rolle/list').then( function(res) { $scope.rollenliste = res.data; });
+        $http.get('/api/beschaeftigung/list').then( function(res) { $scope.beschaeftigungliste = res.data; });
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 

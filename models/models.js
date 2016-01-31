@@ -87,7 +87,7 @@ var Hardware = mongoose.model("hardware", hardwareSchema);
 var ressourceSchema = new Schema({
     bezeichnung:   String,
     beschreibung:  String,
-    aktiv:         String,
+    aktiv:         Boolean,
     daten:         [{type: Schema.Types.ObjectId, ref: 'daten'}],
     protokoll:     [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
                        eintrag:   String,
@@ -97,13 +97,15 @@ var Ressource = mongoose.model("ressource", ressourceSchema);
 
 /* Mitarbeiter */
 var mitarbeiterSchema = new Schema({
-    mitarbeiter_nr:     String,
+    mitarbeiternr:      String,
     vorname:            String,
     nachname:           String,
+    string:             String,
     geburtsdatum:       Date,
-    standort:           [{type: Schema.Types.ObjectId, ref: 'standort'}],
+    standort:           {type: Schema.Types.ObjectId, ref: 'standort'},
     aufgabe:            {type: Schema.Types.ObjectId, ref: 'aufgabe'},
     status:             {type: Schema.Types.ObjectId, ref: 'mitarbeiterStatus'},
+    beschaeftigung:     {type: Schema.Types.ObjectId, ref: 'beschaeftigung'},
     statusSeit:         Date,
     rolle:              {type: Schema.Types.ObjectId, ref: 'rolle'},
     urlaubsvertretung:  {type: Schema.Types.ObjectId, ref: 'mitarbeiter'},

@@ -1,0 +1,36 @@
+##############################################################
+#                       TO DOs                               #
+##############################################################
+
+Prio 1: Funktion
+
+A.) Aufgabenbezogene Befugnisse
+B.) Datenschutzdokumente
+C.) Fachliche Validierungen (z.B.: Prüfung auf unterschriebene Dokumente etc.)
+D.) Logging (Protokoll bzw. Historisierung)
+E.) Befugnissverwaltung
+F.) Konzept Reports/Auswertungen
+G.) Validerungen für Forms
+
+
+Prio 2: Visualisierung
+
+1.) Bearbeitung und Anzeige Datumswerte
+3.) Gruppierungen im Submenu
+4.) Formatierung der Forms (Tabellen)
+5.) Formatierung Login
+8.) CI Netvocat implementieren
+
+
+Prio 3: Administration
+
+1.) Einstellungen/Konfiguration der Anwendung
+2.) Useradmin
+3.) Lizenzprüfung
+4.) Userspezifische Berechtigungen
+5.) Excel Import
+ 
+
+Prio 4: Deployment
+
+1.) Auslieferung

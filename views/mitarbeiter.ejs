@@ -1,23 +1,84 @@
-                        <form>
-                            <p>Mitarbeiter anlegen:</p>
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
                             <div class="input-group">
-                              <span class="input-group-addon" id="basic-addon1">Mitarbeiter Nr:</span>
-                              <input type="text" class="form-control" placeholder="Mitarbeiter Nummer" aria-describedby="basic-addon1" ng-model="mitarbeiternr">
+                                <span class="input-group-addon " id="basic-addon1">Mitarbeiter Nr:</span>
+                                <input type="text" class="form-control" placeholder="Mitarbeiter Nummer" aria-describedby="basic-addon1" ng-model="formData.mitarbeiternr">
+                            </div>
+                   
+                            
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Vorname:</span>
+                                <input type="text" class="form-control" placeholder="Vorname" aria-describedby="basic-addon1" ng-model="formData.vorname">
+                            </div>
+                      
+
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Nachname:</span>
+                                <input type="text" class="form-control" placeholder="Nachname" aria-describedby="basic-addon1" ng-model="formData.nachname">
+                            </div>
+                  
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Geburtsdatum:</span>
+                                <input type="text" class="form-control" placeholder="Geburtsdatum" aria-describedby="basic-addon1" name="geburtsdatum" ng-model="formData.geburtsdatum">
+                            </div>
+                                
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Standort:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.standort" 
+                                        ng-options="standort as standort.bezeichnung for standort in standorte track by standort._id">
+                                </select>               
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aufgabe:</span>
+                                <div class="input-group">
+                                    <select class="form-control" id="inputAufgabe" aria-describedby="basic-addon1" 
+                                            ng-model="formData.aufgabe" 
+                                            ng-options="aufgabe as aufgabe.bezeichnung for aufgabe in aufgabenliste track by aufgabe._id">
+                                    </select>               
+                                </div>
+                            </div>
+   
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Beschäftigungsverhältniss:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.beschaeftigung" 
+                                        ng-options="beschaeftigung as beschaeftigung.bezeichnung for beschaeftigung in beschaeftigungliste track by beschaeftigung._id">
+                                </select>               
+                                </div>
                             </div>
                             <div class="input-group">
-                              <span class="input-group-addon" id="basic-addon1">Vorname:</span>
-                              <input type="text" class="form-control" placeholder="Vorname" aria-describedby="basic-addon1" ng-model="vorname">
+                                <span class="input-group-addon" id="basic-addon1">Status:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.status" 
+                                        ng-options="status as status.bezeichnung for status in mitarbeiterstatusliste track by status._id">
+                                </select>               
+                                </div>
                             </div>
                             <div class="input-group">
-                              <span class="input-group-addon" id="basic-addon1">Nachname:</span>
-                              <input type="text" class="form-control" placeholder="Nachname" aria-describedby="basic-addon1" ng-model="nachname">
+                                <span class="input-group-addon" id="basic-addon1">Urlaubsvertretung:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.urlaubsvertretung" 
+                                        ng-options="urlaubsvertretung as urlaubsvertretung.string for urlaubsvertretung in mitarbeiterliste track by urlaubsvertretung._id">
+                                </select>               
+                                </div>
                             </div>
-                            <div class="input-group date" data-provide="datepicker">
-                               <span class="input-group-addon" id="basic-addon1">Geburtsdatum:</span>
-                               <input type="text" class="form-control">
-                               <div class="input-group-addon">
-                                   <span class="glyphicon glyphicon-th"></span>
-                               </div>
-                           </div>                                               
-                           <button ng-click="save_mitarbeiter()">Speichere Mitarbeiter</button>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Urlaubsvertretung Seit:</span>
+                                <input type="text" class="form-control" placeholder="Datum Start Urlaubsvertretung" aria-describedby="basic-addon1" name="vertretungSeit" ng-model="formData.vertretungSeit">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Urlaubsvertretung Bis:</span>
+                                <input type="text" class="form-control" placeholder="Datum Ende Urlaubsvertretung" aria-describedby="basic-addon1" name="vertretungBis" ng-model="formData.vertretungBis">
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichern"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
                         </form>        
