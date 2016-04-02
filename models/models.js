@@ -83,10 +83,18 @@ var hardwareSchema = new Schema({
 });
 var Hardware = mongoose.model("hardware", hardwareSchema);
 
-/* IT-Ressourcen */
+/* RessourcenTyp */
+var ressourcenTypSchema = new Schema({
+   bezeichnung: String,
+   aktiv:       Boolean
+});
+var RessourcenTyp = mongoose.model("ressourcentyp", ressourcenTypSchema);
+
+/* Ressourcen */
 var ressourceSchema = new Schema({
     bezeichnung:   String,
     beschreibung:  String,
+    typ:           {type: Schema.Types.ObjectId, ref: 'ressourcentyp'},
     aktiv:         Boolean,
     daten:         [{type: Schema.Types.ObjectId, ref: 'daten'}],
     protokoll:     [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
@@ -205,21 +213,27 @@ var raumSchema = new Schema({
 });
 var Raum = mongoose.model("raum", raumSchema);
 
-/* Aufgaben Befugnisse */
+/* Musterrolle */
 /** Template für Befugnisse **/
-var aufgabenBefugnissSchema = new Schema({
-    aufgabe:     {type: Schema.Types.ObjectId, ref: 'aufgabe'},
-    tresor:      [{type: Schema.Types.ObjectId, ref: 'tresor'}],  
-    raum:        [{type: Schema.Types.ObjectId, ref: 'raum'}],
-    fahrzeug:    [{type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
-    papierdokumente: [{type: Schema.Types.ObjectId, ref: 'papierdokument'}],
-    hardware:    [{type: Schema.Types.ObjectId, ref: 'hardware'}],
-    byod:        Boolean,
-    fernzugriff: Boolean,
-    berechtigung: [{type: Schema.Types.ObjectId, ref: 'berechtigung'}],
-    ressource:   [{type: Schema.Types.ObjectId, ref: 'ressource'}]
+var musterrolleSchema = new Schema({
+    bezeichnung:        String,
+    aufgabe:            {type: Schema.Types.ObjectId, ref: 'aufgabe'},
+    tresor_zuo:         [{type: Schema.Types.ObjectId, ref: 'tresor'}, 
+                        {type: Schema.Types.ObjectId, ref: 'zutrittsmittel'}],  
+    raum_zuo:           [{type: Schema.Types.ObjectId, ref: 'raum'}, 
+                        {type: Schema.Types.ObjectId, ref: 'zutrittsmittel'}],
+    fahrzeug_zuo:       [{type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
+    papierdokumente_zuo:[{type: Schema.Types.ObjectId, ref: 'papierdokument'}, 
+                        {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    hardware_zuo:       [{type: Schema.Types.ObjectId, ref: 'hardware'}, 
+                        {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    byod:               Boolean,
+    fernzugriff:        Boolean,
+    ressource_zuo:      [{type: Schema.Types.ObjectId, ref: 'ressource'}, 
+                        {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    aktiv:              Boolean
 });
-var Aufgabenbefugniss = mongoose.model("aufgabenbefugniss", aufgabenBefugnissSchema);
+var Musterrolle = mongoose.model("musterrolle", musterrolleSchema);
 
 /* Befugniss */
 /** Haupt-Collection zur Zuordnung der Befugnisse pro Mitarbeiter **/
@@ -272,7 +286,7 @@ var User = mongoose.model('user', userSchema);
 /*********************************
  * Exports models
  ********************************/
-module.exports = {    Aufgabenbefugniss : Aufgabenbefugniss
+module.exports = {    Musterrolle : Musterrolle
                     , Berechtigung : Berechtigung
                     , Aufgabe : Aufgabe 
                     , Befugniss : Befugniss
@@ -287,6 +301,7 @@ module.exports = {    Aufgabenbefugniss : Aufgabenbefugniss
                     , Papierdokument : Papierdokument
                     , Raum : Raum
                     , Ressource : Ressource
+                    , RessourcenTyp : RessourcenTyp
                     , Rolle : Rolle
                     , Standort: Standort
                     , MitarbeiterStatus  : MitarbeiterStatus     

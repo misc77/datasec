@@ -11,12 +11,15 @@ module.exports = function(app) {
     var mitarbeiter = require('./controllers/mitarbeiter_controller');
     var standort = require('./controllers/standort_controller');
     var aufgabe = require('./controllers/aufgabe_controller');
+    var musterrolle = require('./controllers/musterrolle_controller');
     var beschaeftigung = require('./controllers/beschaeftigung_controller');
+    var berechtigung = require('./controllers/berechtigung_controller');
     var daten = require('./controllers/daten_controller');
     var rolle = require('./controllers/rolle_controller');
     var fahrzeug = require('./controllers/fahrzeug_controller');
     var hardware = require('./controllers/hardware_controller');
     var ressource = require('./controllers/ressource_controller');
+    var ressourcentyp = require('./controllers/ressourcentyp_controller');
     var tresor = require('./controllers/tresor_controller');
     var papierdokumente = require('./controllers/papierdokument_controller');
     var zutrittsmittel = require('./controllers/zutrittsmittel_controller');
@@ -47,6 +50,16 @@ module.exports = function(app) {
     app.get('/api/aufgabe/get',         aufgabe.get) ;
     
     /**************************
+     *      Muster Rolle 
+     ***************************/
+    app.post('/api/musterrolle/create',     musterrolle.create); 
+    app.post('/api/musterrolle/save',       musterrolle.save); 
+    app.post('/api/musterrolle/delete',     musterrolle.delete); 
+    app.get('/api/musterrolle/list',        musterrolle.list) ;
+    app.get('/api/musterrolle/get',         musterrolle.get) ;
+    
+    
+    /**************************
      *      Beschaeftigung Routes 
      ***************************/
     app.post('/api/beschaeftigung/create',     beschaeftigung.create); 
@@ -54,6 +67,15 @@ module.exports = function(app) {
     app.post('/api/beschaeftigung/delete',     beschaeftigung.delete); 
     app.get('/api/beschaeftigung/list',        beschaeftigung.list) ;
     app.get('/api/beschaeftigung/get',         beschaeftigung.get) ;
+    
+    /**************************
+     *      Berechtigung Routes 
+     ***************************/
+    app.post('/api/berechtigung/create',     berechtigung.create); 
+    app.post('/api/berechtigung/save',       berechtigung.save); 
+    app.post('/api/berechtigung/delete',     berechtigung.delete); 
+    app.get('/api/berechtigung/list',        berechtigung.list) ;
+    app.get('/api/berechtigung/get',         berechtigung.get) ;
     
     /**************************
      *      Daten Routes 
@@ -100,6 +122,15 @@ module.exports = function(app) {
     app.get('/api/ressourcen/list',     ressource.list) ;
     app.get('/api/ressourcen/list_active',ressource.list_active) ;
     app.get('/api/ressourcen/get',      ressource.get) ;
+    
+    /**************************
+     *      RessourceTyp Routes 
+     ***************************/
+    app.post('/api/ressourcentyp/create',       ressourcentyp.create); 
+    app.post('/api/ressourcentyp/save',         ressourcentyp.save); 
+    app.post('/api/ressourcentyp/delete',       ressourcentyp.delete); 
+    app.get('/api/ressourcentyp/list',          ressourcentyp.list) ;
+    app.get('/api/ressourcentyp/get',           ressourcentyp.get) ;
     
     /**************************
      *      Tresor Routes 

@@ -6,6 +6,12 @@
                     <div ng-switch-when="edit_aufgabe">
                         <% include aufgabe.ejs %>
                     </div>
+                    <div ng-switch-when="edit_musterrolle">
+                        <% include musterrolle.ejs %>
+                    </div>
+                    <div ng-switch-when="edit_berechtigung">
+                        <% include berechtigung.ejs %>
+                    </div>
                     <div ng-switch-when="edit_beschaeftigung">
                         <% include beschaeftigung.ejs %>
                     </div>
@@ -28,7 +34,10 @@
                         <% include hardware.ejs %>                
                     </div>
                     <div ng-switch-when="edit_ressource">
-                        <% include itressource.ejs %>                
+                        <% include ressource.ejs %>                
+                    </div>
+                    <div ng-switch-when="edit_ressourcentyp">
+                        <% include ressourcentyp.ejs %>                
                     </div>
                     <div ng-switch-when="edit_tresor">
                         <% include tresor.ejs %>                

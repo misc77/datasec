@@ -1,0 +1,92 @@
+                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
+                                <input type="text" class="form-control" placeholder="Bezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aufgabe:</span>
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._aufgabe = { _id: formData.aufgabeID}" 
+                                        ng-change="formData.aufgabeID = formData.aufgabe._id" 
+                                        ng-model="formData.aufgabe" 
+                                        ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in aufgabenliste track by aufgabe._id">
+                                </select>               
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Beschäftigungsverhaeltnis:</span>
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
+                                        ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
+                                        ng-model="formData.beschaeftigung" 
+                                        ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschäftigung in beschaeftigungliste track by beschaeftigung._id">
+                                </select>               
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Tresorzugriff:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.tresor" 
+                                        ng-options="tresor as tresor.bezeichnung for tresor in tresorliste track by tresor._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Zutritt zu Räumlichkeiten:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.raum" 
+                                        ng-options="raum as raum.bezeichnung for raum in raumliste track by raum._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Fahrzeuge:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.fahrzeug" 
+                                        ng-options="fahrzeug as fahrzeug.kennzeichen for fahrzeug in fahrzeugliste track by fahrzeug._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Papierdokumente:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.papierdokument" 
+                                        ng-options="papierdokument as papierdokument.bezeichnung for papierdokument in papierdokumentliste track by papierdokument._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">IT-Hardware:</span>
+                               <div class="input-group">
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-model="formData.hardware" 
+                                        ng-options="hardware as hardware.bezeichnung for hardware in hardwareliste track by hardware._id"
+                                        multiple >
+                                </select>               
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">BYOD:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="byod" ng-model="formData.byod">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Fernzugriff:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="byod" ng-model="formData.fernzugriff">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="form-control" value="Speichere Muster Rolle"> 
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>
+

@@ -1,10 +1,5 @@
 <submenu>    
     <div ng-switch="appdata.submenu">
-        <!-- Berechtigung --> 
-        <div ng-switch-when="berechtigungen">
-            <p> Berechtigung </p>
-        </div>
-
         <!-- Standort --> 
         <div ng-switch-when="standort">
             <center><h3>Standorte</h3></center>
@@ -32,6 +27,36 @@
                 </tr>
                 <tr> </tr>
                 <tr><td colspan="2"><button ng-click="call_content('edit_aufgabe')">Aufgabe anlegen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Muster Rollen --> 
+        <div ng-switch-when="musterrolle">
+            <center><h3>Muster Rollen</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_musterrolle', item._id)">{{ item.aufgabe.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_musterrolle')">Muster Rolle anlegen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Berechtigung --> 
+        <div ng-switch-when="berechtigung">
+            <center><h3>Berechtigungen</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_berechtigung', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_berechtigung')">Berechtigung anlegen</button></td></tr>
              </table>
         </div>
 
@@ -125,18 +150,33 @@
              </table>
         </div>
 
-        <!-- IT - Ressourcen -->
+        <!-- Ressourcen -->
         <div ng-switch-when="ressourcen">
-            <center><h3>IT - Ressourcen</h3></center>
+            <center><h3>Ressourcen</h3></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
                 <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_ressource', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><a ng-click="call_content('edit_ressource', item._id)">{{ item.bezeichnung + ' ( ' + item.typ.bezeichnung + ' )'  }}</a></td>
                     <td><button ng-click="call_content('delete', item._id)">X</button></td>
                 </tr>
                 <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_ressource')">IT-Ressource erfassen</button></td></tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_ressource')">Ressource erfassen</button></td></tr>
+             </table>
+        </div>
+
+        <!-- Ressourcentyp -->
+        <div ng-switch-when="ressourcentyp">
+            <center><h3>Ressourcen Typen</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_ressourcentyp', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_ressourcentyp')">Ressourcen Typ erfassen</button></td></tr>
              </table>
         </div>
 
@@ -152,21 +192,6 @@
                 </tr>
                 <tr> </tr>
                 <tr><td colspan="2"><button ng-click="call_content('edit_tresor')">Tresor anlegen</button></td></tr>
-             </table>
-        </div>
-
-        <!-- Papierdokumente -->
-        <div ng-switch-when="papierdokumente">
-            <center><h3>Papierdokumente</h3></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_papierdokumente', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_papierdokumente')">Papierdokument erfassen</button></td></tr>
              </table>
         </div>
 

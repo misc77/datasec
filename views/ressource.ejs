@@ -9,6 +9,15 @@
                                 <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
                             </div>
                             <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Typ:</span>
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._typ = { _id: formData.typID}" 
+                                        ng-change="formData.typID = formData.typ._id" 
+                                        ng-model="formData.typ" 
+                                        ng-options="typ._id as typ.bezeichnung for typ in ressourcentypliste track by typ._id">
+                                </select>               
+                            </div>
+                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Datentypen:</span>
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 

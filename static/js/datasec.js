@@ -48,9 +48,17 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.mitarbeiterstatusliste = {};
     $scope.rollenliste = {};
     $scope.beschaeftigungliste = {};
+    $scope.musterrollen = {};
+    $scope.tresorliste = {};
+    $scope.raumliste = {};
+    $scope.fahrzeugliste = {};
+    $scope.papierdokumentliste = {};
+    $scope.hardwareliste = {};
+    $scope.ressourcentypliste = {};
         
     //INIT
     $scope.init = function(){
+        // loading data
         $http.get('/api/standort/list_active').then( function(res) { $scope.standorte = res.data; });
         $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
         $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });
@@ -60,6 +68,15 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
         $http.get('/api/mitarbeiterstatus/list').then( function(res) { $scope.mitarbeiterstatusliste = res.data; });
         $http.get('/api/rolle/list').then( function(res) { $scope.rollenliste = res.data; });
         $http.get('/api/beschaeftigung/list').then( function(res) { $scope.beschaeftigungliste = res.data; });
+        $http.get('/api/musterrolle/list').then( function(res) { $scope.musterrollen = res.data; });
+        $http.get('/api/tresor/list').then( function(res) { $scope.tresorliste = res.data; });
+        $http.get('/api/raum/list').then( function(res) { $scope.raumliste = res.data; });
+        $http.get('/api/fahrzeug/list').then( function(res) { $scope.fahrzeugliste = res.data; });
+        $http.get('/api/papierdokument/list').then( function(res) { $scope.papierdokumentliste = res.data; });
+        $http.get('/api/hardware/list').then( function(res) { $scope.hardwareliste = res.data; });
+        $http.get('/api/ressourcentyp/list').then( function(res) { $scope.ressourcentypliste = res.data; });
+        
+        // setting formdata
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 

@@ -5,9 +5,11 @@ var Model = require('../models/models.js');
 var Ressource = Model.Ressource;
 
 exports.create = function (req, res){
+   console.log('typ: ' + req.body.typ);
    var ressource = new Ressource();
     ressource.set('bezeichnung', req.body.bezeichnung);
     ressource.set('beschreibung', req.body.beschreibung); 
+    ressource.set('typ', req.body.typ);
     ressource.set('aktiv', req.body.aktiv);
     ressource.set('daten', req.body.daten);
     ressource.save(function(err){
@@ -36,11 +38,17 @@ exports.save = function (req, res){
                 msg: err.getErrorMessage(err)
             });
         } else {
+            console.log('typ: ' + req.body.typ);
+            
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 ressource.bezeichnung = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 ressource.beschreibung = req.body.beschreibung;
+            }
+            if (req.body.typ !== undefined & req.body.typ !== null ){
+                console.log('setting typ: ' + req.body.typ);
+                ressource.typ = req.body.typ;
             }
             if (req.body.aktiv === undefined | req.body.aktiv === null ){
                 ressource.aktiv = false;
@@ -66,6 +74,7 @@ exports.save = function (req, res){
 exports.list = function(req, res){
     Ressource.find()
             .populate('daten')
+            .populate('typ')
             .exec(function(err, ressource) {
         if (err) {
             console.log('err: ' + err);
@@ -81,6 +90,7 @@ exports.list = function(req, res){
 exports.list_active = function(req, res){
     Ressource.find({active: true})
             .populate('daten')
+            .populate('typ')
             .exec(function(err, ressource) {
         if (err) {
             console.log('err: ' + err);
@@ -96,6 +106,7 @@ exports.list_active = function(req, res){
 exports.get = function(req, res){
     Ressource.find({_id: req.query['id']})
             .populate('daten')
+            .populate('typ')
             .exec(function(err, ressource) {
         if (err) {
             console.log('err: ' + err);
@@ -103,6 +114,7 @@ exports.get = function(req, res){
                 msg: err.getErrorMessage(err)
             });
         } else {
+            console.log('typ get: ' + ressource.typ);
             res.json({object : ressource});
         }
     });
