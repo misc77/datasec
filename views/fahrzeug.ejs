@@ -1,4 +1,4 @@
-                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                        <form ng-controller="staticDataCtrl">
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Kennzeichen:</span>
@@ -30,7 +30,7 @@
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="reset" ng-model="formData.reset">
                             </div>
                             <div class="input-group">
-                                <input type="submit" class="form-control" value="Speichere Fahrzeug"> 
+                                <button ng-click='save()'>Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

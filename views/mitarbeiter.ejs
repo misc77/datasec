@@ -1,4 +1,4 @@
-                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                        <form ng-controller="staticDataCtrl">
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon " id="basic-addon1">Mitarbeiter Nr:</span>
@@ -78,7 +78,7 @@
                                 <input type="text" class="form-control" placeholder="Datum Ende Urlaubsvertretung" aria-describedby="basic-addon1" name="vertretungBis" ng-model="formData.vertretungBis">
                             </div>
                             <div class="input-group">
-                                <input type="submit" class="form-control" value="Speichern"> 
+                                <button ng-click='save()'>Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>        

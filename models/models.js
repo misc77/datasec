@@ -5,6 +5,16 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/DataSec');
 var Schema = mongoose.Schema;
 
+var protokollSchema = new Schema ({
+    user:      { type: Schema.Types.ObjectId, ref: 'user'},
+    eintrag:     String ,
+    datum:      Date 
+});
+var Protokoll = mongoose.model("protokoll", protokollSchema);
+
+/*****************/
+/* Hauptschemata */
+/*****************/
 /* Aufgabe */
 var aufgabeSchema = new Schema({
     bezeichnung:    String,
@@ -62,9 +72,7 @@ var fahrzeugSchema = new Schema({
     aktiv:          Boolean,
     navigation:     Boolean,
     reset:          Boolean,
-    protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                       eintrag:   String,
-                       datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Fahrzeug = mongoose.model("fahrzeug", fahrzeugSchema);
 
@@ -77,9 +85,7 @@ var hardwareSchema = new Schema({
     quittierung:        Boolean,
     verwendungszweck:   String,
     mobiledevmgmt:      Boolean,
-    protokoll:          [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                           eintrag:   String,
-                           datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Hardware = mongoose.model("hardware", hardwareSchema);
 
@@ -97,9 +103,7 @@ var ressourceSchema = new Schema({
     typ:           {type: Schema.Types.ObjectId, ref: 'ressourcentyp'},
     aktiv:         Boolean,
     daten:         [{type: Schema.Types.ObjectId, ref: 'daten'}],
-    protokoll:     [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                       eintrag:   String,
-                       datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Ressource = mongoose.model("ressource", ressourceSchema);
 
@@ -119,9 +123,7 @@ var mitarbeiterSchema = new Schema({
     urlaubsvertretung:  {type: Schema.Types.ObjectId, ref: 'mitarbeiter'},
     vertretungSeit:     Date,
     vertretungBis:      Date,
-    protokoll:          [ { user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                            eintrag:   String,
-                            datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Mitarbeiter = mongoose.model("mitarbeiter", mitarbeiterSchema);
 
@@ -131,9 +133,7 @@ var papierdokumentSchema = new Schema({
     beschreibung:   String,
     aktiv:          Boolean,
     daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
-    protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                       eintrag:   String,
-                       datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Papierdokument = mongoose.model("papierdokument", papierdokumentSchema);
 
@@ -151,9 +151,7 @@ var tresorSchema = new Schema({
     beschreibung:   String,
     aktiv:          Boolean,
     daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
-    protokoll:      [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                       eintrag:   String,
-                       datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Tresor = mongoose.model("tresor", tresorSchema);
 
@@ -188,9 +186,7 @@ var zutrittsmittelSchema = new Schema({
     ausgabe:      Date,
     rueckgabe:    Date,
     status:       { type: Schema.Types.ObjectId, ref : 'zutrittsmittelStatus' },
-    protokoll:    [{ user:      {type: Schema.Types.ObjectId, ref: 'User'},
-                     eintrag:   String,
-                     datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Zutrittsmittel = mongoose.model("zutrittsmittel", zutrittsmittelSchema);
 
@@ -213,24 +209,22 @@ var raumSchema = new Schema({
 });
 var Raum = mongoose.model("raum", raumSchema);
 
+
 /* Musterrolle */
 /** Template für Befugnisse **/
 var musterrolleSchema = new Schema({
     bezeichnung:        String,
-    aufgabe:            {type: Schema.Types.ObjectId, ref: 'aufgabe'},
-    tresor_zuo:         [{type: Schema.Types.ObjectId, ref: 'tresor'}, 
-                        {type: Schema.Types.ObjectId, ref: 'zutrittsmittel'}],  
-    raum_zuo:           [{type: Schema.Types.ObjectId, ref: 'raum'}, 
-                        {type: Schema.Types.ObjectId, ref: 'zutrittsmittel'}],
-    fahrzeug_zuo:       [{type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
-    papierdokumente_zuo:[{type: Schema.Types.ObjectId, ref: 'papierdokument'}, 
-                        {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
-    hardware_zuo:       [{type: Schema.Types.ObjectId, ref: 'hardware'}, 
-                        {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    aufgabe:            { type: Schema.Types.ObjectId, ref: 'aufgabe'},
+    tresor_zuo:         [ { tresor:         { type: Schema.Types.ObjectId, ref: 'tresor'},
+                            zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],  
+    raum_zuo:           [ { raum:           {type: Schema.Types.ObjectId, ref: 'raum'}, 
+                            zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }], 
+    fahrzeug_zuo:       [ {type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
+    hardware_zuo:       [ { hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
+                            berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
     byod:               Boolean,
     fernzugriff:        Boolean,
-    ressource_zuo:      [{type: Schema.Types.ObjectId, ref: 'ressource'}, 
-                        {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    ressource_zuo:      [{type: Schema.Types.ObjectId, ref: 'ressourceZuo'}],
     aktiv:              Boolean
 });
 var Musterrolle = mongoose.model("musterrolle", musterrolleSchema);
@@ -248,9 +242,7 @@ var befugnissSchema = new Schema({
     fernzugriff:     Boolean,
     berechtigung:    [{type: Schema.Types.ObjectId, ref: 'berechtigung'}],
     ressource:       [{type: Schema.Types.ObjectId, ref: 'ressource'}],
-    protokoll:       [{ user:      {type: Schema.Types.ObjectId, ref: 'user'},
-                        eintrag:   String,
-                        datum:     Date }]
+    protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Befugniss = mongoose.model("befugniss", befugnissSchema);
 
@@ -308,4 +300,5 @@ module.exports = {    Musterrolle : Musterrolle
                     , Tresor  : Tresor
                     , User : User
                     , Zutrittsmittel : Zutrittsmittel
-                    , ZutrittsmittelStatus : ZutrittsmittelStatus};
+                    , ZutrittsmittelStatus : ZutrittsmittelStatus
+                    , Protokoll : Protokoll };

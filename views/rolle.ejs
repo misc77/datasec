@@ -1,4 +1,4 @@
-                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                        <form ng-controller="staticDataCtrl">
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
@@ -13,7 +13,7 @@
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
                             </div>
                             <div class="input-group">
-                                <input type="submit" class="form-control" value="Speichere Rolle"> 
+                                <button ng-click='save()'>Speichere Rolle</button>
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

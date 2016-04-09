@@ -1,4 +1,4 @@
-                        <form ng-controller="staticDataCtrl" ng-submit="save()">
+                        <form ng-controller="staticDataCtrl">
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Inventar Nummer:</span>
@@ -29,7 +29,7 @@
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" name="deaktiviertAm" ng-model="formData.deaktiviertAm">
                             </div>
                             <div class="input-group">
-                                <input type="submit" class="form-control" value="Speichere Hardware"> 
+                                <button ng-click='save()'>Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

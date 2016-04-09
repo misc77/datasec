@@ -55,6 +55,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.papierdokumentliste = {};
     $scope.hardwareliste = {};
     $scope.ressourcentypliste = {};
+    $scope.is_init = false;
         
     //INIT
     $scope.init = function(){
@@ -75,7 +76,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
         $http.get('/api/papierdokument/list').then( function(res) { $scope.papierdokumentliste = res.data; });
         $http.get('/api/hardware/list').then( function(res) { $scope.hardwareliste = res.data; });
         $http.get('/api/ressourcentyp/list').then( function(res) { $scope.ressourcentypliste = res.data; });
-        
+
         // setting formdata
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
@@ -93,6 +94,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
             $scope.object_id = undefined;
             $scope.title = appdata.submenu + ' anlegen';
         }
+        $scope.is_init = true;
     };
     
     //Reset
@@ -131,9 +133,19 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
                 alert("Fehler beim Löschen: " + data);
             });
         }
+        $scope.is_init = false;
     };
     
-    $scope.init();
+    $scope.inc_tresor_zuo = function(){
+        alert('in inc: ' + appdata.content + ' subment: ' + appdata.submenu + ' scope: ' + $scope.object_id);
+        if ($scope.formData.tresor_zuo !== null & $scope.formData.tresor_zuo !== undefined) {
+            $scope.$apply($scope.formData.tresor_zuo.push({ tresor : null, zutrittlsmittel: null }));          
+        }
+    };
+  
+    if($scope.is_init !== true) {
+        $scope.init();
+    }
 }]);
 
 

@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressSession({
     secret: 'SECRET',
-    cookie: {maxAge: 60*1*1000},
+    cookie: {maxAge: 60*1*10000},
     store: mongoStore, 
     resave: true,
     saveUninitialized: true

@@ -78,13 +78,18 @@ exports.list = function(req, res){
 };
 
 exports.get = function(req, res){
-    Musterrolle.find({_id: req.query['id']}).exec(function(err, musterrolle) {
+    Musterrolle.find({_id: req.query['id']})
+            .populate('aufgabe' )
+            .populate('tresor_zuo.tresor')
+            .populate('tresor_zuo.zutrittsmittel')
+            .exec(function(err, musterrolle) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
+            console.log('obj: ' + JSON.stringify(musterrolle, null, "\t"));
             res.json({object : musterrolle});
         }
     });
