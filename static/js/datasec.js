@@ -35,7 +35,7 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
 }]);
 
 /* Stammdaten Controller*/
-app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
+app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function($scope, $http, appdata, $log) {
     $scope.formData = {};
     $scope.object_id = undefined;
     $scope.title = appdata.submenu + ' anlegen';
@@ -55,8 +55,10 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
     $scope.papierdokumentliste = {};
     $scope.hardwareliste = {};
     $scope.ressourcentypliste = {};
+    $scope.berechtigungliste = {};
+    $scope.ressourcenliste = {};
     $scope.is_init = false;
-        
+     
     //INIT
     $scope.init = function(){
         // loading data
@@ -73,9 +75,10 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
         $http.get('/api/tresor/list').then( function(res) { $scope.tresorliste = res.data; });
         $http.get('/api/raum/list').then( function(res) { $scope.raumliste = res.data; });
         $http.get('/api/fahrzeug/list').then( function(res) { $scope.fahrzeugliste = res.data; });
-        $http.get('/api/papierdokument/list').then( function(res) { $scope.papierdokumentliste = res.data; });
         $http.get('/api/hardware/list').then( function(res) { $scope.hardwareliste = res.data; });
         $http.get('/api/ressourcentyp/list').then( function(res) { $scope.ressourcentypliste = res.data; });
+        $http.get('/api/ressourcen/list').then( function(res) { $scope.ressourcenliste = res.data; });
+        $http.get('/api/berechtigung/list').then( function(res) { $scope.berechtigungliste = res.data; });
 
         // setting formdata
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
@@ -106,6 +109,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
         
     //Create or Update
     $scope.save = function(){
+        $log.debug('formData: ' + angular.toJson($scope.formData));
         if ($scope.object_id === undefined) {
             $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
@@ -136,10 +140,21 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', function($scope,
         $scope.is_init = false;
     };
     
-    $scope.inc_tresor_zuo = function(){
-        alert('in inc: ' + appdata.content + ' subment: ' + appdata.submenu + ' scope: ' + $scope.object_id);
-        if ($scope.formData.tresor_zuo !== null & $scope.formData.tresor_zuo !== undefined) {
-            $scope.$apply($scope.formData.tresor_zuo.push({ tresor : null, zutrittlsmittel: null }));          
+    $scope.add_entry = function(list, data){
+        $log.debug('list: ' + list);
+        if (list !== undefined){
+            list.push(data);
+        } else {
+            list = [];
+            list.push(data);
+            $log.debug('list end: ' + angular.toJson(list));
+        }
+    };
+  
+    $scope.remove_entry = function(list, entry){
+        if (list !== null & list !== undefined & angular.isArray(list)){
+            var index = list.indexOf(entry);
+            list.splice(index,1);
         }
     };
   

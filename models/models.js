@@ -215,16 +215,18 @@ var Raum = mongoose.model("raum", raumSchema);
 var musterrolleSchema = new Schema({
     bezeichnung:        String,
     aufgabe:            { type: Schema.Types.ObjectId, ref: 'aufgabe'},
-    tresor_zuo:         [ { tresor:         { type: Schema.Types.ObjectId, ref: 'tresor'},
+    beschaeftigung:     { type: Schema.Types.ObjectId, ref: 'beschaeftigung'},
+    tresor_zuo:         [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
                             zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],  
     raum_zuo:           [ { raum:           {type: Schema.Types.ObjectId, ref: 'raum'}, 
                             zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }], 
-    fahrzeug_zuo:       [ {type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
+    fahrzeugliste:      [ { fahrzeug:       {type: Schema.Types.ObjectId, ref: 'fahrzeug'} }],
+    ressource_zuo:      [ { ressource:      {type: Schema.Types.ObjectId, ref: 'ressource'},
+                            berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
     hardware_zuo:       [ { hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
                             berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
     byod:               Boolean,
     fernzugriff:        Boolean,
-    ressource_zuo:      [{type: Schema.Types.ObjectId, ref: 'ressourceZuo'}],
     aktiv:              Boolean
 });
 var Musterrolle = mongoose.model("musterrolle", musterrolleSchema);

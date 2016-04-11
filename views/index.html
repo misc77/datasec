@@ -8,6 +8,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <!--link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" /-->
         <link rel="stylesheet" type="text/css" href="/static/css/styles.css"/>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../static/js/datasec.js"></script>
     </head>
     <body ng-controller="myController">
         <header><h2>Netvocat DataSec - Berechtigungskonzept</h2></header>
@@ -16,11 +20,6 @@
             <% include submenu.ejs %>
             <% include content.ejs %>      
         </div>
-        <footer>Message: {{appdata.msg}}</footer>
-        <script src="../node_modules/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
-        <script type="text/javascript" src="../node_modules/dropdown-multiselect/angularjs-dropdown-multiselect.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="../static/js/datasec.js"></script>
+        <footer>Message: {{appdata.msg}}</footer>   
     </body>
 </html>

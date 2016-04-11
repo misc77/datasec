@@ -6,13 +6,16 @@ var Musterrolle = Model.Musterrolle;
 
 exports.create = function (req, res){
    var musterrolle = new Musterrolle();
-    musterrolle.set('aufgabe', req.body.aufgabe);
-    for ( var i in req.body.tresor_zuo ) {
-        var item = req.body.tresor_zuo[i];
-        var obj = { tresor : item['tresor'], zutrittsmittel : item['zutrittsmittel']};
-        musterrolle.tresor_zuo.push(obj);
-    }
-    musterrolle.set('aktiv', req.body.aktiv);
+    musterrolle.set('bezeichnung',      req.body.bezeichnung);
+    musterrolle.set('aufgabe',          req.body.aufgabe);
+    musterrolle.set('tresor_zuo',       req.body.tresor_zuo);
+    musterrolle.set('raum_zuo',         req.body.raum_zuo);
+    musterrolle.set('ressource_zuo',    req.body.ressource_zuo);
+    musterrolle.set('hardware_zuo',     req.body.hardware_zuo);
+    musterrolle.set('fahrzeugliste',    req.body.fahrzeugliste);
+    musterrolle.set('byod',             req.body.byod);
+    musterrolle.set('fernzugriff',      req.body.fernzugriff);
+    musterrolle.set('aktiv',            req.body.aktiv);
     
     musterrolle.save(function(err){
         if(err){
@@ -43,13 +46,48 @@ exports.save = function (req, res){
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 musterrolle.bezeichnung = req.body.bezeichnung;
             }
-            if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
-                musterrolle.beschreibung = req.body.beschreibung;
+            if (req.body.aufgabe !== undefined & req.body.aufgabe !== null){
+                musterrolle.aufgabe = req.body.aufgabe;
+            }
+            if (req.body.beschaeftigung !== undefined & req.body.beschaeftigung !== null) {
+                musterrolle.beschaeftigung = req.body.beschaeftigung;
+            }
+            if (req.body.tresor_zuo !== undefined & req.body.tresor_zuo !== null) {
+                musterrolle.tresor_zuo = req.body.tresor_zuo;
+            }
+            if (req.body.raum_zuo !== undefined & req.body.raum_zuo !== null) {
+                musterrolle.raum_zuo = req.body.raum_zuo;
+            }
+            if (req.body.fahrzeugliste !== undefined & req.body.fahrzeugliste !== null) {
+                musterrolle.fahrzeugliste = [];
+                if (req.body.fahrzeugliste.length > 0){
+                    for( var i = req.body.fahrzeugliste.length-1; i >= 0; --i){
+                        if (req.body.fahrzeugliste[i] !== null & req.body.fahrzeugliste[i] !== undefined){
+                            musterrolle.fahrzeugliste.push(req.body.fahrzeugliste[i]);
+                        }
+                    }
+                }
+            }
+            if (req.body.ressource_zuo !== undefined & req.body.ressource_zuo !== null) {
+                musterrolle.ressource_zuo = req.body.ressource_zuo;
+            }
+            if (req.body.hardware_zuo !== undefined & req.body.hardware_zuo !== null) {
+                musterrolle.hardware_zuo = req.body.hardware_zuo;
             }
             if (req.body.aktiv === undefined | req.body.aktiv === null ){
                 musterrolle.aktiv = false;
             } else {
                 musterrolle.aktiv = true;
+            }
+            if (req.body.byod === undefined | req.body.byod === null ){
+                musterrolle.byod = false;
+            } else {
+                musterrolle.byod = true;
+            }
+            if (req.body.fernzugriff === undefined | req.body.fernzugriff === null ){
+                musterrolle.fernzugriff = false;
+            } else {
+                musterrolle.fernzugriff = true;
             }
             musterrolle.save(
                 function(err){
@@ -80,8 +118,16 @@ exports.list = function(req, res){
 exports.get = function(req, res){
     Musterrolle.find({_id: req.query['id']})
             .populate('aufgabe' )
+            .populate('beschaeftigung')
             .populate('tresor_zuo.tresor')
             .populate('tresor_zuo.zutrittsmittel')
+            .populate('raum_zuo.raum')
+            .populate('raum_zuo.zutrittsmittel')
+            .populate('fahrzeugliste.fahrzeug')
+            .populate('ressource_zuo.ressource')
+            .populate('ressource_zuo.berechtigung')
+            .populate('hardware_zuo.hardware')
+            .populate('hardware_zuo.berechtigung')
             .exec(function(err, musterrolle) {
         if (err) {
             console.log('err: ' + err);
@@ -89,7 +135,6 @@ exports.get = function(req, res){
                 msg: err.getErrorMessage(err)
             });
         } else {
-            console.log('obj: ' + JSON.stringify(musterrolle, null, "\t"));
             res.json({object : musterrolle});
         }
     });
