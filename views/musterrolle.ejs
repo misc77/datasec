@@ -20,6 +20,8 @@
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Beschäftigungsverhältnis:</span>
                                 <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
+                                        ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
                                         ng-model="formData.beschaeftigung" 
                                         ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in beschaeftigungliste track by beschaeftigung._id">
                                 </select>               
@@ -42,7 +44,7 @@
                                 <button class="span2" ng-click="remove_entry(formData.tresor_zuo, zuo)">-</button>
                             </div>                             
                             <div class="input-group">
-                                <button ng-click="add_entry(formData.tresor_zuo, {tresor:'', zutrittsmittel:''})">+</button>
+                                <button ng-click="add_entry(formData.tresor_zuo, {})">+</button>
                             </div>
 
                             <legend>Zutritt Räumlichkeiten:</legend>

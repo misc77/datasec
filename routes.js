@@ -57,8 +57,8 @@ module.exports = function(app) {
     app.post('/api/musterrolle/delete',     musterrolle.delete); 
     app.get('/api/musterrolle/list',        musterrolle.list) ;
     app.get('/api/musterrolle/get',         musterrolle.get) ;
-    
-    
+    app.get('/api/musterrolle/get_new_obj', musterrolle.get_new_obj) ;
+   
     /**************************
      *      Beschaeftigung Routes 
      ***************************/

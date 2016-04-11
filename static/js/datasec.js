@@ -93,9 +93,18 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
                   $scope.object_id = appdata.object;
             });
         } else {
-            $scope.formData = '';
-            $scope.object_id = undefined;
-            $scope.title = appdata.submenu + ' anlegen';
+            $http.get('/api/'+appdata.submenu+'/get_new_obj',{}).success( 
+              function (data) { 
+                  $log.debug('data: ' + angular.toJson(data.object));
+                  $scope.formData = data.object;
+                  $scope.title = appdata.submenu + ' anlegen'; 
+                  $scope.object_id = appdata.object;
+            }).error(
+              function (data) {
+                $scope.formData = '';
+                $scope.object_id = undefined;
+                $scope.title = appdata.submenu + ' anlegen';
+            });
         }
         $scope.is_init = true;
     };

@@ -3,6 +3,7 @@
  */
 var Model = require('../models/models.js');
 var Musterrolle = Model.Musterrolle;
+var Aufgabe = Model.Aufgabe;
 
 exports.create = function (req, res){
    var musterrolle = new Musterrolle();
@@ -113,6 +114,23 @@ exports.list = function(req, res){
             res.send(musterrolle);
         }
     });
+};
+
+exports.get_new_obj = function(req, res){
+    var musterrolle = new Musterrolle();
+    musterrolle.set('bezeichnung',      'Neu');
+    musterrolle.set('aufgabe',          new Aufgabe());
+    musterrolle.set('tresor_zuo',       { tresor: null, zutrittsmittel: null});
+    musterrolle.set('raum_zuo',         { raum: null, zutrittsmittel: null });
+    musterrolle.set('ressource_zuo',    { ressource: null, berechtigung: null });
+    musterrolle.set('hardware_zuo',     { hardware: null, berechtigung: null });
+    musterrolle.set('fahrzeugliste',    { fahrzeug: null } );
+    musterrolle.set('byod',             false);
+    musterrolle.set('fernzugriff',      false);
+    musterrolle.set('aktiv',            true);
+    
+    console.log('object: ' + JSON.stringify((musterrolle)));
+    res.json({object : musterrolle});
 };
 
 exports.get = function(req, res){
