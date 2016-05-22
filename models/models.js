@@ -232,18 +232,20 @@ var musterrolleSchema = new Schema({
 var Musterrolle = mongoose.model("musterrolle", musterrolleSchema);
 
 /* Befugniss */
-/** Haupt-Collection zur Zuordnung der Befugnisse pro Mitarbeiter **/
+/** Haupt-Collection zur Zuordnung der Befugnisse pro Mitarbeiter auf Basis der Musterrolle **/
 var befugnissSchema = new Schema({
     mitarbeiter:     {type: Schema.Types.ObjectId, ref: 'mitarbeiter'},
-    dokumente:       [{type: Schema.Types.ObjectId, ref: 'dokument'}],
-    raum:            [{type: Schema.Types.ObjectId, ref: 'raum'}, String, Date],
-    fahrzeug:        [{type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
-    papierdokumente: [{type: Schema.Types.ObjectId, ref: 'papierdokument'}, {type: Schema.Types.ObjectId, ref: 'rechte'}],
-    hardware:        [{type: Schema.Types.ObjectId, ref: 'hardware'}],
+    raum_zuo:        [ { raum:           {type: Schema.Types.ObjectId, ref: 'raum'}, 
+                         zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
+    tresor_zuo:      [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
+                         zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
+    fahrzeugliste:   [{ type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
+    hardware_zuo:    [{ hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
+                        berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
+    ressource_zuo:   [{ ressource:      {type: Schema.Types.ObjectId, ref: 'ressource'},
+                        rechte:         {type: Schema.Types.ObjectId, ref: 'rechte'} }],
     byod:            Boolean,
     fernzugriff:     Boolean,
-    berechtigung:    [{type: Schema.Types.ObjectId, ref: 'rechte'}],
-    ressource:       [{type: Schema.Types.ObjectId, ref: 'ressource'}],
     protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Befugniss = mongoose.model("befugniss", befugnissSchema);

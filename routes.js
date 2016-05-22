@@ -26,6 +26,7 @@ module.exports = function(app) {
     var zutrittsmittelStatus = require('./controllers/zutrittsmittelStatus_controller');
     var mitarbeiterStatus = require('./controllers/mitarbeiterStatus_controller');
     var raum = require('./controllers/raum_controller');
+    var befugniss = require('./controllers/befugniss_controller');
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
@@ -58,6 +59,15 @@ module.exports = function(app) {
     app.get('/api/musterrolle/list',        musterrolle.list) ;
     app.get('/api/musterrolle/get',         musterrolle.get) ;
     app.get('/api/musterrolle/get_new_obj', musterrolle.get_new_obj) ;
+    
+     /**************************
+     *      Befugniss Routes 
+     ***************************/
+    app.post('/api/befugnisse/create',         befugniss.create); 
+    app.post('/api/befugnisse/save',           befugniss.save); 
+    app.get('/api/befugnisse/list',            befugniss.list) ;
+    app.get('/api/befugnisse/get',             befugniss.get) ;
+    app.get('/api/befugnisse/get_new_obj',     befugniss.get_new_obj) ;
    
     /**************************
      *      Beschaeftigung Routes 

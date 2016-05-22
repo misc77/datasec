@@ -95,7 +95,6 @@ exports.get = function(req, res){
                 msg: err.getErrorMessage(err)
             });
         } else {
-            console.log('fzg: ' + fahrzeug.toString());
             res.json({object : fahrzeug});
         }
     });

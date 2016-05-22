@@ -57,6 +57,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     $scope.ressourcentypliste = {};
     $scope.rechteliste = {};
     $scope.ressourcenliste = {};
+    $scope.params = {};
     $scope.is_init = false;
      
     //INIT
@@ -93,7 +94,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
                   $scope.object_id = appdata.object;
             });
         } else {
-            $http.get('/api/'+appdata.submenu+'/get_new_obj',{}).success( 
+            $http.get('/api/'+appdata.submenu+'/get_new_obj',$scope.params).success( 
               function (data) { 
                   $log.debug('data: ' + angular.toJson(data.object));
                   $scope.formData = data.object;
