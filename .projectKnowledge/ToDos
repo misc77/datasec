@@ -4,11 +4,11 @@
 
 Prio 1: Funktion
 
-A.) Aufgabenbezogene Befugnisse
-B.) Datenschutzdokumente
+B1.) Befugnissverwaltung
+B2.) Datenschutzdokumente
 C.) Fachliche Validierungen (z.B.: Prüfung auf unterschriebene Dokumente etc.)
 D.) Logging (Protokoll bzw. Historisierung)
-E.) Befugnissverwaltung
+
 F.) Konzept Reports/Auswertungen
 G.) Validerungen für Forms
 

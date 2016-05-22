@@ -13,7 +13,7 @@ module.exports = function(app) {
     var aufgabe = require('./controllers/aufgabe_controller');
     var musterrolle = require('./controllers/musterrolle_controller');
     var beschaeftigung = require('./controllers/beschaeftigung_controller');
-    var berechtigung = require('./controllers/berechtigung_controller');
+    var rechte = require('./controllers/rechte_controller');
     var daten = require('./controllers/daten_controller');
     var rolle = require('./controllers/rolle_controller');
     var fahrzeug = require('./controllers/fahrzeug_controller');
@@ -71,11 +71,11 @@ module.exports = function(app) {
     /**************************
      *      Berechtigung Routes 
      ***************************/
-    app.post('/api/berechtigung/create',     berechtigung.create); 
-    app.post('/api/berechtigung/save',       berechtigung.save); 
-    app.post('/api/berechtigung/delete',     berechtigung.delete); 
-    app.get('/api/berechtigung/list',        berechtigung.list) ;
-    app.get('/api/berechtigung/get',         berechtigung.get) ;
+    app.post('/api/berechtigung/create',     rechte.create); 
+    app.post('/api/berechtigung/save',       rechte.save); 
+    app.post('/api/berechtigung/delete',     rechte.delete); 
+    app.get('/api/berechtigung/list',        rechte.list) ;
+    app.get('/api/berechtigung/get',         rechte.get) ;
     
     /**************************
      *      Daten Routes 

@@ -55,7 +55,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     $scope.papierdokumentliste = {};
     $scope.hardwareliste = {};
     $scope.ressourcentypliste = {};
-    $scope.berechtigungliste = {};
+    $scope.rechteliste = {};
     $scope.ressourcenliste = {};
     $scope.is_init = false;
      
@@ -78,7 +78,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
         $http.get('/api/hardware/list').then( function(res) { $scope.hardwareliste = res.data; });
         $http.get('/api/ressourcentyp/list').then( function(res) { $scope.ressourcentypliste = res.data; });
         $http.get('/api/ressourcen/list').then( function(res) { $scope.ressourcenliste = res.data; });
-        $http.get('/api/berechtigung/list').then( function(res) { $scope.berechtigungliste = res.data; });
+        $http.get('/api/rechte/list').then( function(res) { $scope.rechteliste = res.data; });
 
         // setting formdata
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
@@ -118,7 +118,6 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
         
     //Create or Update
     $scope.save = function(){
-        $log.debug('formData: ' + angular.toJson($scope.formData));
         if ($scope.object_id === undefined) {
             $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';

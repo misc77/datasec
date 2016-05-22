@@ -122,8 +122,8 @@ exports.get_new_obj = function(req, res){
     musterrolle.set('aufgabe',          new Aufgabe());
     musterrolle.set('tresor_zuo',       { tresor: null, zutrittsmittel: null});
     musterrolle.set('raum_zuo',         { raum: null, zutrittsmittel: null });
-    musterrolle.set('ressource_zuo',    { ressource: null, berechtigung: null });
-    musterrolle.set('hardware_zuo',     { hardware: null, berechtigung: null });
+    musterrolle.set('ressource_zuo',    { ressource: null, rechte: null });
+    musterrolle.set('hardware_zuo',     { hardware: null, rechte: null });
     musterrolle.set('fahrzeugliste',    { fahrzeug: null } );
     musterrolle.set('byod',             false);
     musterrolle.set('fernzugriff',      false);
@@ -143,9 +143,9 @@ exports.get = function(req, res){
             .populate('raum_zuo.zutrittsmittel')
             .populate('fahrzeugliste.fahrzeug')
             .populate('ressource_zuo.ressource')
-            .populate('ressource_zuo.berechtigung')
+            .populate('ressource_zuo.rechte')
             .populate('hardware_zuo.hardware')
-            .populate('hardware_zuo.berechtigung')
+            .populate('hardware_zuo.rechte')
             .exec(function(err, musterrolle) {
         if (err) {
             console.log('err: ' + err);

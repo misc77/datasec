@@ -2,23 +2,23 @@
  * Initation
  */
 var Model = require('../models/models.js');
-var Berechtigung = Model.Berechtigung;
+var Rechte = Model.Rechte;
 
 exports.create = function (req, res){
-   var berechtigung = new Berechtigung();
-    berechtigung.set('bezeichnung', req.body.bezeichnung);
-    berechtigung.set('beschreibung', req.body.beschreibung); 
-    berechtigung.save(function(err){
+   var rechte = new Rechte();
+    rechte.set('bezeichnung', req.body.bezeichnung);
+    rechte.set('beschreibung', req.body.beschreibung); 
+    rechte.save(function(err){
         if(err){
             console.log('err: ' + err);
         } else {
-            res.json(berechtigung);
+            res.json(rechte);
         }
     });
 };
 
 exports.delete = function (req, res){
-    Berechtigung.findOneAndRemove({_id: req.body._id}, function(err){
+    Rechte.findOneAndRemove({_id: req.body._id}, function(err){
         if (err){
             console.log('err: ' + err);
         } else {
@@ -28,24 +28,24 @@ exports.delete = function (req, res){
 };
 
 exports.save = function (req, res){
-    Berechtigung.findOne({_id: req.body._id}).exec(function(err, berechtigung) {
+    Rechte.findOne({_id: req.body._id}).exec(function(err, rechte) {
         if (err) {
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
-                berechtigung.bezeichnung = req.body.bezeichnung;
+                rechte.bezeichnung = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
-                berechtigung.beschreibung = req.body.beschreibung;
+                rechte.beschreibung = req.body.beschreibung;
             }
-            berechtigung.save(
+            rechte.save(
                 function(err){
                     if(err){
                         console.log('err: ' + err);
                     } else {
-                        res.json(berechtigung);
+                        res.json(rechte);
                     }
                 }
             );
@@ -54,27 +54,27 @@ exports.save = function (req, res){
 };
 
 exports.list = function(req, res){
-    Berechtigung.find().exec(function(err, berechtigung) {
+    Rechte.find().exec(function(err, rechte) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
-            res.send(berechtigung);
+            res.send(rechte);
         }
     });
 };
 
 exports.get = function(req, res){
-    Berechtigung.find({_id: req.query['id']}).exec(function(err, berechtigung) {
+    Rechte.find({_id: req.query['id']}).exec(function(err, rechte) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
-            res.json({object : berechtigung});
+            res.json({object : rechte});
         }
     });
 };

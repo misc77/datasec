@@ -32,11 +32,11 @@ var beschaeftigungSchema = new Schema({
 var Beschaeftigung = mongoose.model("beschaeftigung", beschaeftigungSchema);
 
 /* Berechtigung */
-var berechtigungSchema = new Schema({
+var rechteSchema = new Schema({
     bezeichnung:    String,
     beschreibung:   String
 });
-var Berechtigung = mongoose.model("berechtigung", berechtigungSchema);
+var Rechte = mongoose.model("rechte", rechteSchema);
 
 /* Datenschutzerklärungsdokumente */
 var dokumentSchema = new Schema({
@@ -222,7 +222,7 @@ var musterrolleSchema = new Schema({
                             zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }], 
     fahrzeugliste:      [ { fahrzeug:       {type: Schema.Types.ObjectId, ref: 'fahrzeug'} }],
     ressource_zuo:      [ { ressource:      {type: Schema.Types.ObjectId, ref: 'ressource'},
-                            berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
+                            rechte:         {type: Schema.Types.ObjectId, ref: 'rechte'} }],
     hardware_zuo:       [ { hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
                             berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
     byod:               Boolean,
@@ -238,11 +238,11 @@ var befugnissSchema = new Schema({
     dokumente:       [{type: Schema.Types.ObjectId, ref: 'dokument'}],
     raum:            [{type: Schema.Types.ObjectId, ref: 'raum'}, String, Date],
     fahrzeug:        [{type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
-    papierdokumente: [{type: Schema.Types.ObjectId, ref: 'papierdokument'}, {type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    papierdokumente: [{type: Schema.Types.ObjectId, ref: 'papierdokument'}, {type: Schema.Types.ObjectId, ref: 'rechte'}],
     hardware:        [{type: Schema.Types.ObjectId, ref: 'hardware'}],
     byod:            Boolean,
     fernzugriff:     Boolean,
-    berechtigung:    [{type: Schema.Types.ObjectId, ref: 'berechtigung'}],
+    berechtigung:    [{type: Schema.Types.ObjectId, ref: 'rechte'}],
     ressource:       [{type: Schema.Types.ObjectId, ref: 'ressource'}],
     protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
@@ -281,7 +281,7 @@ var User = mongoose.model('user', userSchema);
  * Exports models
  ********************************/
 module.exports = {    Musterrolle : Musterrolle
-                    , Berechtigung : Berechtigung
+                    , Rechte : Rechte
                     , Aufgabe : Aufgabe 
                     , Befugniss : Befugniss
                     , Beschaeftigung : Beschaeftigung
