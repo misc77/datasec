@@ -98,6 +98,23 @@ exports.updateUser = function(req, res, dataService){
             });
 };
 
+/**
+ * Counts users
+ * @param {type} req
+ * @param {type} res
+ * @returns {undefined}
+ */
+exports.checkIsInit = function(req, res){
+    User.find().count(function(err, count){
+        console.log('user.count=' + count);
+        if (count > 0) {
+            res.redirect('/login');
+        } else {
+            res.redirect('/signup');
+        }
+    });
+};
+
 /*
  * Delete User
  */

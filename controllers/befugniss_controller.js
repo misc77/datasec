@@ -152,13 +152,17 @@ var self = module.exports = {
                                     if (musterrolle !== undefined && musterrolle !== null){
                                         console.log('init with musterrolle...');
                                         // init befugniss with musterrolle
-                                        befugniss.set('tresor_zuo',         musterrolle.tresor_zuo);
-                                        befugniss.set('raum_zuo',           musterrolle.raum_zuo);
-                                        befugniss.set('fahrzeugliste',      musterrolle.fahrzeugliste);
-                                        befugniss.set('ressource_zuo',      musterrolle.ressource_zuo);
-                                        befugniss.set('hardware_zuo',       musterrolle.hardware_zuo);
-                                        befugniss.set('byod',               musterrolle.byod);
-                                        befugniss.set('fernzugriff',        musterrolle.fernzugriff);
+                                        fuhrpark = [];
+                                        for (i = 0; i < musterrolle[0].fahrzeugliste.length; i++){
+                                            fuhrpark.push(musterrolle[0].fahrzeugliste[i].fahrzeug);
+                                        }
+                                        befugniss.set('tresor_zuo',         musterrolle[0].tresor_zuo);
+                                        befugniss.set('raum_zuo',           musterrolle[0].raum_zuo);
+                                        befugniss.set('fahrzeugliste',      fuhrpark);
+                                        befugniss.set('ressource_zuo',      musterrolle[0].ressource_zuo);
+                                        befugniss.set('hardware_zuo',       musterrolle[0].hardware_zuo);
+                                        befugniss.set('byod',               musterrolle[0].byod);
+                                        befugniss.set('fernzugriff',        musterrolle[0].fernzugriff);
                                     } else {
                                         console.log('init with null');
                                         // if no musterrolle has been found

@@ -63,6 +63,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     //INIT
     $scope.init = function(){
         // loading data
+        $log.debug('init');
         $http.get('/api/standort/list_active').then( function(res) { $scope.standorte = res.data; });
         $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
         $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });
@@ -85,7 +86,11 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 
-                  $scope.formData = data.object[0];
+                  if (data.object[0] !== undefined) {
+                      $scope.formData = data.object[0];
+                  } else {
+                      $scope.formData = data.object;
+                  }
                   if (appdata.content === 'delete' ){
                       $scope.title = appdata.submenu + ' löschen';
                   } else{

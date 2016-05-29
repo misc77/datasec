@@ -1,13 +1,13 @@
                         <form ng-controller="staticDataCtrl" ng-cloak>
-                            <p class='title'>{{title}}</p-->
+                            <p class='title'>{{title}}</p>
                             <div class="controls-row"">
-                                <label class="control-label span2">Mitarbeiter: {{formData.mitarbeiter.name + ' ' + formData.mitarbeiter.vorname}}</label>    
+                                <label class="control-label span2">Mitarbeiter: {{formData.mitarbeiter.nachname + ' ' + formData.mitarbeiter.vorname + ' ( ' + formData.mitarbeiter.mitarbeiternr + ' )'}}</label>    
                             </div>
                             <div class="controls-row"">
-                                <label class="control-label span2">Beschäftigungsverhältniss: {{formData.beschaeftigung.bezeichnung}}</label> 
+                                <label class="control-label span2">Beschäftigungsverhältniss: {{formData.mitarbeiter.beschaeftigung.bezeichnung}}</label> 
                             </div>
                             <div class="controls-row"">
-                                <label class="control-label span2">Aufgabe: {{formData.aufgabe.bezeichnung}}</label>                
+                                <label class="control-label span2">Aufgabe: {{formData.mitarbeiter.aufgabe.bezeichnung}}</label>                
                             </div>
 
                             <legend>Tresorzugriff:</legend>
@@ -55,7 +55,7 @@
                                 <select class="span6"  
                                     ng-init="fahrzeug._fahrzeug = { _id: formData.fahrzeugID }" 
                                     ng-change="formData.fahrzeugID = zuo.fahrzeug.fahrzeug._id"
-                                    ng-model="fahrzeug.fahrzeug"
+                                    ng-model="fahrzeug"
                                     ng-options="fzg._id as fzg.kennzeichen for fzg in fahrzeugliste track by fzg._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.fahrzeugliste, fahrzeug)">-</button>

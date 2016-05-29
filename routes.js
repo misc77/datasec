@@ -213,14 +213,15 @@ module.exports = function(app) {
      ***************************/
     //home
     app.get('/', function(req, res){
-         if(req.session.user) {
+        if(req.session.user) {
             res.render('index', { username: req.session.username, msg:req.session.msg, submenu:req.session.submenu } );
         }else {
-            res.redirect('/login');
+            user.checkIsInit(req, res);
         }
     });    
     //modify user
     app.get('/user', function(req, res){
+        console.log("user...");
         if(req.session.user){
             res.render('user');
         } else {
@@ -236,6 +237,7 @@ module.exports = function(app) {
     });
     //login
     app.get('/login', function(req, res){
+        console.log("login...");
         if(req.session.user){
             res.redirect('/', { username: req.session.user.name});
         }
