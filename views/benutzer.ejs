@@ -1,0 +1,109 @@
+                        <form ng-controller="staticDataCtrl">
+                            <p class='title'>{{title}}</h3>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Name:</span>
+                                <input type="text" class="form-control" placeholder="Benutzername" aria-describedby="basic-addon1" name="name" ng-model="formData.name">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">E-mail:</span>
+                                <input type="text" class="form-control" placeholder="E-mail" aria-describedby="basic-addon1" name="email" ng-model="formData.email">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Rolle:</span>
+                                <select class="form-control" aria-describedby="basic-addon1" 
+                                        ng-init="formData._rolle = { _id: formData.rolleID}" 
+                                        ng-change="formData.rolleID = formData.rolle._id" 
+                                        ng-model="formData.rolle" 
+                                        ng-options="rolle._id as rolle.bezeichnung for typ in rollenliste track by rolle._id">
+                                </select>               
+                            </div>
+                            div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                            </div> 
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Gesperrt:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="locked" ng-model="formData.locked">
+                            </div>   
+                            <h4>Zugriffe:</h4>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Befugnisse:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="befugnisse" ng-model="formData.befugnisse">
+                            </div>   
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Auswertungen:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="auswertungen" ng-model="formData.auswertungen">
+                            </div> 
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Mitarbeiter:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="mitarbeiter" ng-model="formData.mitarbeiter">
+                            </div> 
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Musterrolle:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="musterrolle" ng-model="formData.musterrolle">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Datenschutzerklärungsdokumente:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="dokumente" ng-model="formData.dokumente">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Aufgabe:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aufgabe" ng-model="formData.aufgabe">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Rechte:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="rechte" ng-model="formData.rechte">
+                            </div>  
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Beschäftigungsverhältniss:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="beschaeftigung" ng-model="formData.beschaeftigung">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Datentypen:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="datentyp" ng-model="formData.datentyp">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Fuhrpark:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="fuhrpark" ng-model="formData.fuhrpark">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">IT-Hardware:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="hardware" ng-model="formData.hardware">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Ressourcen:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="ressourcen" ng-model="formData.ressourcen">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Ressourcentyp:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="ressourcentyp" ng-model="formData.ressourcentyp">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Raum:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="raum" ng-model="formData.raum">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Standort:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="standort" ng-model="formData.standort">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Tresor:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="tresor" ng-model="formData.tresor">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Zutrittsmittel:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="zutrittsmittel" ng-model="formData.zutrittsmittel">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Mitarbeiter Status:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="mitarbeiterstatus" ng-model="formData.mitarbeiterstatus">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Zutrittsmittel Status:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="zutrittsmittelstatus" ng-model="formData.zutrittsmittelstatus">
+                            </div>
+                            <div class="input-group">
+                                <button ng-click='save()'>Speichern</button>  
+                                <button ng-click='reset()'>Schließen</button>
+                            </div>
+                        </form>

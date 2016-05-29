@@ -260,21 +260,31 @@ var Log = mongoose.model("log", logSchema);
 
 /* User */
 var userSchema = new Schema({
-    name:           { type: String, unique: true, index: true },
-    pwd:             String,
-    email:           String,
-    locked:          Boolean,
-    mitarbeiter:     Boolean,
-    raum:            Boolean,
-    dokument:        Boolean,
-    fuhrpark:        Boolean,
-    papierdokumente: Boolean,
-    hardware:        Boolean,
-    byod:            Boolean,
-    fernzugriff:     Boolean,
-    berechtigung:    Boolean,
-    ressource:       Boolean,
-    admin:           Boolean
+    name:                   { type: String, unique: true, index: true },
+    pwd:                    String,
+    email:                  String,
+    rolle:                  { type: Schema.Types.ObjectId, ref: 'rolle' },
+    locked:                 Boolean,
+    mitarbeiter:            Boolean,
+    raum:                   Boolean,
+    fuhrpark:               Boolean,
+    hardware:               Boolean,
+    rechte:                 Boolean,
+    ressource:              Boolean,
+    musterrolle:            Boolean,
+    auswertungen:           Boolean,
+    dokumente:              Boolean,
+    befugnisse:             Boolean,
+    aufgabe:                Boolean,
+    beschaeftigung:         Boolean,
+    datentyp:               Boolean,
+    ressourcentyp:          Boolean,
+    tresor:                 Boolean,
+    zutrittsmittel:         Boolean,
+    mitarbeiterstatus:      Boolean,
+    zutrittsmittelstatus:   Boolean,
+    standort:               Boolean,
+    admin:                  Boolean
 });
 var User = mongoose.model('user', userSchema);
 

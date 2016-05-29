@@ -211,6 +211,12 @@ module.exports = function(app) {
     /**************************
      *      USER Routes 
      ***************************/
+    app.get('/api/benutzer/list',        user.list);
+    app.get('/api/benutzer/get',         user.get);
+    app.post('/api/benutzer/save',       user.save);
+    app.post('/api/benutzer/delete',     user.delete);
+    app.post('/api/benutzer/create',     user.create);
+    
     //home
     app.get('/', function(req, res){
         if(req.session.user) {

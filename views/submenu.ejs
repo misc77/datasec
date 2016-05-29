@@ -267,6 +267,22 @@
              </table>
         </div>
 
+        <!-- Benutzer -->
+        <div ng-switch-when="benutzer">
+            <center><h3>Benutzerverwaltung</h3></center>
+            <p></p> 
+             <table class="table table-hover">
+                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
+                <tr ng-repeat="item in list | filter:filter">
+                    <td><a ng-click="call_content('edit_benutzer', item._id)">{{ item.name + ' ( ' + item.rolle.bezeichnung + ' )'  }}</a></td>
+                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
+                    <td><button ng-click="call_content('reset_pwd', item._id)">R</button></td>
+                </tr>
+                <tr> </tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_benutzer')">Benutzer anlegen</button></td></tr>
+             </table>
+        </div>
+
         <!-- Default --> 
         <div ng-switch-default>
             <p></p>
