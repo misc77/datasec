@@ -4,7 +4,7 @@ app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: 
 app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
         $scope.appdata = appdata;
         $scope.list = '';
-        
+               
         //Call Submenu
         $scope.call_submenu = function($name){
             if ($name === undefined | $name === null) {
@@ -170,6 +170,15 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
             var index = list.indexOf(entry);
             list.splice(index,1);
         }
+    };
+    
+    $scope.signup = function(){
+        $http.post('/signup', $scope.formData).success( function(data, status, headers, config){
+                appdata.msg = 'User registriert!';
+                $scope.reset();
+            }).error(function(data, status, headers, config){
+                alert("Fehler beim Registrieren: " + data);
+            }); 
     };
   
     if($scope.is_init !== true) {

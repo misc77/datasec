@@ -9,16 +9,16 @@
         <script src="../static/js/datasec.js"></script>
     </head>
     <body>
-        <div class="form-container" ng-controller="myController">
+        <div class="form-container" ng-controller="staticDataCtrl">
             <p class="form-header">Sign Up</p>
             <form method="POST" >
                 <label>Username:</label>
-                <input type="text" name="username"><br>
+                <input type="text" name="username" ng-model="formData.username"><br>
                 <label>Password:</label>
-                <input type="password" name="password"><br>
+                <input type="password" name="password" ng-model="formData.password"><br>
                 <label>Email:</label>
-                <input type="email" name="email"><br>
-                <input type="submit" value="Register">
+                <input type="email" name="email" ng-model="formData.email"><br>
+                <input type="button" value="Register" ng-click="signup()">
             </form>
         </div>
         <hr>
