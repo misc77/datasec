@@ -179,6 +179,7 @@ exports.save = function (req, res){
                     if(err){
                         console.log('err: ' + err);
                     } else {
+                        console.log('save: ' + JSON.stringify(user));
                         res.json(user);
                     }
                 }

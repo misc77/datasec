@@ -111,10 +111,10 @@
                                     ng-options="hardware._id as hardware.bezeichnung for hardware in hardwareliste track by hardware._id">
                                 </select>
                                 <select class="span6" 
-                                    ng-init="zuo._berechtigung = { _id: formData.berechtigungID}" 
-                                    ng-change="formData.berechtigungID = zuo.berechtigung._id" 
-                                    ng-model="zuo.berechtigung" 
-                                    ng-options="berechtigung._id as berechtigung.bezeichnung for berechtigung in berechtigungliste track by berechtigung._id">
+                                    ng-init="zuo._rechte = { _id: formData.res_rechteID}" 
+                                    ng-change="formData.res_rechteID = zuo.rechte._id" 
+                                    ng-model="zuo.rechte" 
+                                    ng-options="rechte._id as rechte.bezeichnung for rechte in rechteliste track by rechte._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.hardware_zuo, zuo)">-</button>
                             </div> 

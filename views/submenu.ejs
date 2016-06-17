@@ -37,7 +37,10 @@
             <table class="table table-hover">
                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
                <tr ng-repeat="item in list | filter:filter">
-                   <td><a ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ' + item._id + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
+                   <td>
+                        <a ng-if="item.befugniss_init" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' ) *init*' }}</a>
+                        <a ng-if="item.befugniss_init !== true" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a>
+                   </td>
                </tr>
             </table>
         </div>
@@ -57,18 +60,18 @@
              </table>
         </div>
 
-        <!-- Berechtigung --> 
-        <div ng-switch-when="berechtigung">
-            <center><h3>Berechtigungen</h3></center>
+        <!-- Recht --> 
+        <div ng-switch-when="rechte">
+            <center><h3>Rechte</h3></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
                 <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_berechtigung', item._id)">{{ item.bezeichnung }}</a></td>
+                    <td><a ng-click="call_content('edit_rechte', item._id)">{{ item.bezeichnung }}</a></td>
                     <td><button ng-click="call_content('delete', item._id)">X</button></td>
                 </tr>
                 <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_berechtigung')">Berechtigung anlegen</button></td></tr>
+                <tr><td colspan="2"><button ng-click="call_content('edit_rechte')">Recht anlegen</button></td></tr>
              </table>
         </div>
 

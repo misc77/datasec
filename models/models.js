@@ -123,6 +123,7 @@ var mitarbeiterSchema = new Schema({
     urlaubsvertretung:  {type: Schema.Types.ObjectId, ref: 'mitarbeiter'},
     vertretungSeit:     Date,
     vertretungBis:      Date,
+    befugniss_init:     Boolean,
     protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Mitarbeiter = mongoose.model("mitarbeiter", mitarbeiterSchema);
@@ -239,13 +240,14 @@ var befugnissSchema = new Schema({
                          zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
     tresor_zuo:      [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
                          zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
-    fahrzeugliste:   [{ type: Schema.Types.ObjectId, ref: 'fahrzeug'}],
+    fahrzeugliste:   [ { fahrzeug:       {type: Schema.Types.ObjectId, ref: 'fahrzeug'} }],
     hardware_zuo:    [{ hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
                         berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
     ressource_zuo:   [{ ressource:      {type: Schema.Types.ObjectId, ref: 'ressource'},
                         rechte:         {type: Schema.Types.ObjectId, ref: 'rechte'} }],
     byod:            Boolean,
     fernzugriff:     Boolean,
+    is_init:         Boolean,
     protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Befugniss = mongoose.model("befugniss", befugnissSchema);

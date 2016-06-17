@@ -17,7 +17,7 @@
                                         ng-options="rolle._id as rolle.bezeichnung for typ in rollenliste track by rolle._id">
                                 </select>               
                             </div>
-                            div class="input-group">
+                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
                             </div> 
@@ -102,6 +102,7 @@
                                 <span class="input-group-addon" id="basic-addon1">Zutrittsmittel Status:</span>
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="zutrittsmittelstatus" ng-model="formData.zutrittsmittelstatus">
                             </div>
+                            
                             <div class="input-group">
                                 <button ng-click='save()'>Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>

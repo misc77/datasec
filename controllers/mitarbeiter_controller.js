@@ -22,6 +22,7 @@ exports.create = function(req, res){
    mitarbeiter.set('rolle', req.body.rolle);
    mitarbeiter.set('beschaeftigung', req.body.beschaeftigung);
    mitarbeiter.set('statusSeit', req.body.statusSeit);
+   mitarbeiter.set('befugniss_init', true);
    mitarbeiter.set('string', req.body.nachname + ' ' + req.body.vorname + ' ( ' + req.body.mitarbeiternr + ')');
    if (req.body.urlaubsvertretung !== undefined | req.body.urlaubsvertretung !== null) {
         mitarbeiter.set('urlaubsvertretung', req.body.urlaubsvertretung);
@@ -99,6 +100,9 @@ exports.save = function (req, res){
             }
             if (req.body.vertretungBis !== null & req.body.vertretungBis !== undefined ){
                 mitarbeiter.vertretungBis = req.body.vertretungBis;
+            }
+            if(req.body.befugniss_init !== null & req.body.befugniss_init !== undefined & req.body.befugniss_init === false){
+                mitarbeiter.befugniss_init = false;
             }
             
 //            var protokoll = new Protokoll();

@@ -87,9 +87,9 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
               function(data) { 
                   if (data.object[0] !== undefined) {
-                      $scope.formData = data.object[0];
+                      $scope.formData = data.object[0];                    
                   } else {
-                      $scope.formData = data.object;
+                      $scope.formData = data.object;                   
                   }
                   if (appdata.content === 'delete' ){
                       $scope.title = appdata.submenu + ' löschen';
@@ -104,7 +104,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
                   $log.debug('data: ' + angular.toJson(data.object));
                   $scope.formData = data.object;
                   $scope.title = appdata.submenu + ' anlegen'; 
-                  $scope.object_id = appdata.object;
+                  $scope.object_id = undefined;
             }).error(
               function (data) {
                 $scope.formData = '';
@@ -125,6 +125,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     //Create or Update
     $scope.save = function(){
         if ($scope.object_id === undefined) {
+            $log.debug('create...');
             $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
                 $scope.reset();
@@ -132,6 +133,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
                 alert("Fehler beim Speichern: " + data);
             });
         } else {
+            $log.debug('update...');
            $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
                 $scope.reset();

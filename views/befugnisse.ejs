@@ -9,7 +9,10 @@
                             <div class="controls-row"">
                                 <label class="control-label span8">Aufgabe: {{formData.mitarbeiter.aufgabe.bezeichnung}}</label>                
                             </div>
-
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Intiale Befugnisse?</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="is_init" ng-model="formData.is_init">
+                            </div>
                             <legend>Tresorzugriff:</legend>
                             <div class="controls controls-row" ng-repeat="zuo in formData.tresor_zuo">                             
                                 <select class="span6"  
@@ -55,7 +58,7 @@
                                 <select class="span6"  
                                     ng-init="fahrzeug._fahrzeug = { _id: formData.fahrzeugID }" 
                                     ng-change="formData.fahrzeugID = zuo.fahrzeug.fahrzeug._id"
-                                    ng-model="fahrzeug"
+                                    ng-model="fahrzeug.fahrzeug"
                                     ng-options="fzg._id as fzg.kennzeichen for fzg in fahrzeugliste track by fzg._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.fahrzeugliste, fahrzeug)">-</button>
@@ -93,10 +96,10 @@
                                     ng-options="hardware._id as hardware.bezeichnung for hardware in hardwareliste track by hardware._id">
                                 </select>
                                 <select class="span6" 
-                                    ng-init="zuo._berechtigung = { _id: formData.berechtigungID}" 
-                                    ng-change="formData.berechtigungID = zuo.berechtigung._id" 
-                                    ng-model="zuo.berechtigung" 
-                                    ng-options="berechtigung._id as berechtigung.bezeichnung for berechtigung in berechtigungliste track by berechtigung._id">
+                                    ng-init="zuo._rechte = { _id: formData.res_rechteID}" 
+                                    ng-change="formData.res_rechteID = zuo.rechte._id" 
+                                    ng-model="zuo.rechte" 
+                                    ng-options="rechte._id as rechte.bezeichnung for rechte in rechteliste track by rechte._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.hardware_zuo, zuo)">-</button>
                             </div> 

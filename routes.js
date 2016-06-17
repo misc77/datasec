@@ -81,11 +81,11 @@ module.exports = function(app) {
     /**************************
      *      Berechtigung Routes 
      ***************************/
-    app.post('/api/berechtigung/create',     rechte.create); 
-    app.post('/api/berechtigung/save',       rechte.save); 
-    app.post('/api/berechtigung/delete',     rechte.delete); 
-    app.get('/api/berechtigung/list',        rechte.list) ;
-    app.get('/api/berechtigung/get',         rechte.get) ;
+    app.post('/api/rechte/create',     rechte.create); 
+    app.post('/api/rechte/save',       rechte.save); 
+    app.post('/api/rechte/delete',     rechte.delete); 
+    app.get('/api/rechte/list',        rechte.list) ;
+    app.get('/api/rechte/get',         rechte.get) ;
     
     /**************************
      *      Daten Routes 

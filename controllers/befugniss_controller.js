@@ -8,14 +8,26 @@ var Mitarbeiter = Model.Mitarbeiter;
 
 var self = module.exports = {
     create : function (req, res){
+        console.log('create befugniss...');
        var befugniss = new Befugniss();
+        befugniss.set('mitarbeiter',      req.body.mitarbeiter);
         befugniss.set('bezeichnung',      req.body.bezeichnung);
         befugniss.set('aufgabe',          req.body.aufgabe);
         befugniss.set('tresor_zuo',       req.body.tresor_zuo);
         befugniss.set('raum_zuo',         req.body.raum_zuo);
         befugniss.set('ressource_zuo',    req.body.ressource_zuo);
         befugniss.set('hardware_zuo',     req.body.hardware_zuo);
-        befugniss.set('fahrzeugliste',    req.body.fahrzeugliste);
+        befugniss.set('is_init',          false);
+        if (req.body.fahrzeugliste !== undefined & req.body.fahrzeugliste !== null) {
+            befugniss.fahrzeugliste = [];
+            if (req.body.fahrzeugliste.length > 0){
+                for( var i = req.body.fahrzeugliste.length-1; i >= 0; --i){
+                    if (req.body.fahrzeugliste[i] !== null & req.body.fahrzeugliste[i] !== undefined){
+                        befugniss.fahrzeugliste.push(req.body.fahrzeugliste[i]);
+                    }
+                }
+            }
+        }
         befugniss.set('byod',             req.body.byod);
         befugniss.set('fernzugriff',      req.body.fernzugriff);
         befugniss.set('aktiv',            req.body.aktiv);
@@ -24,7 +36,23 @@ var self = module.exports = {
             if(err){
                 console.log('err: ' + err);
             } else {
-                res.json(befugniss);
+                console.log('saved befugniss: ' + JSON.stringify(befugniss));
+                Mitarbeiter.findOne({_id: req.body.mitarbeiter}).exec(function(err, mitarbeiter){
+                    if(err){
+                        console.log(err.getErrorMessage(err));
+                    } else {
+                        mitarbeiter.befugniss_init = false;
+                        mitarbeiter.save(
+                            function(err){
+                                if(err){
+                                    console.log('err: ' + err);
+                                } else {
+                                    console.log('mitarbeiter updated!');
+                                    res.json(befugniss);
+                                }
+                            });
+                    }
+                });
             }
         });
     },
@@ -40,58 +68,55 @@ var self = module.exports = {
     },
 
     save : function (req, res){
-        Musterrolle.findOne({_id: req.body._id}).exec(function(err, befugniss) {
-            if (err) {
-                return res.status(400).send({
-                    msg: err.getErrorMessage(err)
-                });
-            } else {
-                if (req.body.mitarbeiter !== undefined & req.body.mitarbeiter !== null) {
-                    befugniss.mitarbeiter = req.body.mitarbeiter;
-                }
-                if (req.body.tresor_zuo !== undefined & req.body.tresor_zuo !== null) {
-                    befugniss.tresor_zuo = req.body.tresor_zuo;
-                }
-                if (req.body.raum_zuo !== undefined & req.body.raum_zuo !== null) {
-                    befugniss.raum_zuo = req.body.raum_zuo;
-                }
-                if (req.body.fahrzeugliste !== undefined & req.body.fahrzeugliste !== null) {
-                    befugniss.fahrzeugliste = [];
-                    if (req.body.fahrzeugliste.length > 0){
-                        for( var i = req.body.fahrzeugliste.length-1; i >= 0; --i){
-                            if (req.body.fahrzeugliste[i] !== null & req.body.fahrzeugliste[i] !== undefined){
-                                befugniss.fahrzeugliste.push(req.body.fahrzeugliste[i]);
+        if (req.body.is_init){
+            self.create(req, res);
+        } else {
+            Befugniss.findOne({_id: req.body._id}).exec(function(err, befugniss) {
+                if (err) {
+                    return res.status(400).send({
+                        msg: err.getErrorMessage(err)
+                    });
+                } else {
+                    if (req.body.mitarbeiter !== undefined & req.body.mitarbeiter !== null) {
+                        befugniss.mitarbeiter = req.body.mitarbeiter;
+                    }
+                    if (req.body.tresor_zuo !== undefined & req.body.tresor_zuo !== null) {
+                        befugniss.tresor_zuo = req.body.tresor_zuo;
+                    }
+                    if (req.body.raum_zuo !== undefined & req.body.raum_zuo !== null) {
+                        befugniss.raum_zuo = req.body.raum_zuo;
+                    }
+                    if (req.body.fahrzeugliste !== undefined & req.body.fahrzeugliste !== null) {
+                        befugniss.fahrzeugliste = req.body.fahrzeugliste;
+                    }
+                    if (req.body.ressource_zuo !== undefined & req.body.ressource_zuo !== null) {
+                        befugniss.ressource_zuo = req.body.ressource_zuo;
+                    }
+                    if (req.body.hardware_zuo !== undefined & req.body.hardware_zuo !== null) {
+                        befugniss.hardware_zuo = req.body.hardware_zuo;
+                    }
+                    if (req.body.byod === undefined | req.body.byod === null ){
+                        befugniss.byod = false;
+                    } else {
+                        befugniss.byod = true;
+                    }
+                    if (req.body.fernzugriff === undefined | req.body.fernzugriff === null ){
+                        befugniss.fernzugriff = false;
+                    } else {
+                        befugniss.fernzugriff = true;
+                    }
+                    befugniss.save(
+                        function(err){
+                            if(err){
+                                console.log('err: ' + err);
+                            } else {
+                                res.json(befugniss);
                             }
                         }
-                    }
+                    );
                 }
-                if (req.body.ressource_zuo !== undefined & req.body.ressource_zuo !== null) {
-                    befugniss.ressource_zuo = req.body.ressource_zuo;
-                }
-                if (req.body.hardware_zuo !== undefined & req.body.hardware_zuo !== null) {
-                    befugniss.hardware_zuo = req.body.hardware_zuo;
-                }
-                if (req.body.byod === undefined | req.body.byod === null ){
-                    befugniss.byod = false;
-                } else {
-                    befugniss.byod = true;
-                }
-                if (req.body.fernzugriff === undefined | req.body.fernzugriff === null ){
-                    befugniss.fernzugriff = false;
-                } else {
-                    befugniss.fernzugriff = true;
-                }
-                befugniss.save(
-                    function(err){
-                        if(err){
-                            console.log('err: ' + err);
-                        } else {
-                            res.json(befugniss);
-                        }
-                    }
-                );
-            }
-        }); 
+            }); 
+        }
     },
 
     list : function(req, res){
@@ -149,6 +174,7 @@ var self = module.exports = {
                                     // init befugniss
                                     var befugniss = new Befugniss();
                                     befugniss.set('mitarbeiter',        mitarbeiter);
+                                    befugniss.set('is_init',            true);
                                     if (musterrolle !== undefined && musterrolle !== null){
                                         console.log('init with musterrolle...');
                                         // init befugniss with musterrolle
@@ -203,7 +229,8 @@ var self = module.exports = {
                     msg: err.getErrorMessage(err)
                 });
             } else {
-                if (befugniss !== null & befugniss !== undefined & befugniss.mitarbeiter !== undefined) {
+                if (befugniss !== null & befugniss !== undefined) {
+                    console.log('object: ' + JSON.stringify(befugniss));
                     res.json({object : befugniss});
                 } else {
                     self.get_new_obj(req, res);
