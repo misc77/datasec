@@ -30,10 +30,15 @@ module.exports = function(app) {
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
-    
     /**************************
      *      Standort Routes 
      ***************************/
+//    app.all('/api/standort/*',function (req, res, next) {
+//        if(user.is_authorized(req, 'standort')){
+//            return next();
+//        } 
+//        res.redirect('/', { msg:'Benutzer ist nicht authorisiert!' });
+//    })
     app.post('/api/standort/create',    standort.create); 
     app.post('/api/standort/save',      standort.save); 
     app.post('/api/standort/delete',    standort.delete); 
@@ -217,7 +222,7 @@ module.exports = function(app) {
     app.post('/api/benutzer/delete',     user.delete);
     app.post('/api/benutzer/create',     user.create);
     
-    app.get('/api/user/loggedIn', function(req, res, $http){
+    app.get('/api/user/loggedIn', function(req, res){
        if(req.session.user){
            res.json(req.session.user);                    
        } else {
@@ -253,9 +258,21 @@ module.exports = function(app) {
     app.get('/login', function(req, res){
         console.log("login...");
         if(req.session.user){
-            res.redirect('/', { username: req.session.user.name});
+            res.redirect('/', { username: req.session.user.name, msg: req.session.msg});
         }
-        res.render('login');
+        res.render('login', {msg: req.session.msg});
+    });
+    app.get('/locked', function(req, res){
+        res.render('locked');
+    });
+    app.get('/failed', function(req, res){
+        res.render('failed');
+    });
+    app.get('/inactive', function(req, res){
+        res.render('inactive');
+    });
+    app.get('/notfound', function(req, res){
+        res.render('notfound');
     });
     //logout
     app.get('/logout', function(req, res){

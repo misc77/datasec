@@ -222,26 +222,34 @@ exports.signup = function(req, res){
 exports.login = function(req, res){
     console.log('in login... username: ' + req.body.username);
     User.findOne({name: req.body.username})
-            .exec(function(err, user){
+            .exec(function(err, user, path){
                 if(user === undefined | user === null){
                      err = 'User Not Found!';
+                     path = '/notfound';
                 } else if (user.pwd === hashPW(req.body.password.toString())) {
-                    req.session.regenerate(function(){
-                        req.session.user = user.id;
-                        req.session.username = user.name;
-                        req.session.msg = 'Logged in as ' + user.name;
-                        console.log('user. ' + JSON.stringify(user));
-                        res.redirect('/');
-                    });
+                    if (user.locked) {
+                         err = 'Benutzer ist gesperrt!';
+                         path = '/locked';
+                    } else if (!user.aktiv) {
+                         err = 'Benutzer ist inaktiv!';
+                         path = '/inactive';
+                    } else {
+                        req.session.regenerate(function(){
+                            req.session.user = user.id;
+                            req.session.username = user.name;
+                            req.session.msg = 'Logged in as ' + user.name;
+                            console.log('user. ' + JSON.stringify(user));
+                            res.redirect('/');
+                        });
+                    }
                 } else {
                     err = 'Authentication failed!';
+                    path = '/failed';
                 }
                 
                 if(err){
-                    console.log('error: ' + err);
-                    req.session.regenerate(function(){
-                        res.redirect('/');
-                    });
+                    console.log('error: ' + err + ' path');
+                    res.redirect(path);
                 }
     });
 };
@@ -356,6 +364,25 @@ exports.get = function(req, res){
         } else {
             console.log('user: ' + JSON.stringify(user));
             res.json({object : user});
+        }
+    });
+};
+
+exports.is_authorized = function(req, property){
+    var query = User.find({_id: req.session.user.id});
+    console.log('property: ' + property);
+    query.select(property);
+    query.exec( function (err, user) {
+        if(err) {
+            console.log('err: ' + err);
+            return false;
+        } else {
+            console.log('user prop: ' + user[property]);
+            //** Doesn't work!! **//
+            if (user[property] === true) {
+                return true;
+            } 
+            return false;
         }
     });
 };
