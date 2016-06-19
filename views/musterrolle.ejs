@@ -13,7 +13,7 @@
                                         ng-init="formData._aufgabe = { _id: formData.aufgabeID}" 
                                         ng-change="formData.aufgabeID = formData.aufgabe._id" 
                                         ng-model="formData.aufgabe" 
-                                        ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in aufgabenliste track by aufgabe._id">
+                                        ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
                                 </select>               
                             </div>
 
@@ -23,7 +23,7 @@
                                         ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
                                         ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
                                         ng-model="formData.beschaeftigung" 
-                                        ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in beschaeftigungliste track by beschaeftigung._id">
+                                        ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id">
                                 </select>               
                             </div>
 
@@ -39,7 +39,7 @@
                                     ng-init="zuo._zutrittsmittel = { _id: formData.zutrittsmittelID}" 
                                     ng-change="formData.zutrittsmittelID = zuo.zutrittsmittel._id" 
                                     ng-model="zuo.zutrittsmittel" 
-                                    ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in zutrittsmittelliste track by zutrittsmittel._id">
+                                    ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id">
                                 </select>      
                                 <button class="span2" ng-click="remove_entry(formData.tresor_zuo, zuo)">-</button>
                             </div>                             
@@ -59,7 +59,7 @@
                                     ng-init="zuo._zutrittsmittel = { _id: formData.raum_zutrittsmittelID }" 
                                     ng-change="formData.raum_zutrittsmittelID = zuo.zutrittsmittel._id" 
                                     ng-model="zuo.zutrittsmittel" 
-                                    ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in zutrittsmittelliste track by zutrittsmittel._id">
+                                    ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.raum_zuo, zuo)">-</button>
                             </div> 
@@ -73,7 +73,7 @@
                                     ng-init="fahrzeug._fahrzeug = { _id: formData.fahrzeugID }" 
                                     ng-change="formData.fahrzeugID = zuo.fahrzeug.fahrzeug._id"
                                     ng-model="fahrzeug.fahrzeug"
-                                    ng-options="fzg._id as fzg.kennzeichen for fzg in fahrzeugliste track by fzg._id">
+                                    ng-options="fzg._id as fzg.kennzeichen for fzg in dataservice.fahrzeugliste() track by fzg._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.fahrzeugliste, fahrzeug)">-</button>
                             </div>
@@ -87,13 +87,13 @@
                                     ng-init="zuo._ressource = { _id: formData.ressourceID}" 
                                     ng-change="formData.ressourceID = ressource._id" 
                                     ng-model="zuo.ressource" 
-                                    ng-options="ressource._id as ressource.bezeichnung for ressource in ressourcenliste track by ressource._id">
+                                    ng-options="ressource._id as ressource.bezeichnung for ressource in dataservice.ressourcenliste() track by ressource._id">
                                 </select>
                                 <select class="span6" 
                                     ng-init="zuo._rechte = { _id: formData.res_rechteID}" 
                                     ng-change="formData.res_rechteID = zuo.rechte._id" 
                                     ng-model="zuo.rechte" 
-                                    ng-options="rechte._id as rechte.bezeichnung for rechte in rechteliste track by rechte._id">
+                                    ng-options="rechte._id as rechte.bezeichnung for rechte in dataservice.rechteliste() track by rechte._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.ressource_zuo, zuo)">-</button>
                             </div> 
@@ -108,13 +108,13 @@
                                     ng-init="zuo._hardware = { _id: formData.hardwareID}" 
                                     ng-change="formData.hardwareID = hardware._id" 
                                     ng-model="zuo.hardware" 
-                                    ng-options="hardware._id as hardware.bezeichnung for hardware in hardwareliste track by hardware._id">
+                                    ng-options="hardware._id as hardware.bezeichnung for hardware in dataservice.hardwareliste() track by hardware._id">
                                 </select>
                                 <select class="span6" 
                                     ng-init="zuo._rechte = { _id: formData.res_rechteID}" 
                                     ng-change="formData.res_rechteID = zuo.rechte._id" 
                                     ng-model="zuo.rechte" 
-                                    ng-options="rechte._id as rechte.bezeichnung for rechte in rechteliste track by rechte._id">
+                                    ng-options="rechte._id as rechte.bezeichnung for rechte in dataservice.rechteliste() track by rechte._id">
                                 </select>
                                 <button class="span2" ng-click="remove_entry(formData.hardware_zuo, zuo)">-</button>
                             </div> 

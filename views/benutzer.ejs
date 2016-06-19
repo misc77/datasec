@@ -14,7 +14,7 @@
                                         ng-init="formData._rolle = { _id: formData.rolleID}" 
                                         ng-change="formData.rolleID = formData.rolle._id" 
                                         ng-model="formData.rolle" 
-                                        ng-options="rolle._id as rolle.bezeichnung for rolle in rollenliste track by rolle._id">
+                                        ng-options="rolle._id as rolle.bezeichnung for rolle in dataservice.rollenliste() track by rolle._id">
                                 </select>               
                             </div>
                             <div class="input-group">

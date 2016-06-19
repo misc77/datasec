@@ -14,7 +14,7 @@
                                         ng-init="formData._status = { _id: formData.statusID}" 
                                         ng-change="formData.statusID = formData.status._id" 
                                         ng-model="formData.status" 
-                                        ng-options="status._id as status.bezeichnung for status in statusliste track by status._id">
+                                        ng-options="status._id as status.bezeichnung for status in dataservice.statusliste() track by status._id">
                                 </select>               
                             </div>
                            <div class="input-group">

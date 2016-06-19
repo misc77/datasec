@@ -13,7 +13,7 @@
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 
                                         ng-model="formData.daten" 
-                                        ng-options="data as data.bezeichnung for data in daten track by data._id"
+                                        ng-options="data as data.bezeichnung for data in dataservice.daten() track by data._id"
                                         multiple >
                                 </select>               
                                 </div>

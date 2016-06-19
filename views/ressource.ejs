@@ -14,7 +14,7 @@
                                         ng-init="formData._typ = { _id: formData.typID}" 
                                         ng-change="formData.typID = formData.typ._id" 
                                         ng-model="formData.typ" 
-                                        ng-options="typ._id as typ.bezeichnung for typ in ressourcentypliste track by typ._id">
+                                        ng-options="typ._id as typ.bezeichnung for typ in dataservice.ressourcentypliste() track by typ._id">
                                 </select>               
                             </div>
                             <div class="input-group">
@@ -22,7 +22,7 @@
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 
                                         ng-model="formData.daten" 
-                                        ng-options="data as data.bezeichnung for data in daten track by data._id"
+                                        ng-options="data as data.bezeichnung for data in dataservice.daten() track by data._id"
                                         multiple >
                                 </select>               
                                 </div>

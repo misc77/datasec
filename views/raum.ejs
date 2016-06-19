@@ -21,7 +21,7 @@
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 
                                         ng-model="formData.zutrittsmittel" 
-                                        ng-options="zutrittsmittel as zutrittsmittel.bezeichnung for zutrittsmittel in zutrittsmittelliste track by zutrittsmittel._id"
+                                        ng-options="zutrittsmittel as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id"
                                         multiple >
                                 </select>               
                                 </div>

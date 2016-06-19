@@ -37,7 +37,7 @@
                                 <div class="input-group">
                                     <select class="form-control" id="inputAufgabe" aria-describedby="basic-addon1" 
                                             ng-model="formData.aufgabe" 
-                                            ng-options="aufgabe as aufgabe.bezeichnung for aufgabe in aufgabenliste track by aufgabe._id">
+                                            ng-options="aufgabe as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
                                     </select>               
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 
                                         ng-model="formData.beschaeftigung" 
-                                        ng-options="beschaeftigung as beschaeftigung.bezeichnung for beschaeftigung in beschaeftigungliste track by beschaeftigung._id">
+                                        ng-options="beschaeftigung as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id">
                                 </select>               
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 
                                         ng-model="formData.status" 
-                                        ng-options="status as status.bezeichnung for status in mitarbeiterstatusliste track by status._id">
+                                        ng-options="status as status.bezeichnung for status in dataservice.mitarbeiterstatusliste() track by status._id">
                                 </select>               
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                <div class="input-group">
                                 <select class="form-control" aria-describedby="basic-addon1" 
                                         ng-model="formData.urlaubsvertretung" 
-                                        ng-options="urlaubsvertretung as urlaubsvertretung.string for urlaubsvertretung in mitarbeiterliste track by urlaubsvertretung._id">
+                                        ng-options="urlaubsvertretung as urlaubsvertretung.string for urlaubsvertretung in dataservice.mitarbeiterliste() track by urlaubsvertretung._id">
                                 </select>               
                                 </div>
                             </div>

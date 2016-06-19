@@ -2,10 +2,103 @@
 var app = angular.module('datasec', []);
 app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: undefined, user:null, show_static_data:false, show_data:false, show_status:false});
 
-app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window', function($scope, $http, appdata, $log, $window) {
+app.factory("DataService", function($http){
+    var standorte = {};
+    var daten = {};
+    var statusliste = {};
+    var zutrittsmittelliste = {};
+    var mitarbeiterliste = {};
+    var aufgabenliste = {};
+    var mitarbeiterstatusliste = {};
+    var rollenliste = {};
+    var beschaeftigungliste = {};
+    var musterrollen = {};
+    var tresorliste = {};
+    var raumliste = {};
+    var fahrzeugliste = {};
+    var dokumentliste = {};
+    var hardwareliste = {};
+    var ressourcentypliste = {};
+    var rechteliste = {};
+    var ressourcenliste = {};
+    var is_init = true;
+    
+    return {
+        is_init : function() { return is_init; },
+        set_is_init: function(val) { is_init = val; },
+        standorte: function() { return standorte; },
+        set_standorte: function(val) { standorte = val; },
+        daten : function() { return daten; },
+        set_daten: function(val) {daten = val; },
+        statusliste: function() { return statusliste; },
+        set_statusliste: function(val) { statusliste = val; },
+        zutrittsmittelliste: function() { return zutrittsmittelliste; },
+        set_zutrittsmittelliste: function(val) { zutrittsmittelliste = val; },
+        mitarbeiterliste: function() { return mitarbeiterliste; },
+        set_mitarbeiterliste: function(val) { mitarbeiterliste = val; },
+        aufgabenliste: function() { return aufgabenliste; },
+        set_aufgabenliste: function(val) { aufgabenliste = val; },
+        mitarbeiterstatusliste: function() { return mitarbeiterstatusliste; },
+        set_mitarbeiterstatusliste: function(val) { mitarbeiterstatusliste = val; },
+        rollenliste: function() { return rollenliste; },
+        set_rollenliste: function(val) { rollenliste = val; },
+        beschaeftigungliste: function() { return beschaeftigungliste; },
+        set_beschaeftigungliste: function(val) { beschaeftigungliste = val; },
+        musterrollen: function() { return musterrollen; },
+        set_musterrollen: function(val) { musterrollen = val; },
+        tresorliste: function() { return tresorliste; },
+        set_tresorliste: function(val) { tresorliste = val; },
+        raumliste: function() { return raumliste; },
+        set_raumliste: function(val) { raumliste = val; },
+        fahrzeugliste: function() { return fahrzeugliste; },
+        set_fahrzeugliste: function(val) { fahrzeugliste = val; },
+        dokumentliste: function() { return dokumentliste; },
+        set_dokumentliste: function(val) { dokumentliste = val; },
+        hardwareliste: function() { return hardwareliste; },
+        set_hardwareliste: function(val) { hardwareliste = val; },
+        ressourcentypliste: function() { return ressourcentypliste; },
+        set_ressourcentypliste: function(val) { ressourcentypliste = val; },
+        rechteliste: function() { return rechteliste; },
+        set_rechteliste: function(val) { rechteliste = val; },
+        ressourcenliste: function() { return ressourcenliste; },
+        set_ressourcenliste: function(val) { ressourcenliste = val; },
+        
+        init: function() {
+            if (is_init){
+                // loading data
+                $http.get('/api/standort/list_active').then( function(res) { standorte = res.data; });
+                $http.get('/api/daten/list').then( function(res) { daten = res.data; });
+                $http.get('/api/zutrittsmittelstatus/list').then( function(res) { statusliste = res.data; });
+                $http.get('/api/zutrittsmittel/list').then( function(res) { zutrittsmittelliste = res.data; });
+                $http.get('/api/mitarbeiter/list').then( function(res) { mitarbeiterliste = res.data; });
+                $http.get('/api/aufgabe/list').then( function(res) { aufgabenliste = res.data; });
+                $http.get('/api/mitarbeiterstatus/list').then( function(res) { mitarbeiterstatusliste = res.data; });
+                $http.get('/api/rolle/list').then( function(res) { rollenliste = res.data; });
+                $http.get('/api/beschaeftigung/list').then( function(res) { beschaeftigungliste = res.data; });
+                $http.get('/api/musterrolle/list').then( function(res) { musterrollen = res.data; });
+                $http.get('/api/tresor/list').then( function(res) { tresorliste = res.data; });
+                $http.get('/api/raum/list').then( function(res) { raumliste = res.data; });
+                $http.get('/api/fahrzeug/list').then( function(res) { fahrzeugliste = res.data; });
+                $http.get('/api/hardware/list').then( function(res) { hardwareliste = res.data; });
+                $http.get('/api/ressourcentyp/list').then( function(res) { ressourcentypliste = res.data; });
+                $http.get('/api/ressourcen/list').then( function(res) { ressourcenliste = res.data; });
+                $http.get('/api/rechte/list').then( function(res) { rechteliste = res.data; });
+                this.is_init = false;
+            }
+        },
+        
+        update : function() {
+            this.is_init(true);
+            this.init();
+        }
+    };
+});
+
+app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window', 'DataService', function($scope, $http, appdata, $log, $window, DataService) {
         $scope.appdata = appdata;
         $scope.list = '';
-        
+        $scope.dataservice = DataService;        
+                
         (function (){
             $http.get('/api/user/loggedIn').then( 
                 function(res) { 
@@ -26,6 +119,8 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
                                                             | appdata.user.dokumente ; 
                             appdata.show_status = appdata.user.mitarbeiterstatus 
                                                         | appdata.user.zutrittsmittelstatus;
+                            // init data
+                            $scope.dataservice.init();
                         }
                     ).error(
                         function () {
@@ -78,52 +173,16 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
 }]);
 
 /* Stammdaten Controller*/
-app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function($scope, $http, appdata, $log) {
+app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function($scope, $http, appdata, $log, DataService) {
     $scope.formData = {};
     $scope.object_id = undefined;
     $scope.title = appdata.submenu + ' anlegen';
-    $scope.standorte = {};
-    $scope.daten = {};
-    $scope.statusliste = {};
-    $scope.zutrittsmittelliste = {};
-    $scope.mitarbeiterliste = {};
-    $scope.aufgabenliste = {};
-    $scope.mitarbeiterstatusliste = {};
-    $scope.rollenliste = {};
-    $scope.beschaeftigungliste = {};
-    $scope.musterrollen = {};
-    $scope.tresorliste = {};
-    $scope.raumliste = {};
-    $scope.fahrzeugliste = {};
-    $scope.papierdokumentliste = {};
-    $scope.hardwareliste = {};
-    $scope.ressourcentypliste = {};
-    $scope.rechteliste = {};
-    $scope.ressourcenliste = {};
     $scope.params = {};
     $scope.is_init = false;
      
     //INIT
     $scope.init = function(){
-        // loading data
-        $http.get('/api/standort/list_active').then( function(res) { $scope.standorte = res.data; });
-        $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
-        $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });
-        $http.get('/api/zutrittsmittel/list').then( function(res) { $scope.zutrittsmittelliste = res.data; });
-        $http.get('/api/mitarbeiter/list').then( function(res) { $scope.mitarbeiterliste = res.data; });
-        $http.get('/api/aufgabe/list').then( function(res) { $scope.aufgabenliste = res.data; });
-        $http.get('/api/mitarbeiterstatus/list').then( function(res) { $scope.mitarbeiterstatusliste = res.data; });
-        $http.get('/api/rolle/list').then( function(res) { $scope.rollenliste = res.data; });
-        $http.get('/api/beschaeftigung/list').then( function(res) { $scope.beschaeftigungliste = res.data; });
-        $http.get('/api/musterrolle/list').then( function(res) { $scope.musterrollen = res.data; });
-        $http.get('/api/tresor/list').then( function(res) { $scope.tresorliste = res.data; });
-        $http.get('/api/raum/list').then( function(res) { $scope.raumliste = res.data; });
-        $http.get('/api/fahrzeug/list').then( function(res) { $scope.fahrzeugliste = res.data; });
-        $http.get('/api/hardware/list').then( function(res) { $scope.hardwareliste = res.data; });
-        $http.get('/api/ressourcentyp/list').then( function(res) { $scope.ressourcentypliste = res.data; });
-        $http.get('/api/ressourcen/list').then( function(res) { $scope.ressourcenliste = res.data; });
-        $http.get('/api/rechte/list').then( function(res) { $scope.rechteliste = res.data; });
-
+                
         // setting formdata
         if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
             $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
@@ -148,7 +207,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
                   $scope.title = appdata.submenu + ' anlegen'; 
                   $scope.object_id = undefined;
             }).error(
-              function (data) {
+              function () {
                 $scope.formData = '';
                 $scope.object_id = undefined;
                 $scope.title = appdata.submenu + ' anlegen';
@@ -167,7 +226,6 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     //Create or Update
     $scope.save = function(){
         if ($scope.object_id === undefined) {
-            $log.debug('create...');
             $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
                 $scope.reset();
@@ -175,8 +233,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
                 alert("Fehler beim Speichern: " + data);
             });
         } else {
-            $log.debug('update...');
-           $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
+            $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
                 $scope.reset();
             }).error(function(data, status, headers, config){

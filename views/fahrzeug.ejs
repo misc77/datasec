@@ -14,7 +14,7 @@
                                         ng-init="formData._standort = { _id: formData.standortID}" 
                                         ng-change="formData.standortID = formData.standort._id" 
                                         ng-model="formData.standort" 
-                                        ng-options="standort._id as standort.bezeichnung for standort in standorte track by standort._id">
+                                        ng-options="standort._id as standort.bezeichnung for standort in dataservice.standorte() track by standort._id">
                                 </select>               
                             </div>
                             <div class="input-group">
