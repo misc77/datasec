@@ -1,38 +1,42 @@
-<nav> 
-                <div>
+            <nav> 
+                <div ng-if="appdata.user !== undefined">
                     <div><h3>Menu</h3></div>
                     <div class="btn-group-vertical">
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('befugnisse')">Befugnisse</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('auswertungen')">Auswertungen</button></div>
+                        <div ng-if="appdata.user.befugnisse"><button class="btn btn-default btn-sm" ng-click="call_submenu('befugnisse')">Befugnisse</button></div>
+                        <div ng-if="appdata.user.auswertungen"><button class="btn btn-default btn-sm" ng-click="call_submenu('auswertungen')">Auswertungen</button></div>
                     </div>
-                    <div><h4>Stammdaten</h4></div>
+                    <div ng-if="appdata.show_static_data"><h4>Stammdaten</h4></div>
                     <div class="btn-group-vertical">
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('musterrolle')">Muster Rollen</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('dokumente')">Datenschlutzerklärungsdokumente</button></div>
-                        <div><h5>Daten</h5></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('aufgabe')">Aufgabe</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('rechte')">Rechte</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('beschaeftigung')">Beschäftigungsverhältniss</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('daten')">Datentypen</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('fahrzeug')">Fuhrpark</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('hardware')">IT-Hardware</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('ressourcen')">Ressourcen</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('ressourcentyp')">Ressourcentyp</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('raum')">Raum</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('standort')">Standort</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('tresor')">Tresor</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</button></div>
-                        <div><h5>Status</h5></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiterstatus')">MitarbeiterStatus</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittelstatus')">Zutrittsmittel Status</button></div>
+                        <div ng-if="appdata.user.mitarbeiter"><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</button></div>
+                        <div ng-if="appdata.user.musterrolle"><button class="btn btn-default btn-sm" ng-click="call_submenu('musterrolle')">Muster Rollen</button></div>
+                        <div ng-if="appdata.user.dokumente"><button class="btn btn-default btn-sm" ng-click="call_submenu('dokumente')">Datenschlutzerklärungsdokumente</button></div>
+                        <div ng-if="appdata.show_data"><h5>Daten</h5></div>
+                        <div ng-if="appdata.user.aufgabe"><button class="btn btn-default btn-sm" ng-click="call_submenu('aufgabe')">Aufgabe</button></div>
+                        <div ng-if="appdata.user.rechte"><button class="btn btn-default btn-sm" ng-click="call_submenu('rechte')">Rechte</button></div>
+                        <div ng-if="appdata.user.beschaeftigung"><button class="btn btn-default btn-sm" ng-click="call_submenu('beschaeftigung')">Beschäftigungsverhältniss</button></div>
+                        <div ng-if="appdata.user.daten"><button class="btn btn-default btn-sm" ng-click="call_submenu('daten')">Datentypen</button></div>
+                        <div ng-if="appdata.user.fahrzeug"><button class="btn btn-default btn-sm" ng-click="call_submenu('fahrzeug')">Fuhrpark</button></div>
+                        <div ng-if="appdata.user.hardware"><button class="btn btn-default btn-sm" ng-click="call_submenu('hardware')">IT-Hardware</button></div>
+                        <div ng-if="appdata.user.ressourcen"><button class="btn btn-default btn-sm" ng-click="call_submenu('ressourcen')">Ressourcen</button></div>
+                        <div ng-if="appdata.user.ressourcentyp"><button class="btn btn-default btn-sm" ng-click="call_submenu('ressourcentyp')">Ressourcentyp</button></div>
+                        <div ng-if="appdata.user.raum"><button class="btn btn-default btn-sm" ng-click="call_submenu('raum')">Raum</button></div>
+                        <div ng-if="appdata.user.standort"><button class="btn btn-default btn-sm" ng-click="call_submenu('standort')">Standort</button></div>
+                        <div ng-if="appdata.user.tresor"><button class="btn btn-default btn-sm" ng-click="call_submenu('tresor')">Tresor</button></div>
+                        <div ng-if="appdata.user.zutrittsmittel"><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</button></div>
+                        <div ng-if="appdata.show_status"><h5>Status</h5></div>
+                        <div ng-if="appdata.user.mitarbeiterstatus"><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiterstatus')">MitarbeiterStatus</button></div>
+                        <div ng-if="appdata.user.zutrittsmittelstatus"><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittelstatus')">Zutrittsmittel Status</button></div>
                     </div>       
-                    <div><h4>Administration</h4></div>
-                    <div class="btn-group-vertical">
+                    <div ng-if="appdata.user.admin"><h4>Administration</h4></div>
+                    <div ng-if="appdata.user.admin" class="btn-group-vertical">
                         <div><button class="btn btn-default btn-sm" ng-click="call_submenu('einstellung')">Einstellung</button></div>
                         <div><button class="btn btn-default btn-sm" ng-click="call_submenu('benutzer')">Benutzeradministration</button></div>
                         
                         <div><button class="btn btn-default btn-sm" ng-click="call_submenu('rolle')">Rollen</button></div>
-                </div>                          
+                    </div>         
+                    <div><h4>Anwendung</h4></div>
+                    <div class="btn-group-vertical">
+                        <div><button class="btn btn-default btn-sm" ng-click="logout()">Abmelden</button></div>
+                    </div> 
                 </div>
             </nav>

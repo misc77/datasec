@@ -25,7 +25,7 @@ exports.create = function (req, res){
     user.set('locked', req.body.locked);
     user.set('mitarbeiter', req.body.mitarbeiter);
     user.set('raum', req.body.raum);
-    user.set('ressource', req.body.ressource);
+    user.set('ressourcen', req.body.ressource);
     user.set('hardware', req.body.hardware);
     user.set('fuhrpark', req.body.fuhrpark);
     user.set('hardware', req.body.hardware);
@@ -89,10 +89,10 @@ exports.save = function (req, res){
             } else {
                 user.raum = true;
             }            
-            if (req.body.ressource === undefined | req.body.ressource === null | req.body.ressource === false){
-                user.ressource = false;
+            if (req.body.ressourcen === undefined | req.body.ressourcen === null | req.body.ressourcen === false){
+                user.ressourcen = false;
             } else {
-                user.ressource = true;
+                user.ressourcen = true;
             }
             if (req.body.hardware === undefined | req.body.hardware === null | req.body.hardware === false){
                 user.hardware = false;
@@ -174,6 +174,11 @@ exports.save = function (req, res){
             } else {
                 user.admin = true;
             }
+            if (req.body.fuhrpark === undefined | req.body.fuhrpark === null | req.body.fuhrpark === false){
+                user.fuhrpark = false;
+            } else {
+                user.fuhrpark = true;
+            }
             user.save(
                 function(err){
                     if(err){
@@ -225,6 +230,7 @@ exports.login = function(req, res){
                         req.session.user = user.id;
                         req.session.username = user.name;
                         req.session.msg = 'Logged in as ' + user.name;
+                        console.log('user. ' + JSON.stringify(user));
                         res.redirect('/');
                     });
                 } else {
@@ -348,6 +354,7 @@ exports.get = function(req, res){
                 msg: err.getErrorMessage(err)
             });
         } else {
+            console.log('user: ' + JSON.stringify(user));
             res.json({object : user});
         }
     });

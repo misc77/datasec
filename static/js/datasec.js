@@ -1,10 +1,41 @@
 /* Main Controller */
 var app = angular.module('datasec', []);
-app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: undefined});
-app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $http, appdata) {
+app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: undefined, user:null, show_static_data:false, show_data:false, show_status:false});
+
+app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window', function($scope, $http, appdata, $log, $window) {
         $scope.appdata = appdata;
         $scope.list = '';
-               
+        
+        (function (){
+            $http.get('/api/user/loggedIn').then( 
+                function(res) { 
+                    $http.get('/api/benutzer/get',{params: { id : res.data }}).success( 
+                        function (data) { 
+                            appdata.user = data.object[0];
+                            appdata.show_data = appdata.user.rechte 
+                                                    | appdata.user.beschaeftigung 
+                                                    | appdata.user.hardware 
+                                                    | appdata.user.ressourcen 
+                                                    | appdata.user.ressourcentyp 
+                                                    | appdata.user.raum 
+                                                    | appdata.user.standort 
+                                                    | appdata.user.tresor 
+                                                    | appdata.user.zutrittsmittel ;
+                            appdata.show_static_data = appdata.user.mitarbeiter 
+                                                            | appdata.user.musterrolle 
+                                                            | appdata.user.dokumente ; 
+                            appdata.show_status = appdata.user.mitarbeiterstatus 
+                                                        | appdata.user.zutrittsmittelstatus;
+                        }
+                    ).error(
+                        function () {
+                             alert('Probleme bei der Benutzerauthorisierung!');
+                        }
+                    );
+                }
+            );
+        })();
+        
         //Call Submenu
         $scope.call_submenu = function($name){
             if ($name === undefined | $name === null) {
@@ -31,6 +62,18 @@ app.controller('myController', ['$scope', '$http', 'appdata', function($scope, $
         $scope.reset = function(){
             appdata.object = undefined;
             $scope.call_submenu(appdata.submenu);
+        };
+        
+        //Log out user and kill session
+        $scope.logout = function(){
+            appdata.object = undefined;
+            $http.get('/logout').success( 
+                function(data, status, headers, config){
+                    appdata.msg = 'Erfolgreich abgemeldet!';
+                    $window.location.reload();
+                }).error(function(data, status, headers, config){
+                    alert("Fehler beim Abmelden: " + data);
+            }); 
         };
 }]);
 
@@ -63,7 +106,6 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     //INIT
     $scope.init = function(){
         // loading data
-        $log.debug('init');
         $http.get('/api/standort/list_active').then( function(res) { $scope.standorte = res.data; });
         $http.get('/api/daten/list').then( function(res) { $scope.daten = res.data; });
         $http.get('/api/zutrittsmittelstatus/list').then( function(res) { $scope.statusliste = res.data; });

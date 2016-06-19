@@ -14,7 +14,7 @@
                                         ng-init="formData._rolle = { _id: formData.rolleID}" 
                                         ng-change="formData.rolleID = formData.rolle._id" 
                                         ng-model="formData.rolle" 
-                                        ng-options="rolle._id as rolle.bezeichnung for typ in rollenliste track by rolle._id">
+                                        ng-options="rolle._id as rolle.bezeichnung for rolle in rollenliste track by rolle._id">
                                 </select>               
                             </div>
                             <div class="input-group">
@@ -24,7 +24,11 @@
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Gesperrt:</span>
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="locked" ng-model="formData.locked">
-                            </div>   
+                            </div> 
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">Admin:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="admin" ng-model="formData.admin">
+                            </div>  
                             <h4>Zugriffe:</h4>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Befugnisse:</span>

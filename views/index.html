@@ -14,7 +14,7 @@
         <script type="text/javascript" src="../static/js/datasec.js"></script>
     </head>
     <body ng-controller="myController">
-        <header><h2>Netvocat DataSec - Berechtigungskonzept</h2></header>
+        <header><h2>Netvocat DataSec - Berechtigungskonzept</h2>     <h5>{{appdata.user.name + ' ( ' + appdata.user.rolle.bezeichnung + ' ) '}}</header>
         <div id="main">
             <% include nav.ejs %>
             <% include submenu.ejs %>

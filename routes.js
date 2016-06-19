@@ -217,6 +217,14 @@ module.exports = function(app) {
     app.post('/api/benutzer/delete',     user.delete);
     app.post('/api/benutzer/create',     user.create);
     
+    app.get('/api/user/loggedIn', function(req, res, $http){
+       if(req.session.user){
+           res.json(req.session.user);                    
+       } else {
+           res.json(404, {err: 'User Not Found!'});
+       }
+    });
+    
     //home
     app.get('/', function(req, res){
         if(req.session.user) {
@@ -253,7 +261,8 @@ module.exports = function(app) {
     app.get('/logout', function(req, res){
         if(req.session.user){
             req.session.destroy(function(){
-                res.redirect('/login');
+                console.log('log out: redirect');
+                res.render('login');
             });
         }
     });
