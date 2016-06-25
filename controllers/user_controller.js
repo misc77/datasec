@@ -4,6 +4,7 @@
 var crypto = require('crypto');
 var Model = require('../models/models.js');
 var User = Model.User;
+var mongoose = require('mongoose');
 
 /*
  * hashPW
@@ -366,6 +367,24 @@ exports.get = function(req, res){
             res.json({object : user});
         }
     });
+};
+
+/********************************       
+ *     Mongoose States
+ *  0 = disconnected
+ *  1 = connected
+ *  2 = connecting
+ *  3 = disconnecting
+ *
+ ********************************/
+exports.ping = function(){
+    console.log('in ping...');
+    console.log('ping: ' + mongoose.connection.readyState);
+    return mongoose.connection.readyState;  
+};
+
+exports.connectionState = function( req, res ){
+    res.json({state : mongoose.connection.readyState});
 };
 
 exports.is_authorized = function(req, property){

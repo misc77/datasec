@@ -1,21 +1,31 @@
-                        <form ng-controller="staticDataCtrl">
-                            <p class='title'>{{title}}</h3>
+                        <form name="benutzerForm" ng-controller="staticDataCtrl" novalidate>
+                            <p class='title'>{{title}}</p>
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Name:</span>
-                                <input type="text" class="form-control" placeholder="Benutzername" aria-describedby="basic-addon1" name="name" ng-model="formData.name">
+                                <span class="input-group-addon" id="basic-addon1">Benutzername:</span>
+                                <input type="text" class="form-control" placeholder="Benutzername" aria-describedby="basic-addon1" name="name" ng-model="formData.name" required>
+                                <div class="help-block" ng-messages="benutzerForm.name.$error" ng-if="benutzerForm.name.$touched">
+                                    <p ng-message="required" >Benutzername ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">E-mail:</span>
-                                <input type="text" class="form-control" placeholder="E-mail" aria-describedby="basic-addon1" name="email" ng-model="formData.email">
+                                <input type="text" class="form-control" placeholder="E-mail" aria-describedby="basic-addon1" name="email" ng-model="formData.email" required>
+                                <div class="help-block" ng-messages="benutzerForm.email.$error" ng-if="benutzerForm.email.$touched">
+                                    <p ng-message="required" >E-mail ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Rolle:</span>
                                 <select class="form-control" aria-describedby="basic-addon1" 
+                                        name="rolle"
                                         ng-init="formData._rolle = { _id: formData.rolleID}" 
                                         ng-change="formData.rolleID = formData.rolle._id" 
                                         ng-model="formData.rolle" 
-                                        ng-options="rolle._id as rolle.bezeichnung for rolle in dataservice.rollenliste() track by rolle._id">
-                                </select>               
+                                        ng-options="rolle._id as rolle.bezeichnung for rolle in dataservice.rollenliste() track by rolle._id" required>
+                                </select> 
+                                <div class="help-block" ng-messages="benutzerForm.rolle.$error" ng-if="benutzerForm.rolle.$touched">
+                                    <p ng-message="required" >Rolle ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
@@ -108,7 +118,7 @@
                             </div>
                             
                             <div class="input-group">
-                                <button ng-click='save()'>Speichern</button>  
+                                <button ng-click='save()' ng-disabled="benutzerForm.$invalid">Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

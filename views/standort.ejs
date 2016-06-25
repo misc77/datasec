@@ -1,12 +1,15 @@
-                        <form ng-controller="staticDataCtrl">
+                        <form name="standortForm" ng-controller="staticDataCtrl" novalidate>
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Standortbezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                                <input type="text" class="form-control" placeholder="Standortbezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                <div class="help-block" ng-messages="standortForm.bezeichnung.$error" ng-if="standortForm.bezeichnung.$touched">
+                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                </div>  
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Land:</span>
-                                <input type="text" class="form-control" placeholder="Land" aria-describedby="basic-addon1" name="land" ng-model="formData.land">
+                                <input type="text" class="form-control" placeholder="Land" aria-describedby="basic-addon1" name="land" ng-model="formData.land" required>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Hauptstandort:</span>
@@ -14,14 +17,14 @@
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Gründung:</span>
-                                <input type="text" class="form-control" placeholder="Standortgründung" aria-describedby="basic-addon1" name="gruendung" ng-model="formData.gruendung">
+                                <input type="date" class="form-control" placeholder="dd.mm.yyyy" aria-describedby="basic-addon1" name="gruendung" ng-model="formData.gruendung">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Schließung:</span>
-                                <input type="text" class="form-control" placeholder="Schließung des Standorts" aria-describedby="basic-addon1" name="schliessung" ng-model="formData.schliessung">
+                                <input type="date" class="form-control" placeholder="dd.mm.yyyy" aria-describedby="basic-addon1" name="schliessung" ng-model="formData.schliessung">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()'>Speichern</button>  
+                                <button ng-click='save()' ng-disabled="standortForm.$invalid">Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

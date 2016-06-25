@@ -1,8 +1,11 @@
-                        <form ng-controller="staticDataCtrl">
+                        <form name="beschaeftigungForm" ng-controller="staticDataCtrl" novalidate>
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Bezeichnung der Aufgabe" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                                <input type="text" class="form-control" placeholder="Bezeichnung der Beschäftigung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                <div class="help-block" ng-messages="beschaeftigungForm.bezeichnung.$error" ng-if="beschaeftigungForm.bezeichnung.$touched">
+                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
@@ -13,7 +16,7 @@
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()'>Speichern</button>  
+                                <button ng-click='save()' ng-disabled="beschaeftigungForm.$invalid">Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

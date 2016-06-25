@@ -1,8 +1,11 @@
-                        <form ng-controller="staticDataCtrl">
-                            <p class='title'>{{title}}</h3>
+                        <form name="rolleForm" ng-controller="staticDataCtrl" novalidate>
+                            <p class='title'>{{title}}</p>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Bezeichnung der Aufgabe" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                                <input type="text" class="form-control" placeholder="Bezeichnung der Rolle" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                <div class="help-block" ng-messages="rolleForm.bezeichnung.$error" ng-if="rolleForm.bezeichnung.$touched">
+                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                </div>  
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
@@ -13,7 +16,7 @@
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()'>Speichere Rolle</button>
+                                <button ng-click='save()' ng-disabled="rolleForm.$invalid">Speichere Rolle</button>
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

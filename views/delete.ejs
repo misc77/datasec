@@ -1,9 +1,9 @@
-                        <form ng-controller="staticDataCtrl">
+                        <form ng-controller="staticDataCtrl" novalidate>
                             <table>
                                 <th><h2><p class='title'>{{title}}</p></h2></th>
                                 <tr><td colspan="2"><h4>Wollen Sie den Datensatz "{{formData.bezeichnung}}" wirklich löschen?</h4></td></tr>
                                 <tr>
-                                    <button ng-click='delete()'>Speichern</button> 
+                                    <td><button ng-click='delete()' >Löschen</button></td> 
                                     <td><button ng-click='reset()' class="form-control">Abbrechen</button></td>
                                 </tr>
                             </table>

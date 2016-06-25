@@ -4,10 +4,9 @@
 
 Prio 1: Funktion
 
-B1.) Auslagerungen Anwendungsdaten in Service
-B2.) Datenschutzdokumente
+
 C.) Fachliche Validierungen (z.B.: Prüfung auf unterschriebene Dokumente etc.)
-G.) Validerungen für Forms
+B2.) Datenschutzdokumente
 D.) Logging (Protokoll bzw. Historisierung)
 
 F.) Konzept Reports/Auswertungen

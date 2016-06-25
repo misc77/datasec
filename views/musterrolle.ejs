@@ -1,30 +1,38 @@
-                        <form ng-controller="staticDataCtrl" ng-cloak>
+                        <form name="musterrolleForm" ng-controller="staticDataCtrl" ng-cloak novalidate>
                             <p class='title'>{{title}}</p-->
                             <div class="controls-row"">
                                 <label class="control-label span2" for="musterrollebezeichnung">Bezeichnung:</label>
                                 <div class="controls span10">
-                                    <input type="text" class="form-control span10" placeholder="Bezeichnung" name="musterrollebezeichnung" ng-model="formData.bezeichnung">
+                                    <input type="text" class="form-control span10" placeholder="Bezeichnung" name="musterrollebezeichnung" ng-model="formData.bezeichnung" required>
                                 </div>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Aufgabe:</span>
                                 <select class="form-control" aria-describedby="basic-addon1" 
+                                        name="aufgabe"
                                         ng-init="formData._aufgabe = { _id: formData.aufgabeID}" 
                                         ng-change="formData.aufgabeID = formData.aufgabe._id" 
                                         ng-model="formData.aufgabe" 
-                                        ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
-                                </select>               
+                                        ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id" required>
+                                </select>
+                                <div class="help-block" ng-messages="musterrolleForm.aufgabe.$error" ng-if="raumForm.aufgabe.$touched">
+                                    <p ng-message="required" >Aufgabe ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Beschäftigungsverhältnis:</span>
                                 <select class="form-control" aria-describedby="basic-addon1" 
+                                        name="beschaeftigung"
                                         ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
                                         ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
                                         ng-model="formData.beschaeftigung" 
-                                        ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id">
-                                </select>               
+                                        ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id" required>
+                                </select>   
+                                <div class="help-block" ng-messages="musterrolleForm.beschaeftigung.$error" ng-if="raumForm.beschaeftigung.$touched">
+                                    <p ng-message="required" >Beschäftigungsverhältnis ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
 
                             <legend>Tresorzugriff:</legend>
@@ -135,7 +143,7 @@
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()'>Speichern</button> 
+                                <button ng-click='save()' ng-disabled="musterrolleForm.$invalid">Speichern</button> 
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

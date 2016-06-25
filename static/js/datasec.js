@@ -1,5 +1,5 @@
 /* Main Controller */
-var app = angular.module('datasec', []);
+var app = angular.module('datasec', ['ngMessages']);
 app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: undefined, user:null, show_static_data:false, show_data:false, show_status:false});
 
 app.factory("DataService", function($http){
@@ -94,7 +94,7 @@ app.factory("DataService", function($http){
     };
 });
 
-app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window', 'DataService', function($scope, $http, appdata, $log, $window, DataService) {
+app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window', 'DataService', '$location', function($scope, $http, appdata, $log, $window, DataService, $location) {
         $scope.appdata = appdata;
         $scope.list = '';
         $scope.dataservice = DataService;        
@@ -133,13 +133,19 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
         
         //Call Submenu
         $scope.call_submenu = function($name){
-            if ($name === undefined | $name === null) {
-                $name = 'default';
-            };            
-            $http.get('/api/'+$name+'/list').then( function(res) { $scope.list = res.data; });
-            appdata.submenu = $name;
-            appdata.content = 'default';
-            appdata.msg = $name;
+//            $http.get('/api/connection/state').success (function(data) { 
+//                if(data.state === 1){
+                    if ($name === undefined | $name === null) {
+                        $name = 'default';
+                    };            
+                    $http.get('/api/'+$name+'/list').then( function(res) { $scope.list = res.data; });
+                    appdata.submenu = $name;
+                    appdata.content = 'default';
+                    appdata.msg = $name;
+//                } else {
+//                    $window.location.path('/disconnected.html');
+//                }
+//            });
         };
         
         //Call Content

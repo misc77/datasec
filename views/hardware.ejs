@@ -1,12 +1,18 @@
-                        <form ng-controller="staticDataCtrl">
+                        <form name="hardwareForm" ng-controller="staticDataCtrl" novalidate>
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Inventar Nummer:</span>
-                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="inventarNr" ng-model="formData.inventarNr">
+                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="inventarNr" ng-model="formData.inventarNr" required>
+                                <div class="help-block" ng-messages="hardwareForm.inventarNr.$error" ng-if="hardwareForm.inventarNr.$touched">
+                                    <p ng-message="required" >Inventar Nummer ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Hardwarebezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
+                                <input type="text" class="form-control" placeholder="Hardwarebezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                <div class="help-block" ng-messages="hardwareForm.bezeichnung.$error" ng-if="hardwareForm.bezeichnung.$touched">
+                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Verwendungszweck:</span>
@@ -29,7 +35,7 @@
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" name="deaktiviertAm" ng-model="formData.deaktiviertAm">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()'>Speichern</button>  
+                                <button ng-click='save()' ng-disabled="hardwareForm.$invalid">Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>

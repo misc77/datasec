@@ -318,4 +318,4 @@ module.exports = {    Musterrolle : Musterrolle
                     , User : User
                     , Zutrittsmittel : Zutrittsmittel
                     , ZutrittsmittelStatus : ZutrittsmittelStatus
-                    , Protokoll : Protokoll };
+                    , Protokoll : Protokoll};

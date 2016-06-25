@@ -1,12 +1,12 @@
-                        <form ng-controller="staticDataCtrl" ng-cloak>
+                        <form name="befugnisseForm" ng-controller="staticDataCtrl" ng-cloak novalidate>
                             <p class='title'>{{title}}</p>
-                            <div class="controls-row"">
+                            <div class="controls-row">
                                 <label class="control-label span8">Mitarbeiter: {{formData.mitarbeiter.nachname + ' ' + formData.mitarbeiter.vorname + ' ( ' + formData.mitarbeiter.mitarbeiternr + ' )'}}</label>    
                             </div>
-                            <div class="controls-row"">
+                            <div class="controls-row">
                                 <label class="control-label span8">Beschäftigungsverhältniss: {{formData.mitarbeiter.beschaeftigung.bezeichnung}}</label> 
                             </div>
-                            <div class="controls-row"">
+                            <div class="controls-row">
                                 <label class="control-label span8">Aufgabe: {{formData.mitarbeiter.aufgabe.bezeichnung}}</label>                
                             </div>
                             <div class="input-group">

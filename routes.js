@@ -30,15 +30,24 @@ module.exports = function(app) {
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
+    
+    /**************************
+     *      General Routes 
+     ***************************/
+//    app.all('*', function(req, res, next){
+//        var result = user.ping();
+//        if(result === 1 | result === 2){
+//            next();
+//        } else {
+//            res.redirect('/disconnected', {message: 'Disconnected from Database! (' + result + ')'});
+//        }
+//    });
+    app.get('/api/connection/state',   user.connectionState);
+    app.all('/disconnected',           function(res, req) { res.redirect('/disconnected'); });
+    
     /**************************
      *      Standort Routes 
      ***************************/
-//    app.all('/api/standort/*',function (req, res, next) {
-//        if(user.is_authorized(req, 'standort')){
-//            return next();
-//        } 
-//        res.redirect('/', { msg:'Benutzer ist nicht authorisiert!' });
-//    })
     app.post('/api/standort/create',    standort.create); 
     app.post('/api/standort/save',      standort.save); 
     app.post('/api/standort/delete',    standort.delete); 
@@ -221,6 +230,7 @@ module.exports = function(app) {
     app.post('/api/benutzer/save',       user.save);
     app.post('/api/benutzer/delete',     user.delete);
     app.post('/api/benutzer/create',     user.create);
+    app.post('/api/ping',                user.ping);
     
     app.get('/api/user/loggedIn', function(req, res){
        if(req.session.user){
