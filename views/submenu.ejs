@@ -1,8 +1,8 @@
 <!--<submenu>-->    
-    <div ng-switch="appdata.submenu">
+    <div class="card-panel blue-grey lighten-4" ng-switch="appdata.submenu">
         <!-- Standort --> 
         <div ng-switch-when="standort">
-            <center><h3>Standorte</h3></center>
+            <center><h5>Standorte</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -17,7 +17,7 @@
 
         <!-- Aufgabe --> 
         <div ng-switch-when="aufgabe">
-            <center><h3>Aufgaben</h3></center>
+            <center><h5>Aufgaben</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -32,7 +32,7 @@
 
         <!-- Befugnisse -->
         <div ng-switch-when="befugnisse">
-            <center><h3>Befugnissverwaltung</h3></center>
+            <center><h5>Befugnissverwaltung</h5></center>
             <p></p> 
             <table class="table table-hover">
                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -47,7 +47,7 @@
 
         <!-- Muster Rollen --> 
         <div ng-switch-when="musterrolle">
-            <center><h3>Muster Rollen</h3></center>
+            <center><h5>Muster Rollen</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -62,22 +62,30 @@
 
         <!-- Recht --> 
         <div ng-switch-when="rechte">
-            <center><h3>Rechte</h3></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_rechte', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_rechte')">Recht anlegen</button></td></tr>
-             </table>
+            <h4>Rechte</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a ng-click="call_content('edit_rechte', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light deep-orange darken-4" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="waves-effect waves-light btn blue" ng-click="call_content('edit_rechte')">Berechtigung anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Beschäftigungsverhältniss --> 
         <div ng-switch-when="beschaeftigung">
-            <center><h3>Beschäftigungsverhältnisse</h3></center>
+            <center><h5>Beschäftigungsverhältnisse</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -92,7 +100,7 @@
 
         <!-- Rolle --> 
         <div ng-switch-when="rolle">
-            <center><h3>Rollen</h3></center>
+            <center><h5>Rollen</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -107,7 +115,7 @@
 
         <!-- Daten --> 
         <div ng-switch-when="daten">
-            <center><h3>Datentypen</h3></center>
+            <center><h5>Datentypen</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -122,7 +130,7 @@
 
         <!-- Mitarbeiter -->
         <div ng-switch-when="mitarbeiter">
-            <center><h3>Mitarbeiterliste</h3></center>
+            <center><h5>Mitarbeiterliste</h5></center>
             <p></p> 
             <table class="table table-hover">
                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -137,7 +145,7 @@
 
         <!-- Fahrzeug -->
         <div ng-switch-when="fahrzeug">
-            <center><h3>Fuhrpark</h3></center>
+            <center><h5>Fuhrpark</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -152,7 +160,7 @@
 
         <!-- IT - Hardware -->
         <div ng-switch-when="hardware">
-            <center><h3>IT - Hardware</h3></center>
+            <center><h5>IT - Hardware</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -167,7 +175,7 @@
 
         <!-- Ressourcen -->
         <div ng-switch-when="ressourcen">
-            <center><h3>Ressourcen</h3></center>
+            <center><h5>Ressourcen</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -182,7 +190,7 @@
 
         <!-- Ressourcentyp -->
         <div ng-switch-when="ressourcentyp">
-            <center><h3>Ressourcen Typen</h3></center>
+            <center><h5>Ressourcen Typen</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -197,7 +205,7 @@
 
         <!-- Tresor -->
         <div ng-switch-when="tresor">
-            <center><h3>Tresorverwaltung</h3></center>
+            <center><h5>Tresorverwaltung</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -212,7 +220,7 @@
 
         <!-- zutrittsmittelstatus -->
         <div ng-switch-when="zutrittsmittelstatus">
-            <center><h3>Zutrittsmittel Status</h3></center>
+            <center><h5>Zutrittsmittel Status</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -227,7 +235,7 @@
 
         <!-- Zutrittsmittel -->
         <div ng-switch-when="zutrittsmittel">
-            <center><h3>Zutrittsmittel</h3></center>
+            <center><h5>Zutrittsmittel</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -242,7 +250,7 @@
 
         <!-- Mitarbeiter Status -->
         <div ng-switch-when="mitarbeiterstatus">
-            <center><h3>Mitarbeiter Status</h3></center>
+            <center><h5>Mitarbeiter Status</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -257,7 +265,7 @@
 
         <!-- Räumlichkeiten -->
         <div ng-switch-when="raum">
-            <center><h3>Räumlichkeiten</h3></center>
+            <center><h5>Räumlichkeiten</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
@@ -272,7 +280,7 @@
 
         <!-- Benutzer -->
         <div ng-switch-when="benutzer">
-            <center><h3>Benutzerverwaltung</h3></center>
+            <center><h5>Benutzerverwaltung</h5></center>
             <p></p> 
              <table class="table table-hover">
                 <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>

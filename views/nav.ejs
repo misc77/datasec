@@ -1,6 +1,5 @@
-<!--            <nav> -->
-                <div ng-if="appdata.user !== undefined">
-                    <div><h3>Menu</h3></div>
+                <div class="card-panel blue-grey lighten-5" ng-if="appdata.user !== undefined">
+                    <div><h4>Menu</h4></div>
                     <div class="btn-group-vertical">
                         <div ng-if="appdata.user.befugnisse"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('befugnisse')">Befugnisse</a></div>
                         <div ng-if="appdata.user.auswertungen"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('auswertungen')">Auswertungen</a></div>
@@ -9,7 +8,7 @@
                     <div class="btn-group-vertical">
                         <div ng-if="appdata.user.mitarbeiter"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</a></div>
                         <div ng-if="appdata.user.musterrolle"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('musterrolle')">Muster Rollen</a></div>
-                        <div ng-if="appdata.user.dokumente"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('dokumente')">Datenschutzerklärungsdokumente</a></div>
+                        <div ng-if="appdata.user.dokumente"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('dokumente')">Datenschutzdokumente</a></div>
                         <div ng-if="appdata.show_data"><h5>Daten</h5></div>
                         <div ng-if="appdata.user.aufgabe"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('aufgabe')">Aufgabe</a></div>
                         <div ng-if="appdata.user.rechte"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('rechte')">Rechte</a></div>
@@ -27,12 +26,10 @@
                         <div ng-if="appdata.user.mitarbeiterstatus"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('mitarbeiterstatus')">MitarbeiterStatus</a></div>
                         <div ng-if="appdata.user.zutrittsmittelstatus"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('zutrittsmittelstatus')">Zutrittsmittel Status</a></div>
                     </div>       
-                    <div ng-if="appdata.user.admin"><h4>Administration</h4></div>
+                    <div ng-if="appdata.user.admin"><h5>Administration</5></div>
                     <div ng-if="appdata.user.admin" class="btn-group-vertical">
-                        <div><a class="waves-effect waves-light bt blue lighten-1n"  ng-click="call_submenu('einstellung')">Einstellung</a></div>
+                        <div><a class="waves-effect waves-light btn blue lighten-1"  ng-click="call_submenu('einstellung')">Einstellung</a></div>
                         <div><a class="waves-effect waves-light btn blue lighten-1"  ng-click="call_submenu('benutzer')">Benutzeradministration</a></div>
-                        
                         <div><a class="waves-effect waves-light btn blue lighten-1"  ng-click="call_submenu('rolle')">Rollen</a></div>
                     </div>         
                 </div>
-            <!--</nav>-->

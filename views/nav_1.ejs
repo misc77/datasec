@@ -1,0 +1,62 @@
+                <div class="card-panel blue-grey lighten-5" ng-if="appdata.user !== undefined">
+                    <div><h4>Menu</h4></div>
+                    <ul class="collapsible" data-collapsible="expandable">
+                        <li>
+                            <div class="collapsible-header blue-grey lighten-4 active">Main</div>
+                            <div class="collapsible-body">
+                                <div class="collection blue-grey lighten-5">
+                                    <div ng-if="appdata.user.befugnisse"><a class="collection-item" ng-click="call_submenu('befugnisse')">Befugnisse</a></div>
+                                    <div ng-if="appdata.user.auswertungen"><a class="collection-item" ng-click="call_submenu('auswertungen')">Auswertungen</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-if="appdata.show_static_data">
+                            <div class="collapsible-header blue-grey lighten-4">Stammdaten</div>
+                            <div class="collapsible-body">
+                                <div class="collection">
+                                    <div ng-if="appdata.user.mitarbeiter"><a class="collection-item" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</a></div>
+                                    <div ng-if="appdata.user.musterrolle"><a class="collection-item" ng-click="call_submenu('musterrolle')">Muster Rollen</a></div>
+                                    <div ng-if="appdata.user.dokumente"><a class="collection-item" ng-click="call_submenu('dokumente')">Datenschutzdokumente</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-if="appdata.show_data" >
+                            <div class="collapsible-header blue-grey lighten-4">Basisdaten</div>
+                            <div class="collapsible-body">
+                                <div class="collection">
+                                    <div ng-if="appdata.user.aufgabe"><a class="collection-item" ng-click="call_submenu('aufgabe')">Aufgabe</a></div>
+                                    <div ng-if="appdata.user.rechte"><a class="collection-item" ng-click="call_submenu('rechte')">Rechte</a></div>
+                                    <div ng-if="appdata.user.beschaeftigung"><a class="collection-item" ng-click="call_submenu('beschaeftigung')">Beschäftigungsverhältnis</a></div>
+                                    <div ng-if="appdata.user.fuhrpark"><a class="collection-item" ng-click="call_submenu('fahrzeug')">Fuhrpark</a></div>
+                                    <div ng-if="appdata.user.hardware"><a class="collection-item" ng-click="call_submenu('hardware')">IT-Hardware</a></div>
+                                    <div ng-if="appdata.user.ressourcen"><a class="collection-item" ng-click="call_submenu('ressourcen')">Ressourcen</a></div>
+                                    <div ng-if="appdata.user.raum"><a class="collection-item" ng-click="call_submenu('raum')">Raum</a></div>
+                                    <div ng-if="appdata.user.standort"><a class="collection-item" ng-click="call_submenu('standort')">Standort</a></div>
+                                    <div ng-if="appdata.user.tresor"><a class="collection-item" ng-click="call_submenu('tresor')">Tresor</a></div>                       
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-if="appdata.show_data">
+                            <div class="collapsible-header blue-grey lighten-4">Hilfsdaten</div>
+                            <div class="collapsible-body">
+                                <div class="collection">
+                                    <div ng-if="appdata.user.datentyp"><a class="collection-item" ng-click="call_submenu('daten')">Datentypen</a></div>
+                                    <div ng-if="appdata.user.ressourcentyp"><a class="collection-item" ng-click="call_submenu('ressourcentyp')">Ressourcentyp</a></div>
+                                    <div ng-if="appdata.user.zutrittsmittel"><a class="collection-item" ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</a></div>
+                                    <div ng-if="appdata.user.mitarbeiterstatus"><a class="collection-item" ng-click="call_submenu('mitarbeiterstatus')">MitarbeiterStatus</a></div>
+                                    <div ng-if="appdata.user.zutrittsmittelstatus"><a class="collection-item" ng-click="call_submenu('zutrittsmittelstatus')">Zutrittsmittel Status</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li ng-if="appdata.user.admin">
+                            <div class="collapsible-header blue-grey lighten-4">Administration</div>
+                            <div class="collapsible-body">
+                                <div class="collection">
+                                    <div><a class="collection-item"  ng-click="call_submenu('einstellung')">Einstellung</a></div>
+                                    <div><a class="collection-item"  ng-click="call_submenu('benutzer')">Benutzeradministration</a></div>
+                                    <div><a class="collection-item"  ng-click="call_submenu('rolle')">Rollen</a></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul> 
+                </div>
