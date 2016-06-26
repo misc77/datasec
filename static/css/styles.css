@@ -28,16 +28,16 @@ p.title {
     font: 24px bold;
 }
 
-form{
+/*form{
     margin: 10px;
-}
+}*/
 
-label {
+/*label {
     width: 80px;
     display: inline-block;
-}
+}*/
 
-input {
+/*input {
     border: 3px ridge blue;
     border-radius: 5px;
     padding: 3px;
@@ -50,12 +50,12 @@ input[type=submit]{
     background: blue;
     margin-top: 15px;
     margin-left: 85px;
-}
+}*/
 
 /*<!-- MENU --> */
 
 #main {
- min-height: 400px;
+ min-height: 800px;
  margin: 0px;
  padding: 0px;
  display: -webkit-flex;
@@ -78,6 +78,7 @@ input[type=submit]{
  }
 
 #main > nav {
+ min-height: 800px;
  margin: 4px;
  padding: 5px;
  border: 1px solid #8888bb;

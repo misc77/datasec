@@ -1,42 +1,38 @@
-            <nav> 
+<!--            <nav> -->
                 <div ng-if="appdata.user !== undefined">
                     <div><h3>Menu</h3></div>
                     <div class="btn-group-vertical">
-                        <div ng-if="appdata.user.befugnisse"><button class="btn btn-default btn-sm" ng-click="call_submenu('befugnisse')">Befugnisse</button></div>
-                        <div ng-if="appdata.user.auswertungen"><button class="btn btn-default btn-sm" ng-click="call_submenu('auswertungen')">Auswertungen</button></div>
+                        <div ng-if="appdata.user.befugnisse"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('befugnisse')">Befugnisse</a></div>
+                        <div ng-if="appdata.user.auswertungen"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('auswertungen')">Auswertungen</a></div>
                     </div>
                     <div ng-if="appdata.show_static_data"><h4>Stammdaten</h4></div>
                     <div class="btn-group-vertical">
-                        <div ng-if="appdata.user.mitarbeiter"><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</button></div>
-                        <div ng-if="appdata.user.musterrolle"><button class="btn btn-default btn-sm" ng-click="call_submenu('musterrolle')">Muster Rollen</button></div>
-                        <div ng-if="appdata.user.dokumente"><button class="btn btn-default btn-sm" ng-click="call_submenu('dokumente')">Datenschutzerklärungsdokumente</button></div>
+                        <div ng-if="appdata.user.mitarbeiter"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('mitarbeiter')">Mitarbeiter</a></div>
+                        <div ng-if="appdata.user.musterrolle"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('musterrolle')">Muster Rollen</a></div>
+                        <div ng-if="appdata.user.dokumente"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('dokumente')">Datenschutzerklärungsdokumente</a></div>
                         <div ng-if="appdata.show_data"><h5>Daten</h5></div>
-                        <div ng-if="appdata.user.aufgabe"><button class="btn btn-default btn-sm" ng-click="call_submenu('aufgabe')">Aufgabe</button></div>
-                        <div ng-if="appdata.user.rechte"><button class="btn btn-default btn-sm" ng-click="call_submenu('rechte')">Rechte</button></div>
-                        <div ng-if="appdata.user.beschaeftigung"><button class="btn btn-default btn-sm" ng-click="call_submenu('beschaeftigung')">Beschäftigungsverhältnis</button></div>
-                        <div ng-if="appdata.user.datentyp"><button class="btn btn-default btn-sm" ng-click="call_submenu('daten')">Datentypen</button></div>
-                        <div ng-if="appdata.user.fuhrpark"><button class="btn btn-default btn-sm" ng-click="call_submenu('fahrzeug')">Fuhrpark</button></div>
-                        <div ng-if="appdata.user.hardware"><button class="btn btn-default btn-sm" ng-click="call_submenu('hardware')">IT-Hardware</button></div>
-                        <div ng-if="appdata.user.ressourcen"><button class="btn btn-default btn-sm" ng-click="call_submenu('ressourcen')">Ressourcen</button></div>
-                        <div ng-if="appdata.user.ressourcentyp"><button class="btn btn-default btn-sm" ng-click="call_submenu('ressourcentyp')">Ressourcentyp</button></div>
-                        <div ng-if="appdata.user.raum"><button class="btn btn-default btn-sm" ng-click="call_submenu('raum')">Raum</button></div>
-                        <div ng-if="appdata.user.standort"><button class="btn btn-default btn-sm" ng-click="call_submenu('standort')">Standort</button></div>
-                        <div ng-if="appdata.user.tresor"><button class="btn btn-default btn-sm" ng-click="call_submenu('tresor')">Tresor</button></div>
-                        <div ng-if="appdata.user.zutrittsmittel"><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</button></div>
+                        <div ng-if="appdata.user.aufgabe"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('aufgabe')">Aufgabe</a></div>
+                        <div ng-if="appdata.user.rechte"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('rechte')">Rechte</a></div>
+                        <div ng-if="appdata.user.beschaeftigung"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('beschaeftigung')">Beschäftigungsverhältnis</a></div>
+                        <div ng-if="appdata.user.datentyp"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('daten')">Datentypen</a></div>
+                        <div ng-if="appdata.user.fuhrpark"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('fahrzeug')">Fuhrpark</a></div>
+                        <div ng-if="appdata.user.hardware"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('hardware')">IT-Hardware</a></div>
+                        <div ng-if="appdata.user.ressourcen"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('ressourcen')">Ressourcen</a></div>
+                        <div ng-if="appdata.user.ressourcentyp"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('ressourcentyp')">Ressourcentyp</a></div>
+                        <div ng-if="appdata.user.raum"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('raum')">Raum</a></div>
+                        <div ng-if="appdata.user.standort"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('standort')">Standort</a></div>
+                        <div ng-if="appdata.user.tresor"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('tresor')">Tresor</a></div>
+                        <div ng-if="appdata.user.zutrittsmittel"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('zutrittsmittel')">Zutrittsmittel</a></div>
                         <div ng-if="appdata.show_status"><h5>Status</h5></div>
-                        <div ng-if="appdata.user.mitarbeiterstatus"><button class="btn btn-default btn-sm" ng-click="call_submenu('mitarbeiterstatus')">MitarbeiterStatus</button></div>
-                        <div ng-if="appdata.user.zutrittsmittelstatus"><button class="btn btn-default btn-sm" ng-click="call_submenu('zutrittsmittelstatus')">Zutrittsmittel Status</button></div>
+                        <div ng-if="appdata.user.mitarbeiterstatus"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('mitarbeiterstatus')">MitarbeiterStatus</a></div>
+                        <div ng-if="appdata.user.zutrittsmittelstatus"><a class="waves-effect waves-light btn blue lighten-1" ng-click="call_submenu('zutrittsmittelstatus')">Zutrittsmittel Status</a></div>
                     </div>       
                     <div ng-if="appdata.user.admin"><h4>Administration</h4></div>
                     <div ng-if="appdata.user.admin" class="btn-group-vertical">
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('einstellung')">Einstellung</button></div>
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('benutzer')">Benutzeradministration</button></div>
+                        <div><a class="waves-effect waves-light bt blue lighten-1n"  ng-click="call_submenu('einstellung')">Einstellung</a></div>
+                        <div><a class="waves-effect waves-light btn blue lighten-1"  ng-click="call_submenu('benutzer')">Benutzeradministration</a></div>
                         
-                        <div><button class="btn btn-default btn-sm" ng-click="call_submenu('rolle')">Rollen</button></div>
+                        <div><a class="waves-effect waves-light btn blue lighten-1"  ng-click="call_submenu('rolle')">Rollen</a></div>
                     </div>         
-                    <div><h4>Anwendung</h4></div>
-                    <div class="btn-group-vertical">
-                        <div><button class="btn btn-default btn-sm" ng-click="logout()">Abmelden</button></div>
-                    </div> 
                 </div>
-            </nav>
+            <!--</nav>-->

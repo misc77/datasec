@@ -5,11 +5,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/static/css/styles.css"/>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
-        <!--script type="text/javascript" src="../static/js/datasec.js"></script-->
+        <link rel="stylesheet" type="text/css" href="/static/css/materialize.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+        <script type="text/javascript" src="../static/js/materialize.min.js"></script>
     </head>
     <body ng-controller="myController">
-        <header><h2>Netvocat DataSec - Berechtigungskonzept</h2></header>
+         <nav>
+            <div class="nav-wrapper indigo netvocat">
+                <img src="/static/img/logo.jpg"/><a href="#" class="brand-logo" >DataSec - Berechtigungskonzept</a>
+            </div>
+        </nav>
          <div class="center_container">
             <p class="form-header">Login</p>
             <form method="POST">
@@ -20,6 +28,22 @@
                 <input type="submit" value="Login"> 
             </form>
         </div>
-        <footer></footer> 
+        <footer class="page-footer indigo netvocat">
+          <div class="container">
+            <div class="row">
+              <div class="col s12">
+                <h5 class="white-text left-align">Message:</h5>
+                <p class="grey-text text-lighten-4 left-align">{{appdata.msg}}</p>
+              </div>
+              
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+                © 2016 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">Disclaimer</a>
+            </div>
+          </div>
+        </footer>
     </body>
 </html>
