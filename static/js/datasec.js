@@ -22,6 +22,7 @@ app.factory("DataService", function($http){
     var rechteliste = {};
     var ressourcenliste = {};
     var is_init = true;
+    var fading_time;
     
     return {
         is_init : function() { return is_init; },
@@ -62,6 +63,7 @@ app.factory("DataService", function($http){
         set_rechteliste: function(val) { rechteliste = val; },
         ressourcenliste: function() { return ressourcenliste; },
         set_ressourcenliste: function(val) { ressourcenliste = val; },
+        fading_time: function() { return fading_time; },
         
         init: function() {
             if (is_init){
@@ -84,6 +86,7 @@ app.factory("DataService", function($http){
                 $http.get('/api/ressourcen/list').then( function(res) { ressourcenliste = res.data; });
                 $http.get('/api/rechte/list').then( function(res) { rechteliste = res.data; });
                 this.is_init = false;
+                fading_time = 750;
             }
         },
         
@@ -137,11 +140,20 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
 //                if(data.state === 1){
                     if ($name === undefined | $name === null) {
                         $name = 'default';
-                    };            
-                    $http.get('/api/'+$name+'/list').then( function(res) { $scope.list = res.data; });
-                    appdata.submenu = $name;
-                    appdata.content = 'default';
-                    appdata.msg = $name;
+                    };
+                    
+                    $http.get('/api/'+$name+'/list').then( function(res) { 
+                        $scope.list = res.data;
+                        $("#content").fadeOut($scope.dataservice.fading_time, function() {
+                            appdata.submenu = $name;
+                            appdata.content = 'default';
+                            $("#submenu").fadeIn($scope.dataservice.fading_time);
+                        }); 
+                        
+                        appdata.msg = $name;
+                    });
+                   
+                    
 //                } else {
 //                    $window.location.path('/disconnected.html');
 //                }
@@ -156,13 +168,16 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
             if ($object !== undefined) {
                 appdata.object = $object;
             }
+            $("#submenu").fadeOut($scope.dataservice.fading_time, function() {
+                $("#content").fadeIn($scope.dataservice.fading_time);
+            });
             appdata.content = $content;
         };
         
         //Reset Content
         $scope.reset = function(){
-            appdata.object = undefined;
             $scope.call_submenu(appdata.submenu);
+            appdata.object = undefined;
         };
         
         //Log out user and kill session
@@ -224,8 +239,8 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
     
     //Reset
     $scope.reset = function(){
-        appdata.object = undefined;
         $scope.call_submenu(appdata.submenu);
+        appdata.object = undefined;
         $scope.init();
     };
         
@@ -241,6 +256,7 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
         } else {
             $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
                 appdata.msg = appdata.submenu + ' gespeichert!';
+                Materialize.toast(appdata.msg, 4000);
                 $scope.reset();
             }).error(function(data, status, headers, config){
                 alert("Fehler beim Speichern: " + data);
@@ -268,7 +284,6 @@ app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function
         } else {
             list = [];
             list.push(data);
-            $log.debug('list end: ' + angular.toJson(list));
         }
     };
   

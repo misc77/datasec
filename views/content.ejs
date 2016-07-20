@@ -1,65 +1,63 @@
-            <!--<content>-->
-                 <div ng-switch="appdata.content">
+                <div id="content" ng-switch="appdata.content">
                     <div ng-switch-when="edit_standort">
-                        <% include standort.ejs %>
+                        <% include content/standort.ejs %>
                     </div>
                     <div ng-switch-when="edit_aufgabe">
-                        <% include aufgabe.ejs %>
+                        <% include content/aufgabe.ejs %>
                     </div>
                     <div ng-switch-when="edit_musterrolle">
-                        <% include musterrolle.ejs %>
+                        <% include content/musterrolle.ejs %>
                     </div>
                     <div ng-switch-when="edit_befugnisse">
-                        <% include befugnisse.ejs %>
+                        <% include content/befugnisse.ejs %>
                     </div>
                     <div ng-switch-when="edit_rechte">
-                        <% include rechte.ejs %>
+                        <% include content/rechte.ejs %>
                     </div>
                     <div ng-switch-when="edit_beschaeftigung">
-                        <% include beschaeftigung.ejs %>
+                        <% include content/beschaeftigung.ejs %>
                     </div>
                     <div ng-switch-when="edit_rolle">
-                        <% include rolle.ejs %>
+                        <% include content/rolle.ejs %>
                     </div>
                     <div ng-switch-when="delete">
-                        <% include delete.ejs %>
+                        <% include content/delete.ejs %>
                     </div>
                     <div ng-switch-when="edit_daten">
-                        <% include daten.ejs %>
+                        <% include content/daten.ejs %>
                     </div>
                     <div ng-switch-when="edit_fahrzeug">
-                        <% include fahrzeug.ejs %>
+                        <% include content/fahrzeug.ejs %>
                     </div>
                     <div ng-switch-when="edit_mitarbeiter">
-                        <% include mitarbeiter.ejs %>                
+                        <% include content/mitarbeiter.ejs %>                
                     </div>
                     <div ng-switch-when="edit_hardware">
-                        <% include hardware.ejs %>                
+                        <% include content/hardware.ejs %>                
                     </div>
                     <div ng-switch-when="edit_ressource">
-                        <% include ressource.ejs %>                
+                        <% include content/ressource.ejs %>                
                     </div>
                     <div ng-switch-when="edit_ressourcentyp">
-                        <% include ressourcentyp.ejs %>                
+                        <% include content/ressourcentyp.ejs %>                
                     </div>
                     <div ng-switch-when="edit_tresor">
-                        <% include tresor.ejs %>                
+                        <% include content/tresor.ejs %>                
                     </div>
                     <div ng-switch-when="edit_zutrittsmittelstatus">
-                        <% include zutrittsmittelstatus.ejs %>                
+                        <% include content/zutrittsmittelstatus.ejs %>                
                     </div>
                     <div ng-switch-when="edit_zutrittsmittel">
-                        <% include zutrittsmittel.ejs %>                
+                        <% include content/zutrittsmittel.ejs %>                
                     </div>
                     <div ng-switch-when="edit_mitarbeiterstatus">
-                        <% include mitarbeiterstatus.ejs %>                
+                        <% include content/mitarbeiterstatus.ejs %>                
                     </div>
                     <div ng-switch-when="edit_raum">
-                        <% include raum.ejs %>                
+                        <% include content/raum.ejs %>                
                     </div>
                     <div ng-switch-when="edit_benutzer">
-                        <% include benutzer.ejs %>                
+                        <% include content/benutzer.ejs %>                
                     </div>
                     <div ng-switch-default></div>
-                </div>
-            <!--</content>-->   
+                </div>  

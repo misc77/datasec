@@ -1,38 +1,27 @@
-                        <form name="ressourceForm" ng-controller="staticDataCtrl" novalidate>
+                    <div id="content">
+                        <form name="tresorForm" ng-controller="staticDataCtrl" novalidate>
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
                                 <input type="text" class="form-control" placeholder="Bezeichnung der Ressource" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
-                                <div class="help-block" ng-messages="ressourceForm.bezeichnung.$error" ng-if="ressourceForm.bezeichnung.$touched">
+                                <div class="help-block" ng-messages="tresorForm.bezeichnung.$error" ng-if="tresorForm.bezeichnung.$touched">
                                     <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
-                                </div> 
+                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
                                 <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Typ:</span>
-                                <select name="typ" class="form-control" aria-describedby="basic-addon1" 
-                                        ng-init="formData._typ = { _id: formData.typID}" 
-                                        ng-change="formData.typID = formData.typ._id" 
-                                        ng-model="formData.typ" 
-                                        ng-options="typ._id as typ.bezeichnung for typ in dataservice.ressourcentypliste() track by typ._id" required="">
-                                </select>
-                                <div class="help-block" ng-messages="ressourceForm.typ.$error" ng-if="ressourceForm.typ.$touched">
-                                    <p ng-message="required" >Typ ist ein Pflichtfeld!</p>
-                                </div>
-                            </div>
-                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Datentypen:</span>
                                <div class="input-group">
                                     <select class="form-control" aria-describedby="basic-addon1" 
                                             ng-model="formData.daten" 
-                                            name ="datentyp"
+                                            name="datentypen"
                                             ng-options="data as data.bezeichnung for data in dataservice.daten() track by data._id"
                                             multiple required>
-                                    </select> 
-                                    <div class="help-block" ng-messages="ressourceForm.datentyp.$error" ng-if="ressourceForm.datentyp.$touched">
+                                    </select>
+                                    <div class="help-block" ng-messages="tresorForm.datentypen.$error" ng-if="tresorForm.datentypen.$touched">
                                         <p ng-message="required" >Datentyp ist ein Pflichtfeld!</p>
                                     </div>
                                 </div>
@@ -42,8 +31,9 @@
                                 <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
                             </div>   
                             <div class="input-group">
-                                <button ng-click='save()' ng-disabled="ressourceForm.$invalid">Speichern</button>  
+                                <button ng-click='save()' ng-disabled="tresorForm.$invalid">Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>
+                    </div>
 

@@ -1,0 +1,190 @@
+                    <div id="content">
+                        <div class="row">
+                            <form name="musterrolleForm" ng-controller="staticDataCtrl" ng-cloak novalidate>
+                                <h4 class="title col s5">{{title}}</h4>
+                                
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <div class="card-content">
+                                        <span class="card-title">Hauptdaten:</span>
+                                        <div class="input-field col s12">
+                                            <input type="text" id="musterrollenbezeichnung" name="musterrollebezeichnung" ng-model="formData.bezeichnung" required>
+                                            <label class="active" for="musterrollenbezeichnung">Bezeichnung</label>
+                                        </div>
+                                        <div class="input-field col s6">  
+                                            <label class="active" for="aufgabe">Aufgabe</label>
+                                            <select id="aufgabe" class="browser-default"
+                                                ng-init="formData._aufgabe = { _id: formData.aufgabeID}" 
+                                                ng-change="formData.aufgabeID = aufgabe._id" 
+                                                ng-model="formData.aufgabe" 
+                                                ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
+                                            </select>
+                                            <div class="help-block" ng-messages="musterrolleForm.aufgabe.$error" ng-if="musterrolleForm.aufgabe.$touched">
+                                                <p ng-message="required" >Aufgabe ist ein Pflichtfeld!</p>
+                                            </div>
+                                        </div> 
+                                        <div class="input-field col s6">
+                                            <label class="active" for="beschaeftigungsverhaeltnis">Beschäftigungsverhältnis:</label>
+                                            <select id="beschaeftigungsverhaeltnis" class="browser-default"
+                                                    name="beschaeftigung"
+                                                    ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
+                                                    ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
+                                                    ng-model="formData.beschaeftigung" 
+                                                    ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id" required>
+                                            </select>   
+                                            <div class="help-block" ng-messages="musterrolleForm.beschaeftigung.$error" ng-if="musterrolleForm.beschaeftigung.$touched">
+                                                <p ng-message="required" >Beschäftigungsverhältnis ist ein Pflichtfeld!</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-action">
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </div>  
+
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <span class="card-title">Tresorzugriff</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.tresor_zuo">                             
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._tresor = { _id: formData.tresorID}" 
+                                                    ng-change="formData.tresorID = tresor._id" 
+                                                    ng-model="zuo.tresor" 
+                                                    ng-options="tresor._id as tresor.bezeichnung for tresor in dataservice.tresorliste() track by tresor._id">
+                                                </select>
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._zutrittsmittel = { _id: formData.zutrittsmittelID}" 
+                                                    ng-change="formData.zutrittsmittelID = zuo.zutrittsmittel._id" 
+                                                    ng-model="zuo.zutrittsmittel" 
+                                                    ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.tresor_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.tresor_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <span class="card-title">Zutritt Räumlichkeiten</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.raum_zuo">                             
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._raum = { _id: formData.raumID}" 
+                                                    ng-change="formData.raumID = raum._id" 
+                                                    ng-model="zuo.raum" 
+                                                    ng-options="raum._id as raum.bezeichnung for raum in dataservice.raumliste() track by raum._id">
+                                                </select>
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._zutrittsmittel = { _id: formData.zutrittsmittelID}" 
+                                                    ng-change="formData.zutrittsmittelID = zuo.zutrittsmittel._id" 
+                                                    ng-model="zuo.zutrittsmittel" 
+                                                    ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.raum_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.raum_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <span class="card-title">Fuhrpark</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="fahrzeug in formData.fahrzeugliste">                             
+                                                <select class="browser-default col s5"
+                                                    ng-init="fahrzeug._fahrzeug = { _id: formData.fahrzeugID }" 
+                                                    ng-change="formData.fahrzeugID = zuo.fahrzeug._id"
+                                                    ng-model="fahrzeug" 
+                                                    ng-options="fzg._id as fzg.kennzeichen for fzg in dataservice.fahrzeugliste() track by fzg._id">
+                                                </select>
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.fahrzeugliste, fahrzeug)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.fahrzeugliste, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                            
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <span class="card-title">Berechtigungen auf Ressourcen</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.ressource_zuo">                             
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._ressource = { _id: formData.ressourceID}" 
+                                                    ng-change="formData.ressourceID = ressource._id" 
+                                                    ng-model="zuo.ressource" 
+                                                    ng-options="ressource._id as ressource.bezeichnung for ressource in dataservice.ressourcenliste() track by ressource._id">
+                                                </select>
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._rechte = { _id: formData.res_rechteID}" 
+                                                    ng-change="formData.res_rechteID = zuo.rechte._id" 
+                                                    ng-model="zuo.rechte" 
+                                                    ng-options="rechte._id as rechte.bezeichnung for rechte in dataservice.rechteliste() track by rechte._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.ressource_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.ressource_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <span class="card-title">Berechtigung IT-Hardware</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.hardware_zuo">                             
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._hardware = { _id: formData.hardwareID}" 
+                                                    ng-change="formData.hardwareID = hardware._id" 
+                                                    ng-model="zuo.hardware" 
+                                                    ng-options="hardware._id as hardware.bezeichnung for hardware in dataservice.hardwareliste() track by hardware._id">
+                                                </select>
+                                                <select class="browser-default col s5"
+                                                    ng-init="zuo._rechte = { _id: formData.rechteID}" 
+                                                    ng-change="formData.rechteID = zuo.rechte._id" 
+                                                    ng-model="zuo.rechte" 
+                                                    ng-options="rechte._id as rechte.bezeichnung for rechte in dataservice.rechteliste() track by rechte._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.hardware_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.hardware_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <span class="card-title">Sonstige Berechtigungen</span>
+                                    <div class="card-content">
+                                        <div class="input-group col s5">
+                                            <input type="checkbox" id="byod" name="byod" ng-model="formData.byod">
+                                            <label for="byod">BYOD</label>
+                                        </div>
+                                        <div class="input-group col s5">
+                                            <input type="checkbox" name="fernzugriff" id="fernzugriff" ng-model="formData.fernzugriff">
+                                            <label for="fernzugriff">Fernzugriff</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12">
+                                    <div class="input-group">
+                                        <a class="waves-effect waves-light btn" ng-if="!rechteForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                        <a class="waves-effect waves-light btn disabled" ng-if="rechteForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                        <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>

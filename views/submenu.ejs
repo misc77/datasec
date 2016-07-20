@@ -1,67 +1,98 @@
 <!--<submenu>-->    
-    <div class="card-panel blue-grey lighten-4" ng-switch="appdata.submenu">
+    <div ng-switch="appdata.submenu">
         <!-- Standort --> 
-        <div ng-switch-when="standort">
-            <center><h5>Standorte</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_standort', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_standort')">Standort anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="standort" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Standorte</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_standort', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_standort')">Standort anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Aufgabe --> 
-        <div ng-switch-when="aufgabe">
-            <center><h5>Aufgaben</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_aufgabe', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_aufgabe')">Aufgabe anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="aufgabe"id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Aufgaben</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_aufgabe', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_aufgabe')">Aufgabe anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Befugnisse -->
-        <div ng-switch-when="befugnisse">
-            <center><h5>Befugnissverwaltung</h5></center>
-            <p></p> 
-            <table class="table table-hover">
-               <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-               <tr ng-repeat="item in list | filter:filter">
-                   <td>
-                        <a ng-if="item.befugniss_init" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' ) *init*' }}</a>
-                        <a ng-if="item.befugniss_init !== true" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a>
-                   </td>
-               </tr>
+        <div ng-switch-when="befugnisse" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4><i class="material-icons left-align">share</i> Befugnissverwaltung</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a ng-if="item.befugniss_init === true | item.befugniss_init === undefined" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' ) *init*' }}</a></td>
+                        <td><a ng-if="item.befugniss_init !== true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
         <!-- Muster Rollen --> 
-        <div ng-switch-when="musterrolle">
-            <center><h5>Muster Rollen</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_musterrolle', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_musterrolle')">Muster Rolle anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="musterrolle" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Muster Rollen</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_musterrolle', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_musterrolle')">Muster Rolle anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Recht --> 
-        <div ng-switch-when="rechte">
+        <div ng-switch-when="rechte" id="submenu" class="card-panel blue-grey lighten-4" >
             <h4>Rechte</h4>
             <table class="highlight">
                 <tbody>
@@ -74,224 +105,336 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a ng-click="call_content('edit_rechte', item._id)">{{ item.bezeichnung }}</a></td>
-                        <td><a class="btn-floating btn-small waves-effect waves-light deep-orange darken-4" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_rechte', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
-                    <tr><td colspan="2"><a class="waves-effect waves-light btn blue" ng-click="call_content('edit_rechte')">Berechtigung anlegen</a></td></tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_rechte')">Berechtigung anlegen</a></td></tr>
                 </tbody>
             </table>
         </div>
 
         <!-- Beschäftigungsverhältniss --> 
-        <div ng-switch-when="beschaeftigung">
-            <center><h5>Beschäftigungsverhältnisse</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_beschaeftigung', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_beschaeftigung')">Beschäftigungsverhältniss anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="beschaeftigung" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Beschäftigungsverhältnisse</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_beschaeftigung', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_beschaeftigung')">Beschäftigungsverhältnis anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Rolle --> 
-        <div ng-switch-when="rolle">
-            <center><h5>Rollen</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_rolle', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_rolle')">Rolle anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="rolle" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Rollen</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_rolle', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_rolle')">Rolle anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Daten --> 
-        <div ng-switch-when="daten">
-            <center><h5>Datentypen</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_daten', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_daten')">Datentyp anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="daten" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Datentypen</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_daten', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_daten')">Datentyp anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Mitarbeiter -->
-        <div ng-switch-when="mitarbeiter">
-            <center><h5>Mitarbeiterliste</h5></center>
-            <p></p> 
-            <table class="table table-hover">
-               <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-               <tr ng-repeat="item in list | filter:filter">
-                   <td><a ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
-                   <td><button ng-click="call_content('delete', item._id)">X</button></td>
-               </tr>
-               <tr> </tr>
-               <tr><td colspan="2"><button ng-click="call_content('edit_mitarbeiter')">Mitarbeiter erfassen</button></td></tr>
+        <div ng-switch-when="mitarbeiter" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Mitarbeiterliste</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_mitarbeiter')">Mitarbeiter erfassen</a></td></tr>
+                </tbody>
             </table>
         </div>
 
         <!-- Fahrzeug -->
-        <div ng-switch-when="fahrzeug">
-            <center><h5>Fuhrpark</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="reset();call_content('edit_fahrzeug', item._id)">{{ item.kennzeichen }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="reset();call_content('edit_fahrzeug')">Fahrzeug anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="fahrzeug" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Fuhrpark</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_fahrzeug', item._id)">{{ item.kennzeichen }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_fahrzeug')">Fahrzeug erfassen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- IT - Hardware -->
-        <div ng-switch-when="hardware">
-            <center><h5>IT - Hardware</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_hardware', item._id)">{{ item.inventarNr + '(' + item.bezeichnung + ')' }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_hardware')">Hardware erfassen</button></td></tr>
-             </table>
+        <div ng-switch-when="hardware" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>IT - Hardware</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_hardware', item._id)">{{ item.inventarNr + '(' + item.bezeichnung + ')' }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_hardware')">Hardware erfassen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Ressourcen -->
-        <div ng-switch-when="ressourcen">
-            <center><h5>Ressourcen</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_ressource', item._id)">{{ item.bezeichnung + ' ( ' + item.typ.bezeichnung + ' )'  }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_ressource')">Ressource erfassen</button></td></tr>
-             </table>
+        <div ng-switch-when="ressourcen" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Ressourcen</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_ressource', item._id)">{{ item.bezeichnung + ' ( ' + item.typ.bezeichnung + ' )'  }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_ressource')">Ressource erfassen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Ressourcentyp -->
-        <div ng-switch-when="ressourcentyp">
-            <center><h5>Ressourcen Typen</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_ressourcentyp', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_ressourcentyp')">Ressourcen Typ erfassen</button></td></tr>
-             </table>
+        <div ng-switch-when="ressourcentyp" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Ressourcen Typen</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_ressourcentyp', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_ressourcentyp')">Ressourcen Typ erfassen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Tresor -->
-        <div ng-switch-when="tresor">
-            <center><h5>Tresorverwaltung</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_tresor', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_tresor')">Tresor anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="tresor" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Tresorvewaltung</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_tresor', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_tresor')">Tresor erfassen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- zutrittsmittelstatus -->
-        <div ng-switch-when="zutrittsmittelstatus">
-            <center><h5>Zutrittsmittel Status</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_zutrittsmittelstatus', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_zutrittsmittelstatus')">Status anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="zutrittsmittelstatus" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Zutrittsmittel Status</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_zutrittsmittelstatus', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_zutrittsmittelstatus')">Status anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Zutrittsmittel -->
-        <div ng-switch-when="zutrittsmittel">
-            <center><h5>Zutrittsmittel</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_zutrittsmittel', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_zutrittsmittel')">Zutrittsmittel erfassen</button></td></tr>
-             </table>
+        <div ng-switch-when="zutrittsmittel" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Zutrittsmittel</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_zutrittsmittel', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_zutrittsmittel')">Zutrittsmittel anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Mitarbeiter Status -->
-        <div ng-switch-when="mitarbeiterstatus">
-            <center><h5>Mitarbeiter Status</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_mitarbeiterstatus', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_mitarbeiterstatus')">Status erfassen</button></td></tr>
-             </table>
+        <div ng-switch-when="mitarbeiterstatus" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Mitarbeiter Status</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiterstatus', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_mitarbeiterstatus')">Status anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Räumlichkeiten -->
-        <div ng-switch-when="raum">
-            <center><h5>Räumlichkeiten</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_raum', item._id)">{{ item.bezeichnung }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_raum')">Raum erfassen</button></td></tr>
-             </table>
+        <div ng-switch-when="raum" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Räumlichkeiten</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_raum', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_raum')">Raum erfassen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Benutzer -->
-        <div ng-switch-when="benutzer">
-            <center><h5>Benutzerverwaltung</h5></center>
-            <p></p> 
-             <table class="table table-hover">
-                <tr><td colspan="2"><input type="text" ng-model="filter" class="form-control" placeholder="Filter" aria-describedby="basic-addon1"></td></tr>
-                <tr ng-repeat="item in list | filter:filter">
-                    <td><a ng-click="call_content('edit_benutzer', item._id)">{{ item.name + ' ( ' + item.rolle.bezeichnung + ' )'  }}</a></td>
-                    <td><button ng-click="call_content('delete', item._id)">X</button></td>
-                    <td><button ng-click="call_content('reset_pwd', item._id)">R</button></td>
-                </tr>
-                <tr> </tr>
-                <tr><td colspan="2"><button ng-click="call_content('edit_benutzer')">Benutzer anlegen</button></td></tr>
-             </table>
+        <div ng-switch-when="benutzer" id="submenu" class="card-panel blue-grey lighten-4" >
+            <h4>Benutzerverwaltung</h4>
+            <table class="highlight">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="input-field">
+                               <input type="text" id="filter" ng-model="filter"> 
+                               <label for="filter">Filter</label>
+                            </div>
+                       </td>
+                    </tr>
+                    <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_benutzer', item._id)">{{ item.name + ' ( ' + item.rolle.bezeichnung + ' )'  }}</a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
+                        <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('reset_pwd', item._id)"><i class="material-icons">replay</i></a></td>
+                    </tr>
+                    <tr> </tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('edit_benutzer')">Benutzer anlegen</a></td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- Default --> 

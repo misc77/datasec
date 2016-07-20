@@ -18,22 +18,38 @@
                 <img src="/static/img/logo.jpg"/><a href="#" class="brand-logo" >DataSec - Berechtigungskonzept</a>
             </div>
         </nav>
-         <div class="center_container">
-            <p class="form-header">Login</p>
-            <form method="POST">
-                <label>Username:</label>
-                <input type="text" name="username"><br>
-                <label>Password:</label>
-                <input type="password" name="password"><br>
-                <input type="submit" value="Login"> 
-            </form>
+        <div class="row">
+            <div id="nav" class="col s2 white"></div>
+            <div class="col s6 m6 valign-wrapper">
+                <div id="login" class="card z-depth-1 grey lighten-4 row hoverable">
+                    <form name="login" method="POST"> 
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input type="text" id="username" name="username" required class="validate">
+                                <label class="active" for="username">Benutzername</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <input type="password" id="password" name="password" required class="validate">
+                                <label class="active" for="password">Passwort</label>
+                            </div>
+                        </div>
+                        <center>
+                          <div class='row'>
+                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo netvocat'>Login</button>
+                          </div>
+                        </center>
+                    </form>
+                </div>
+            </div> 
         </div>
         <footer class="page-footer indigo netvocat">
           <div class="container">
             <div class="row">
               <div class="col s12">
-                <h5 class="white-text left-align">Message:</h5>
-                <p class="grey-text text-lighten-4 left-align">{{appdata.msg}}</p>
+                <h5 class="white-text left-align"></h5>
+                <p class="grey-text text-lighten-4 left-align"></p>
               </div>
               
             </div>

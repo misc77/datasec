@@ -8,18 +8,17 @@ Prio 1: Funktion
 C.) Fachliche Validierungen (z.B.: Prüfung auf unterschriebene Dokumente etc.)
 B2.) Datenschutzdokumente
 D.) Logging (Protokoll bzw. Historisierung)
-
 F.) Konzept Reports/Auswertungen
-
+    * dynamischer Report: Basis daten Mitarbeiter, dann Datenarten
+    * vorgefertigte Reports: Welcher Mitarbeiter hat auf welche Kundendaten Zugriff
+    * 
 
 
 Prio 2: Visualisierung
 
 1.) Bearbeitung und Anzeige Datumswerte
-3.) Gruppierungen im Submenu
 4.) Formatierung der Forms (Tabellen)
-5.) Formatierung Login
-8.) CI Netvocat implementieren
+
 
 
 Prio 3: Administration

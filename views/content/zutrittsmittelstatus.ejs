@@ -1,23 +1,22 @@
-                        <form name="aufgabeForm" ng-controller="staticDataCtrl" novalidate>
+                    <div id="content">
+                        <form ng-controller="staticDataCtrl">
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
                                 <input type="text" class="form-control" placeholder="Bezeichnung der Aufgabe" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung">
-                                <div class="help-block" ng-messages="aufgabeForm.bezeichnung.$error" ng-if="aufgabeForm.bezeichnung.$touched">
-                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
-                                </div>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
                                 <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                                <span class="input-group-addon" id="basic-addon1">Gültig:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="gueltig" ng-model="formData.gueltig">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()' ng-disabled="aufgabeForm.$invalid">Speichern</button> 
+                                <button ng-click='save()'>Speichern</button>  
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>
+                    </div>
 

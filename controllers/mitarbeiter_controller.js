@@ -16,6 +16,7 @@ exports.create = function(req, res){
    mitarbeiter.set('vorname', req.body.vorname);
    mitarbeiter.set('nachname', req.body.nachname);
    mitarbeiter.set('geburtsdatum', req.body.geburtsdatum);
+   mitarbeiter.set('geburtsort', req.body.geburtsort);
    mitarbeiter.set('standort', req.body.standort);
    mitarbeiter.set('aufgabe', req.body.aufgabe);
    mitarbeiter.set('status', req.body.status);
@@ -76,6 +77,9 @@ exports.save = function (req, res){
             }
             if (req.body.geburtsdatum !== undefined | req.body.geburtsdatum !== null ){
                 mitarbeiter.geburtsdatum = req.body.geburtsdatum;
+            } 
+            if (req.body.geburtsort !== undefined | req.body.geburtsort !== null ){
+                mitarbeiter.geburtsort = req.body.geburtsort;
             } 
             if (req.body.standort !== null & req.body.standort !== undefined ){
                 mitarbeiter.standort = req.body.standort;

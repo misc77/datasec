@@ -1,9 +1,10 @@
-                        <form name="beschaeftigungForm" ng-controller="staticDataCtrl" novalidate>
+                    <div id="content">
+                        <form name="mitarbeiterstatusForm" ng-controller="staticDataCtrl" novalidate>
                             <p class='title'>{{title}}</h3>
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Bezeichnung der Beschäftigung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
-                                <div class="help-block" ng-messages="beschaeftigungForm.bezeichnung.$error" ng-if="beschaeftigungForm.bezeichnung.$touched">
+                                <input type="text" class="form-control" placeholder="Bezeichnung der Aufgabe" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                <div class="help-block" ng-messages="mitarbeiterstatusForm.bezeichnung.$error" ng-if="mitarbeiterstatusForm.bezeichnung.$touched">
                                     <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
                                 </div>
                             </div>
@@ -12,12 +13,13 @@
                                 <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
+                                <span class="input-group-addon" id="basic-addon1">Aktiver Status:</span>
+                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="gueltig" ng-model="formData.aktiv_status">
                             </div>
                             <div class="input-group">
-                                <button ng-click='save()' ng-disabled="beschaeftigungForm.$invalid">Speichern</button>  
+                                <button ng-click='save()' ng-disabled="mitarbeiterstatusForm.$invalid">Speichern</button> 
                                 <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>
+                    </div>
 

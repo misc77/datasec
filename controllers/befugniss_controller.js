@@ -229,10 +229,12 @@ var self = module.exports = {
                     msg: err.getErrorMessage(err)
                 });
             } else {
-                if (befugniss !== null & befugniss !== undefined) {
-                    console.log('object: ' + JSON.stringify(befugniss));
+                if (befugniss.mitarbeiter !== undefined) {
+                    console.log('object raw: ' + (befugniss !== null));
+                    console.log('object: ' + JSON.stringify(befugniss.mitarbeiter));
                     res.json({object : befugniss});
                 } else {
+                    console.log('calling get_new_obj');
                     self.get_new_obj(req, res);
                 }
             }

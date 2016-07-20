@@ -608,6 +608,10 @@
   background-color: #0f3988 !important;
 }
 
+.indigo-text.netvocat {
+  color: #0f3988 !important;
+}
+
 .indigo-text.text-darken-3 {
   color: #283593 !important;
 }
@@ -1850,6 +1854,10 @@
 
 .deep-orange-text.text-darken-4 {
   color: #bf360c !important;
+}
+
+.red.netvocat {
+  background-color: #bf360c !important;
 }
 
 .deep-orange.accent-1 {
@@ -5805,7 +5813,7 @@ textarea.materialize-textarea + label:after {
 }
 
 .input-field label.active {
-  font-size: 0.8rem;
+  font-size: 1rem;
   -webkit-transform: translateY(-140%);
           transform: translateY(-140%);
 }

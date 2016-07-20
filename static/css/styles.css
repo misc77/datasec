@@ -1,4 +1,4 @@
-div.form-container{
+/*div.form-container{
     display:inline-block;
     border: 4px ridge blue;
     width: 280px;
@@ -13,9 +13,9 @@ div.center_container{
     border-radius: 10px;
     margin: 10px;
     align-content: center;
-}
+}*/
 
-p.form-header{
+/*p.form-header{
     margin: 0px;
     font: 24px bold;
     color: white;
@@ -23,10 +23,9 @@ p.form-header{
     text-align: center;
 }
 
-p.title {
+.title {
     text-transform:capitalize;
-    font: 24px bold;
-}
+}*/
 
 /*form{
     margin: 10px;
@@ -54,7 +53,7 @@ input[type=submit]{
 
 /*<!-- MENU --> */
 
-#main {
+/*#main {
  min-height: 800px;
  margin: 0px;
  padding: 0px;
@@ -100,18 +99,52 @@ input[type=submit]{
          flex: 1 6 25%;
  -webkit-order: 2;
          order: 2;
- }
+ }*/
 
 header, footer {
  display: block;
  margin: 4px;
  padding: 5px;
- min-height: 50px;
+ min-height: 40px;
  border: 1px solid #4d4dff;
  border-radius: 5pt;
  background: #9999ff;
  }
 
+ #nav.pinned, #nav.pin-bottom {
+    position:static !important;
+    top: auto !important;
+ }
+ 
+ #nav {
+     min-height: 780px;
+     max-height: 780px;
+     overflow-y:auto;
+ }
+
+ #submenu {
+     min-height: 780px;
+     max-height: 780px;
+     overflow-y: auto;
+ }
+
+ #content {
+     min-height: 780px;
+     max-height: 780px;
+     overflow-y: auto;
+ }
+ 
+ 
+ #login {
+     width: 400px;
+     height: 228px;
+     position: absolute;
+     top:0;
+     bottom:0;
+     left:0;
+     right:0;
+     margin: auto;
+ }
 /* Too narrow to support three columns */
 /*@media all and (max-width: 640px) {
 
