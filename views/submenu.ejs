@@ -60,8 +60,8 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a ng-if="item.befugniss_init === true | item.befugniss_init === undefined" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' ) *init*' }}</a></td>
-                        <td><a ng-if="item.befugniss_init !== true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
+                        <td><a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' ) *init*' }}</a></td>
+                        <td><a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                 </tbody>

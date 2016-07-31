@@ -30,8 +30,7 @@ app.use(expressSession({
     resave: true,
     saveUninitialized: true
 }));
+app.locals.moment = require('moment');
 require('./routes.js')(app);
 app.listen(80);
 console.log('DataSec Server is running and listening to port 80...');
-
-

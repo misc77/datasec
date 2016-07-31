@@ -30,7 +30,7 @@
                                                 </div>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="date" class="datepicker" id="geburtsdatum" ng-model="formData.geburtsdatum" required class="validate">
+                                                <input type="date" class="datepicker validate" id="geburtsdatum" ng-model="formData.geburtsdatum" required>
                                                 <label class="active" for="geburtsdatum">Geburtsdatum</label> 
                                                 <div class="help-block" ng-messages="mitarbeiterForm.geburtsdatum.$error" ng-if="mitarbeiterForm.geburtsdatum.$touched">
                                                     <p ng-message="required" >Geburtsdatum ist ein Pflichtfeld!</p>
@@ -46,10 +46,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <select class="browser-default validate"
+                                                <select class="browser-default" 
+                                                        id="standort"
                                                         name="standort"
                                                         ng-model="formData.standort" 
-                                                        ng-options="standort as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" required >
+                                                        ng-options="standort as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" 
+                                                        required 
+                                                        material-select watch>
                                                         <option value="" disabled selected>Bitte Standort wählen</option>
                                                 </select>
                                                 <div class="help-block" ng-messages="mitarbeiterForm.standort.$error" ng-if="mitarbeiterForm.standort.$touched">
@@ -57,6 +60,7 @@
                                                 </div>
                                                 <label class="active">Standort</label>
                                             </div>
+                                                
                                             <div class="input-field col s6">
                                                 <select class="browser-default validate"
                                                         name="aufgabe"
@@ -110,13 +114,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-action">
-                                        <div class="col s12">
-                                            <div class="input-group">
-                                                <a class="waves-effect waves-light btn" ng-if="!mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
-                                                <a class="waves-effect waves-light btn disabled" ng-if="mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
-                                                <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
-                                            </div>
+                                </div>
+                                <div class="card-action">
+                                    <div class="col s12">
+                                        <div class="input-group">
+                                            <a class="waves-effect waves-light btn" ng-if="!mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                            <a class="waves-effect waves-light btn disabled" ng-if="mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                            <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
                                         </div>
                                     </div>
                                 </div>

@@ -19,6 +19,8 @@ Prio 2: Visualisierung
 1.) Bearbeitung und Anzeige Datumswerte
 4.) Formatierung der Forms (Tabellen)
 
+    * Rollen
+
 
 
 Prio 3: Administration
@@ -30,4 +32,4 @@ Prio 3: Administration
 
 Prio 4: Deployment
 
-1.) Auslieferung
+1.) Auslieferung als Elektron-Anwendung. Bei initialem Start wird MongoDB installiert und eingerichtet. 

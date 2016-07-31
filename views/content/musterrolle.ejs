@@ -6,37 +6,36 @@
                                 <div class="card blue-grey lighten-5 col s12">
                                     <div class="card-content">
                                         <span class="card-title">Hauptdaten:</span>
-                                        <div class="input-field col s12">
-                                            <input type="text" id="musterrollenbezeichnung" name="musterrollebezeichnung" ng-model="formData.bezeichnung" required>
-                                            <label class="active" for="musterrollenbezeichnung">Bezeichnung</label>
-                                        </div>
-                                        <div class="input-field col s6">  
-                                            <label class="active" for="aufgabe">Aufgabe</label>
-                                            <select id="aufgabe" class="browser-default"
-                                                ng-init="formData._aufgabe = { _id: formData.aufgabeID}" 
-                                                ng-change="formData.aufgabeID = aufgabe._id" 
-                                                ng-model="formData.aufgabe" 
-                                                ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
-                                            </select>
-                                            <div class="help-block" ng-messages="musterrolleForm.aufgabe.$error" ng-if="musterrolleForm.aufgabe.$touched">
-                                                <p ng-message="required" >Aufgabe ist ein Pflichtfeld!</p>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <input type="text" id="musterrollenbezeichnung" name="musterrollebezeichnung" ng-model="formData.bezeichnung" required>
+                                                <label class="active" for="musterrollenbezeichnung">Bezeichnung</label>
                                             </div>
-                                        </div> 
-                                        <div class="input-field col s6">
-                                            <label class="active" for="beschaeftigungsverhaeltnis">Beschäftigungsverhältnis:</label>
-                                            <select id="beschaeftigungsverhaeltnis" class="browser-default"
-                                                    name="beschaeftigung"
-                                                    ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
-                                                    ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
-                                                    ng-model="formData.beschaeftigung" 
-                                                    ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id" required>
-                                            </select>   
-                                            <div class="help-block" ng-messages="musterrolleForm.beschaeftigung.$error" ng-if="musterrolleForm.beschaeftigung.$touched">
-                                                <p ng-message="required" >Beschäftigungsverhältnis ist ein Pflichtfeld!</p>
+                                            <div class="input-field col s6">  
+                                                <label class="active" for="aufgabe">Aufgabe</label>
+                                                <select id="aufgabe" class="browser-default"
+                                                    ng-init="formData._aufgabe = { _id: formData.aufgabeID}" 
+                                                    ng-change="formData.aufgabeID = aufgabe._id" 
+                                                    ng-model="formData.aufgabe" 
+                                                    ng-options="aufgabe._id as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
+                                                </select>
+                                                <div class="help-block" ng-messages="musterrolleForm.aufgabe.$error" ng-if="musterrolleForm.aufgabe.$touched">
+                                                    <p ng-message="required" >Aufgabe ist ein Pflichtfeld!</p>
+                                                </div>
+                                            </div> 
+                                            <div class="input-field col s6">
+                                                <label class="active" for="beschaeftigungsverhaeltnis">Beschäftigungsverhältnis:</label>
+                                                <select id="beschaeftigungsverhaeltnis" class="browser-default"
+                                                        name="beschaeftigung"
+                                                        ng-init="formData._beschaeftigung = { _id: formData.beschaeftigungID}" 
+                                                        ng-change="formData.beschaeftigungID = formData.beschaeftigung._id" 
+                                                        ng-model="formData.beschaeftigung" 
+                                                        ng-options="beschaeftigung._id as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id" required>
+                                                </select>   
+                                                <div class="help-block" ng-messages="musterrolleForm.beschaeftigung.$error" ng-if="musterrolleForm.beschaeftigung.$touched">
+                                                    <p ng-message="required" >Beschäftigungsverhältnis ist ein Pflichtfeld!</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="card-action">
-                                            <br/>
                                         </div>
                                     </div>
                                 </div>  
@@ -168,13 +167,15 @@
                                 <div class="card blue-grey lighten-5 col s12">
                                     <span class="card-title">Sonstige Berechtigungen</span>
                                     <div class="card-content">
-                                        <div class="input-group col s5">
-                                            <input type="checkbox" id="byod" name="byod" ng-model="formData.byod">
-                                            <label for="byod">BYOD</label>
-                                        </div>
-                                        <div class="input-group col s5">
-                                            <input type="checkbox" name="fernzugriff" id="fernzugriff" ng-model="formData.fernzugriff">
-                                            <label for="fernzugriff">Fernzugriff</label>
+                                        <div class="row">
+                                            <div class="input-group col s5">
+                                                <input type="checkbox" id="byod" name="byod" ng-model="formData.byod">
+                                                <label for="byod">BYOD</label>
+                                            </div>
+                                            <div class="input-group col s5">
+                                                <input type="checkbox" name="fernzugriff" id="fernzugriff" ng-model="formData.fernzugriff">
+                                                <label for="fernzugriff">Fernzugriff</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

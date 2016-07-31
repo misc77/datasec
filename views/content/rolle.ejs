@@ -1,24 +1,40 @@
                     <div id="content">
                         <form name="rolleForm" ng-controller="staticDataCtrl" novalidate>
-                            <p class='title'>{{title}}</p>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Bezeichnung der Rolle" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
-                                <div class="help-block" ng-messages="rolleForm.bezeichnung.$error" ng-if="rolleForm.bezeichnung.$touched">
-                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
-                                </div>  
+                            <h4 class="title col s5">{{title}}</h4>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <i class="material-icons prefix">label</i>
+                                            <input type="text" id="bezeichnung" placeholder="Bezeichnung der Rolle" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                            <label class="active" for="bezeichnung">Bezeichnung:</label>
+                                            <div class="help-block" ng-messages="rolleForm.bezeichnung.$error" ng-if="rolleForm.bezeichnung.$touched">
+                                                <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">description</i>
+                                            <input type="text" id="beschreibung" placeholder="Beschreibung der Rolle" name="bezeichnung" ng-model="formData.beschreibung">
+                                            <label class="active" for="beschreibung">Beschreibung:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s4">
+                                            <i class="material-icons prefix">priority_high</i>
+                                            <input type="checkbox" name="aktiv" id="aktiv" ng-model="formData.aktiv">
+                                            <label for="aktiv" class="active">Aktiv</label>
+                                        </div>
+                                    </div>  
+                                </div>
                             </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
-                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
-                            </div>
-                            <div class="input-group">
-                                <button ng-click='save()' ng-disabled="rolleForm.$invalid">Speichere Rolle</button>
-                                <button ng-click='reset()'>Schließen</button>
+                            <div class="row">
+                                <div class="input-group col s6">
+                                    <a class="waves-effect waves-light btn" ng-if="!zutrittsmittelForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                    <a class="waves-effect waves-light btn disabled" ng-if="zutrittsmittelForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                    <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
+                                </div>
                             </div>
                         </form>
                     </div>

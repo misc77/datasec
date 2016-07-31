@@ -1,43 +1,60 @@
                     <div id="content">
                         <form name="hardwareForm" ng-controller="staticDataCtrl" novalidate>
-                            <p class='title'>{{title}}</h3>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Inventar Nummer:</span>
-                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="inventarNr" ng-model="formData.inventarNr" required>
-                                <div class="help-block" ng-messages="hardwareForm.inventarNr.$error" ng-if="hardwareForm.inventarNr.$touched">
-                                    <p ng-message="required" >Inventar Nummer ist ein Pflichtfeld!</p>
+                            <h4 class="title col s5">{{title}}</h4>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="input-group col s6">
+                                            <label for="beschreibung">Inventar Nummer:</label>
+                                            <input type="text" id="beschreibung" placeholder="Beschreibung" name="inventarNr" ng-model="formData.inventarNr" required>
+                                            <div class="help-block" ng-messages="hardwareForm.inventarNr.$error" ng-if="hardwareForm.inventarNr.$touched">
+                                                <p ng-message="required" >Inventar Nummer ist ein Pflichtfeld!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group col s12">
+                                        <label for="bezeichnung">Bezeichnung:</label>
+                                        <input type="text" placeholder="Hardwarebezeichnung" id="bezeichnung" name="bezeichnung" ng-model="formData.bezeichnung" required>
+                                        <div class="help-block" ng-messages="hardwareForm.bezeichnung.$error" ng-if="hardwareForm.bezeichnung.$touched">
+                                            <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                        </div>
+                                    </div>
+                                    <div class="input-group col s12">
+                                        <label for="verwendungszweck">Verwendungszweck:</label>
+                                        <input type="text" placeholder="Verwendungszweck" id="verwendungszweck" name="verwendungszweck" ng-model="formData.verwendungszweck">
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group col s4">
+                                            <input type="checkbox" id="aktiv" name="aktiv" ng-model="formData.aktiv">
+                                            <label for="aktiv">Aktiv:</label>
+                                        </div> 
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group col s4">
+                                            <input type="checkbox" id="mobiledevmgmt" name="mobiledevmgmt" ng-model="formData.mobiledevmgmt">
+                                            <label for="mobiledevmgmt">Mobile Device Management:</label>
+                                        </div>     
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group col s4">
+                                            <input type="checkbox" id="quittiert" name="quittierung" ng-model="formData.quittierung">
+                                            <label for="quittiert">Quittiert:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input type="date" class="datepicker validate" id="deaktiviertAm" name="deaktiviertAm" ng-model="formData.deaktiviertAm">
+                                            <label class="active" for="deaktiviertAm">Deaktiviert Am:</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Hardwarebezeichnung" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
-                                <div class="help-block" ng-messages="hardwareForm.bezeichnung.$error" ng-if="hardwareForm.bezeichnung.$touched">
-                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                            <div class="row">
+                                <div class="input-group col s6">
+                                    <a class="waves-effect waves-light btn" ng-if="!fahrzeugForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                    <a class="waves-effect waves-light btn disabled" ng-if="fahrzeugForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                    <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
                                 </div>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Verwendungszweck:</span>
-                                <input type="text" class="form-control" placeholder="Verwendungszweck" aria-describedby="basic-addon1" name="verwendungszweck" ng-model="formData.verwendungszweck">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
-                            </div>        
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Mobile Device Management:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="mobiledevmgmt" ng-model="formData.mobiledevmgmt">
-                            </div>                  
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Quittiert:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="quittierung" ng-model="formData.quittierung">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Deaktiviert Am:</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="deaktiviertAm" ng-model="formData.deaktiviertAm">
-                            </div>
-                            <div class="input-group">
-                                <button ng-click='save()' ng-disabled="hardwareForm.$invalid">Speichern</button>  
-                                <button ng-click='reset()'>Schließen</button>
                             </div>
                         </form>
                     </div>

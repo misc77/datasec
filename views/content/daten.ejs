@@ -4,34 +4,38 @@
                             <div class="row">
                                 <h4 class="title">{{title}}</h4>
                             </div>
-                            <div class="row">
-                                <div class="input-group">
-                                    <div class="input-field col s6">
-                                        <i class="material-icons prefix">label</i>
-                                        <input type="text" id="bezeichnung" name="bezeichnung" ng-model="formData.bezeichnung" required class="validate">
-                                        <label class="active" for="bezeichnung">Bezeichnung</label>
-                                        <div class="help-block" ng-messages="datenForm.bezeichnung.$error" ng-if="rechteForm.bezeichnung.$touched">
-                                            <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s6">
+                                                <i class="material-icons prefix">label</i>
+                                                <input type="text" id="bezeichnung" name="bezeichnung" ng-model="formData.bezeichnung" required class="validate">
+                                                <label class="active" for="bezeichnung">Bezeichnung</label>
+                                                <div class="help-block" ng-messages="datenForm.bezeichnung.$error" ng-if="rechteForm.bezeichnung.$touched">
+                                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-group">
-                                    <div class="input-field col s6">
-                                        <i class="material-icons prefix">description</i>
-                                        <input type="text" id="beschreibung" name="beschreibung" ng-model="formData.beschreibung">
-                                        <label class="active" for="beschreibung">Beschreibung</label>     
-                                    </div>  
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-group">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix">whatshot</i>
-                                        <input type="checkbox" id="sensibel" name="sensibel" ng-model="formData.sensibel">
-                                        <label class="active" for="sensibel">Sensibel</label>     
-                                    </div>  
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s6">
+                                                <i class="material-icons prefix">description</i>
+                                                <input type="text" id="beschreibung" name="beschreibung" ng-model="formData.beschreibung">
+                                                <label class="active" for="beschreibung">Beschreibung</label>     
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s12">
+                                                <i class="material-icons prefix">whatshot</i>
+                                                <input type="checkbox" id="sensibel" name="sensibel" ng-model="formData.sensibel">
+                                                <label class="active" for="sensibel">Sensibel</label>     
+                                            </div>  
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

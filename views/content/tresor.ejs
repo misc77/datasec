@@ -1,38 +1,60 @@
                     <div id="content">
                         <form name="tresorForm" ng-controller="staticDataCtrl" novalidate>
-                            <p class='title'>{{title}}</h3>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Bezeichnung:</span>
-                                <input type="text" class="form-control" placeholder="Bezeichnung der Ressource" aria-describedby="basic-addon1" name="bezeichnung" ng-model="formData.bezeichnung" required>
-                                <div class="help-block" ng-messages="tresorForm.bezeichnung.$error" ng-if="tresorForm.bezeichnung.$touched">
-                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
-                                <input type="text" class="form-control" placeholder="Beschreibung" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Datentypen:</span>
-                               <div class="input-group">
-                                    <select class="form-control" aria-describedby="basic-addon1" 
-                                            ng-model="formData.daten" 
-                                            name="datentypen"
-                                            ng-options="data as data.bezeichnung for data in dataservice.daten() track by data._id"
-                                            multiple required>
-                                    </select>
-                                    <div class="help-block" ng-messages="tresorForm.datentypen.$error" ng-if="tresorForm.datentypen.$touched">
-                                        <p ng-message="required" >Datentyp ist ein Pflichtfeld!</p>
+                            <h4 class="title col s5">{{title}}</h4>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s6">
+                                                <i class="material-icons prefix">label</i>
+                                                <input type="text" id="bezeichnung" name="bezeichnung" ng-model="formData.bezeichnung" required class="validate">
+                                                <label class="active" for="bezeichnung">Bezeichnung</label>
+                                                <div class="help-block" ng-messages="tresorForm.bezeichnung.$error" ng-if="tresorForm.bezeichnung.$touched">
+                                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s6">
+                                                <i class="material-icons prefix">description</i>
+                                                <input type="text" id="beschreibung" name="beschreibung" ng-model="formData.beschreibung">
+                                                <label class="active" for="beschreibung">Beschreibung</label>     
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s4">
+                                                <select class="browser-default"
+                                                        ng-model="formData.daten" 
+                                                        name="datentypen"
+                                                        id="datentypen"
+                                                        ng-options="data as data.bezeichnung for data in dataservice.daten() track by data._id"
+                                                        multiple required>
+                                                </select>
+                                                <label class="active" for="datentypen">Datentypen</label>  
+                                                <div class="help-block" ng-messages="tresorForm.datentypen.$error" ng-if="tresorForm.datentypen.$touched">
+                                                    <p ng-message="required" >Datentyp ist ein Pflichtfeld!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group col s4">
+                                            <input type="checkbox" id="aktiv" name="aktiv" ng-model="formData.aktiv">
+                                            <label for="aktiv">Aktiv:</label>
+                                        </div> 
                                     </div>
                                 </div>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Aktiv:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
-                            </div>   
-                            <div class="input-group">
-                                <button ng-click='save()' ng-disabled="tresorForm.$invalid">Speichern</button>  
-                                <button ng-click='reset()'>Schließen</button>
+                            </div>                        
+                            <div class="row">
+                                <div class="input-group col s6">
+                                    <a class="waves-effect waves-light btn" ng-if="!tresorForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                    <a class="waves-effect waves-light btn disabled" ng-if="tresorForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                    <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -1,45 +1,63 @@
-                    <div id="content">
-                        <form name="fahrzeugForm" ng-controller="staticDataCtrl" novalidate>
-                            <p class='title'>{{title}}</h3>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Kennzeichen:</span>
-                                <input type="text" class="form-control" placeholder="Kennzeichen des Fahrzeugs" aria-describedby="basic-addon1" name="kennzeichen" ng-model="formData.kennzeichen" required>
-                                <div class="help-block" ng-messages="fahrzeugForm.kennzeichen.$error" ng-if="fahrzeugForm.kennzeichen.$touched">
-                                    <p ng-message="required" >Kennzeichen ist ein Pflichtfeld!</p>
+                    <div id="content">  
+                        <div class="row">
+                            <form name="fahrzeugForm" ng-controller="staticDataCtrl" novalidate>
+                                <h4 class="title col s5">{{title}}</h4>
+                                <div class="card blue-grey lighten-5 col s12">
+                                    <div class="card-content">
+                                        <div class="input-field col s12">
+                                            <input type="text" id="kennzeichen" placeholder="Kennzeichen des Fahrzeugs" ng-model="formData.kennzeichen">
+                                            <label class="active" for="kennzeichen">Kennzeichen</label>
+                                            <div class="help-block" ng-messages="fahrzeugForm.kennzeichen.$error" ng-if="fahrzeugForm.kennzeichen.$touched">
+                                                <p ng-message="required" >Kennzeichen ist ein Pflichtfeld!</p>
+                                            </div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="text" id="beschreibung" placeholder="Beschreibung des Fahrzeugs" ng-model="formData.beschreibung">
+                                            <label class="active" for="beschreibung">Beschreibung</label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s6">
+                                                <label class="active" for="standort">Standort</label>
+                                                <select class="browser-default" id="standort"
+                                                        name="standort"
+                                                        ng-init="formData._standort = { _id: formData.standortID}" 
+                                                        ng-change="formData.standortID = formData.standort._id" 
+                                                        ng-model="formData.standort" 
+                                                        ng-options="standort._id as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" required>
+
+                                                </select>  
+                                                <div class="help-block" ng-messages="fahrzeugForm.standort.$error" ng-if="fahrzeugForm.standort.$touched">
+                                                    <p ng-message="required" >Standort ist ein Pflichtfeld!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group col s4">
+                                                <input type="checkbox" id="aktiv" name="aktiv" ng-model="formData.aktiv">
+                                                <label class="active" for="aktiv">Aktiv:</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group col s4">
+                                                <input type="checkbox" id="navigation" name="navigation" ng-model="formData.navigation">
+                                                <label class="active" for="navigation">navigation:</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group col s4">
+                                                <input type="checkbox" id="reset" name="reset" ng-model="formData.reset">
+                                                <label for="reset">reset:</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                           <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Beschreibung:</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="beschreibung" ng-model="formData.beschreibung">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">Standort:</span>
-                                <select class="form-control" aria-describedby="basic-addon1" 
-                                        name="standort"
-                                        ng-init="formData._standort = { _id: formData.standortID}" 
-                                        ng-change="formData.standortID = formData.standort._id" 
-                                        ng-model="formData.standort" 
-                                        ng-options="standort._id as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" required>
-                                </select>  
-                                <div class="help-block" ng-messages="fahrzeugForm.standort.$error" ng-if="fahrzeugForm.standort.$touched">
-                                    <p ng-message="required" >Standort ist ein Pflichtfeld!</p>
+                                <div class="row">
+                                    <div class="input-group col s6">
+                                        <a class="waves-effect waves-light btn" ng-if="!fahrzeugForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                        <a class="waves-effect waves-light btn disabled" ng-if="fahrzeugForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                        <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">aktiv:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="aktiv" ng-model="formData.aktiv">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">navigation:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="navigation" ng-model="formData.navigation">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">reset:</span>
-                                <input type="checkbox" class="form-control" aria-describedby="basic-addon1" name="reset" ng-model="formData.reset">
-                            </div>
-                            <div class="input-group">
-                                <button ng-click='save()' ng-disabled="fahrzeugForm.$invalid">Speichern</button>  
-                                <button ng-click='reset()'>Schließen</button>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                        </div>
+                    </div>                

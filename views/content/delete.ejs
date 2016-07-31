@@ -1,12 +1,18 @@
                     <div id="content">
                         <form ng-controller="staticDataCtrl" novalidate>
-                            <table>
-                                <th><h3><p class='title'>{{title}}</p></h3></th>
-                                <tr><td colspan="2"><h4>Wollen Sie den Datensatz "{{formData.bezeichnung}}" wirklich löschen?</h4></td></tr>
-                                <tr>
-                                    <td><button ng-click='delete()' >Löschen</button></td> 
-                                    <td><button ng-click='reset()' class="form-control">Abbrechen</button></td>
-                                </tr>
-                            </table>
+                            <div class="row">
+                                <h4 class="title">{{title}}</h4>
+                            </div>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <div class="card-content">
+                                    <div class="row"><h5>Wollen Sie den Datensatz "{{formData.bezeichnung}}" wirklich löschen?</h5></div>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <a class="waves-effect waves-light btn" ng-click="delete()"><i class="material-icons left">backspace</i>Löschen</a>
+                                            <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>Abbrechen</a>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
                         </form>
                     </div>

@@ -141,7 +141,6 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
                     if ($name === undefined | $name === null) {
                         $name = 'default';
                     };
-                    
                     $http.get('/api/'+$name+'/list').then( function(res) { 
                         $scope.list = res.data;
                         $("#content").fadeOut($scope.dataservice.fading_time, function() {
