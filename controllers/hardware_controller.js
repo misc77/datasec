@@ -7,6 +7,7 @@ var Hardware = Model.Hardware;
 exports.create = function (req, res){
    var hardware = new Hardware();
     hardware.set('bezeichnung', req.body.bezeichnung);
+    hardware.set('display', req.body.inventarNr + ' (' + req.body.bezeichnung + ')');
     hardware.set('inventarNr', req.body.inventarNr); 
     hardware.set('aktiv', req.body.aktiv);
     hardware.set('deaktiviertAm', req.body.deaktiviertAm);
@@ -41,6 +42,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 hardware.bezeichnung = req.body.bezeichnung;
+                hardware.display = req.body.inventarNr + ' (' + req.body.bezeichnung + ')';
             }
             if (req.body.inventarNr !== undefined & req.body.inventarNr !== null) {
                 hardware.inventarNr = req.body.inventarNr;

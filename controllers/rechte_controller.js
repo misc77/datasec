@@ -7,6 +7,7 @@ var Rechte = Model.Rechte;
 exports.create = function (req, res){
    var rechte = new Rechte();
     rechte.set('bezeichnung', req.body.bezeichnung);
+    rechte.set('display', req.body.bezeichnung);
     rechte.set('beschreibung', req.body.beschreibung); 
     rechte.save(function(err){
         if(err){
@@ -36,6 +37,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 rechte.bezeichnung = req.body.bezeichnung;
+                rechte.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 rechte.beschreibung = req.body.beschreibung;

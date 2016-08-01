@@ -3,6 +3,7 @@ var Fahrzeug = Model.Fahrzeug;
 
 exports.create = function (req, res){
    var fahrzeug = new Fahrzeug();
+    fahrzeug.set('display', req.body.kennzeichen);
     fahrzeug.set('kennzeichen', req.body.kennzeichen);
     fahrzeug.set('beschreibung', req.body.beschreibung); 
     fahrzeug.set('standort', req.body.standort);
@@ -37,6 +38,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.kennzeichen !== undefined & req.body.kennzeichen !== null) {
                 fahrzeug.kennzeichen = req.body.kennzeichen;
+                fahrzeug.display = req.body.kennzeichen;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 fahrzeug.land = req.body.beschreibung;

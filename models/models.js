@@ -18,6 +18,7 @@ var Protokoll = mongoose.model("protokoll", protokollSchema);
 /* Aufgabe */
 var aufgabeSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     aktiv:          Boolean
 });
@@ -26,6 +27,7 @@ var Aufgabe = mongoose.model("aufgabe", aufgabeSchema);
 /* Beschäftigungsverhältnis */
 var beschaeftigungSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     aktiv:          Boolean
 });
@@ -34,6 +36,7 @@ var Beschaeftigung = mongoose.model("beschaeftigung", beschaeftigungSchema);
 /* Berechtigung */
 var rechteSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String
 });
 var Rechte = mongoose.model("rechte", rechteSchema);
@@ -41,6 +44,7 @@ var Rechte = mongoose.model("rechte", rechteSchema);
 /* Datenschutzerklärungsdokumente */
 var dokumentSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     binary:         String,  //Document in binary representation
     unterzeichnet:  Date,
@@ -50,6 +54,7 @@ var Dokument = mongoose.model("dokument", dokumentSchema);
 
 var dokumentTypSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     template:       String,
     version:        String,
@@ -60,6 +65,7 @@ var DokumentTyp = mongoose.model("dokumentTyp", dokumentTypSchema);
 /* Daten */
 var datenSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     sensibel:       Boolean
 });
 var Daten = mongoose.model("daten", datenSchema);
@@ -67,6 +73,7 @@ var Daten = mongoose.model("daten", datenSchema);
 /* Fahrzeug */
 var fahrzeugSchema = new Schema({
     kennzeichen:    String,
+    display:        String,
     beschreibung:   String,
     standort:       {type: Schema.Types.ObjectId, ref: 'standort'},
     aktiv:          Boolean,
@@ -79,6 +86,7 @@ var Fahrzeug = mongoose.model("fahrzeug", fahrzeugSchema);
 /* IT-Hardware */
 var hardwareSchema = new Schema({
     bezeichnung:        String,
+    display:            String,
     inventarNr:         String,
     aktiv:              Boolean,
     deaktiviertAm:      Date,
@@ -91,14 +99,16 @@ var Hardware = mongoose.model("hardware", hardwareSchema);
 
 /* RessourcenTyp */
 var ressourcenTypSchema = new Schema({
-   bezeichnung: String,
-   aktiv:       Boolean
+   bezeichnung:     String,
+   display:         String,
+   aktiv:           Boolean
 });
 var RessourcenTyp = mongoose.model("ressourcentyp", ressourcenTypSchema);
 
 /* Ressourcen */
 var ressourceSchema = new Schema({
     bezeichnung:   String,
+    display:       String,
     beschreibung:  String,
     typ:           {type: Schema.Types.ObjectId, ref: 'ressourcentyp'},
     aktiv:         Boolean,
@@ -110,6 +120,7 @@ var Ressource = mongoose.model("ressource", ressourceSchema);
 /* Mitarbeiter */
 var mitarbeiterSchema = new Schema({
     mitarbeiternr:      String,
+    display:            String,
     vorname:            String,
     nachname:           String,
     string:             String,
@@ -131,6 +142,7 @@ var Mitarbeiter = mongoose.model("mitarbeiter", mitarbeiterSchema);
 /* Papierdokument */
 var papierdokumentSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     aktiv:          Boolean,
     daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
@@ -141,6 +153,7 @@ var Papierdokument = mongoose.model("papierdokument", papierdokumentSchema);
 /* Rolle */
 var rolleSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     aktiv:          Boolean
 });
@@ -149,6 +162,7 @@ var Rolle = mongoose.model("rolle", rolleSchema);
 /* Tresor */
 var tresorSchema = new Schema({
     bezeichnung:    String,
+    display:        String,
     beschreibung:   String,
     aktiv:          Boolean,
     daten:          [{type: Schema.Types.ObjectId, ref: 'daten'}],
@@ -159,6 +173,7 @@ var Tresor = mongoose.model("tresor", tresorSchema);
 /* Standort */
 var standortSchema = new Schema({
    bezeichnung:     String,
+   display:         String,
    land:            String,
    hauptstandort:   Boolean,
    gruendung:       Date,
@@ -174,7 +189,8 @@ var Standort = mongoose.model("standort", standortSchema);
 
 /* Status */
 var mitarbeiterStatusSchema = new Schema({
-   bezeichnung:   String, 
+   bezeichnung:   String,
+   display:       String,
    beschreibung:  String,
    aktiv_status:  Boolean
 });
@@ -183,6 +199,7 @@ var MitarbeiterStatus = mongoose.model("mitarbeiterStatus", mitarbeiterStatusSch
 /* Zutrittsmittel */
 var zutrittsmittelSchema = new Schema({
     bezeichnung:  String,
+    display:      String,
     beschreibung: String,
     ausgabe:      Date,
     rueckgabe:    Date,
@@ -193,15 +210,17 @@ var Zutrittsmittel = mongoose.model("zutrittsmittel", zutrittsmittelSchema);
 
 /* Zutrittsmittel Status */
 var zutrittsmittelsStatusSchema = new Schema({
-    bezeichnung:  String,
-    beschreibung: String,
-    gueltig:      Boolean
+    bezeichnung:    String,
+    display:        String,
+    beschreibung:   String,
+    gueltig:        Boolean
 });
 var ZutrittsmittelStatus = mongoose.model("zutrittsmittelStatus", zutrittsmittelsStatusSchema);
 
 /* Raum */
 var raumSchema = new Schema({
    bezeichnung:    String,
+   display:        String,
    beschraenkt:    Boolean,
    zutrittvon:     Date,
    zutrittbis:     Date,
@@ -215,6 +234,7 @@ var Raum = mongoose.model("raum", raumSchema);
 /** Template für Befugnisse **/
 var musterrolleSchema = new Schema({
     bezeichnung:        String,
+    display:            String,
     aufgabe:            { type: Schema.Types.ObjectId, ref: 'aufgabe'},
     beschaeftigung:     { type: Schema.Types.ObjectId, ref: 'beschaeftigung'},
     tresor_zuo:         [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
@@ -236,6 +256,7 @@ var Musterrolle = mongoose.model("musterrolle", musterrolleSchema);
 /** Haupt-Collection zur Zuordnung der Befugnisse pro Mitarbeiter auf Basis der Musterrolle **/
 var befugnissSchema = new Schema({
     mitarbeiter:     {type: Schema.Types.ObjectId, ref: 'mitarbeiter'},
+    display:         String,
     raum_zuo:        [ { raum:           {type: Schema.Types.ObjectId, ref: 'raum'}, 
                          zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
     tresor_zuo:      [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
@@ -263,6 +284,7 @@ var Log = mongoose.model("log", logSchema);
 /* User */
 var userSchema = new Schema({
     name:                   { type: String, unique: true, index: true },
+    display:                String,
     pwd:                    String,
     email:                  String,
     rolle:                  { type: Schema.Types.ObjectId, ref: 'rolle' },

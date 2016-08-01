@@ -18,7 +18,8 @@ function hashPW(pwd){
 
 exports.create = function (req, res){
    var user = new User();
-    user.set('name', req.body.kennzeichen);
+    user.set('name', req.body.name);
+    user.set('display', req.body.name + ' (' + req.body.rolle.display + ')');
     user.set('pwd', hashPW(req.body.password)); 
     user.set('email', req.body.email);
     user.set('aktiv', req.body.aktiv);
@@ -63,6 +64,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.name !== undefined & req.body.name !== null) {
                 user.name = req.body.name;
+                user.display =  req.body.name + ' (' + req.body.rolle.display + ')';
             }
             if (req.body.email !== undefined | req.body.email !== null ){
                 user.email = req.body.email;

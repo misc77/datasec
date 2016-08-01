@@ -7,6 +7,7 @@ var Beschaeftigung = Model.Beschaeftigung;
 exports.create = function (req, res){
    var beschaeftigung = new Beschaeftigung();
     beschaeftigung.set('bezeichnung', req.body.bezeichnung);
+    beschaeftigung.set('display', req.body.bezeichnung);
     beschaeftigung.set('beschreibung', req.body.beschreibung); 
     beschaeftigung.set('aktiv', req.body.aktiv);
     beschaeftigung.save(function(err){
@@ -37,6 +38,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 beschaeftigung.bezeichnung = req.body.bezeichnung;
+                beschaeftigung.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 beschaeftigung.beschreibung = req.body.beschreibung;

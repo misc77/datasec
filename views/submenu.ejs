@@ -14,7 +14,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_standort', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_standort', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -37,7 +37,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_aufgabe', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_aufgabe', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -60,8 +60,8 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' ) *init*' }}</a></td>
-                        <td><a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
+                        <td><a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display + ' *init*' }}</a></td>
+                        <td><a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                 </tbody>
@@ -82,7 +82,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_musterrolle', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_musterrolle', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -105,7 +105,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_rechte', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_rechte', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -128,7 +128,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_beschaeftigung', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_beschaeftigung', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -151,7 +151,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_rolle', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_rolle', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -174,7 +174,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_daten', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_daten', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -197,7 +197,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.mitarbeiternr + ' - ' + item.nachname + ' ' + item.vorname + ' ( ' + item.standort.bezeichnung + ' )' }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -220,7 +220,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_fahrzeug', item._id)">{{ item.kennzeichen }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_fahrzeug', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -243,7 +243,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_hardware', item._id)">{{ item.inventarNr + '(' + item.bezeichnung + ')' }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_hardware', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -266,7 +266,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_ressource', item._id)">{{ item.bezeichnung + ' ( ' + item.typ.bezeichnung + ' )'  }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_ressource', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -289,7 +289,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_ressourcentyp', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_ressourcentyp', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -312,7 +312,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_tresor', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_tresor', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -335,7 +335,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_zutrittsmittelstatus', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_zutrittsmittelstatus', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -358,7 +358,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_zutrittsmittel', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_zutrittsmittel', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -381,7 +381,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiterstatus', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiterstatus', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -404,7 +404,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_raum', item._id)">{{ item.bezeichnung }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_raum', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -427,7 +427,7 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_benutzer', item._id)">{{ item.name + ' ( ' + item.rolle.bezeichnung + ' )'  }}</a></td>
+                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_benutzer', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('reset_pwd', item._id)"><i class="material-icons">replay</i></a></td>
                     </tr>

@@ -7,6 +7,7 @@ var Rolle = Model.Rolle;
 exports.create = function (req, res){
    var rolle = new Rolle();
     rolle.set('bezeichnung', req.body.bezeichnung);
+    rolle.set('display', req.body.bezeichnung);
     rolle.set('beschreibung', req.body.beschreibung); 
     rolle.set('aktiv', req.body.aktiv);
     rolle.save(function(err){
@@ -37,6 +38,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 rolle.bezeichnung = req.body.bezeichnung;
+                rolle.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 rolle.beschreibung = req.body.beschreibung;

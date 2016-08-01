@@ -7,6 +7,7 @@ var Papierdokument = Model.Papierdokument;
 exports.create = function (req, res){
    var papierdokument = new Papierdokument();
     papierdokument.set('bezeichnung', req.body.bezeichnung);
+    papierdokument.set('display', req.body.bezeichnung);
     papierdokument.set('beschreibung', req.body.beschreibung); 
     papierdokument.set('aktiv', req.body.aktiv);
     papierdokument.set('daten', req.body.daten);
@@ -38,6 +39,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 papierdokument.bezeichnung = req.body.bezeichnung;
+                papierdokument.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 papierdokument.beschreibung = req.body.beschreibung;

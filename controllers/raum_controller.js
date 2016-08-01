@@ -7,6 +7,7 @@ var Raum = Model.Raum;
 exports.create = function (req, res){
    var raum = new Raum();
     raum.set('bezeichnung', req.body.bezeichnung);
+    raum.set('display', req.body.bezeichnung);
     raum.set('beschraenkt', req.body.beschraenkt);
     raum.set('zutrittvon', req.body.zutrittvon);
     raum.set('zutrittbis', req.body.zutrittbis);
@@ -40,6 +41,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 raum.bezeichnung = req.body.bezeichnung;
+                raum.display = req.body.bezeichnung;
             }
             if (req.body.zutrittvon !== undefined & req.body.zutrittvon !== null) {
                 raum.zutrittvon = req.body.zutrittvon;

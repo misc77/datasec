@@ -11,6 +11,7 @@ var self = module.exports = {
         console.log('create befugniss...');
        var befugniss = new Befugniss();
         befugniss.set('mitarbeiter',      req.body.mitarbeiter);
+        befugniss.set('display',          req.body.mitarbeiter.mitarbeiternr + '-' + req.body.mitarbeiter.nachname + ' ' + req.body.mitarbeiter.vorname + ' (' + req.body.mitarbeiter.standort.bezeichnung + ')');
         befugniss.set('bezeichnung',      req.body.bezeichnung);
         befugniss.set('aufgabe',          req.body.aufgabe);
         befugniss.set('tresor_zuo',       req.body.tresor_zuo);
@@ -79,6 +80,7 @@ var self = module.exports = {
                 } else {
                     if (req.body.mitarbeiter !== undefined & req.body.mitarbeiter !== null) {
                         befugniss.mitarbeiter = req.body.mitarbeiter;
+                        befugniss.display = req.body.mitarbeiter.mitarbeiternr + '-' + req.body.mitarbeiter.nachname + ' ' + req.body.mitarbeiter.vorname + ' (' + req.body.mitarbeiter.standort.bezeichnung + ')';
                     }
                     if (req.body.tresor_zuo !== undefined & req.body.tresor_zuo !== null) {
                         befugniss.tresor_zuo = req.body.tresor_zuo;

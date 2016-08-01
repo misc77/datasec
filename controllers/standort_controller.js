@@ -10,6 +10,7 @@ exports.create = function (req, res){
     
     var standort = new Standort();
     standort.set('bezeichnung', req.body.bezeichnung);
+    standort.set('display', req.body.bezeichnung);
     standort.set('land', req.body.land); 
     standort.set('hauptstandort', req.body.hauptstandort);
     standort.set('gruendung', req.body.gruendung);
@@ -42,6 +43,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 standort.bezeichnung = req.body.bezeichnung;
+                standort.display = req.body.bezeichnung;
             }
             if (req.body.land !== undefined & req.body.land !== null) {
                 standort.land = req.body.land;

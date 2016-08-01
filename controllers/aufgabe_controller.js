@@ -8,6 +8,7 @@ exports.create = function (req, res){
    var aufgabe = new Aufgabe();
     aufgabe.set('bezeichnung', req.body.bezeichnung);
     aufgabe.set('beschreibung', req.body.beschreibung); 
+    aufgabe.set('display', req.body.bezeichnung);
     aufgabe.set('aktiv', req.body.aktiv);
     aufgabe.save(function(err){
         if(err){
@@ -37,6 +38,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 aufgabe.bezeichnung = req.body.bezeichnung;
+                aufgabe.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 aufgabe.beschreibung = req.body.beschreibung;

@@ -7,6 +7,7 @@ var Tresor = Model.Tresor;
 exports.create = function (req, res){
    var tresor = new Tresor();
     tresor.set('bezeichnung', req.body.bezeichnung);
+    tresor.set('display', req.body.bezeichnung);
     tresor.set('beschreibung', req.body.beschreibung); 
     tresor.set('aktiv', req.body.aktiv);
     tresor.set('daten', req.body.daten);
@@ -38,6 +39,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 tresor.bezeichnung = req.body.bezeichnung;
+                tresor.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 tresor.beschreibung = req.body.beschreibung;

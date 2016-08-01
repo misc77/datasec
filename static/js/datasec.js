@@ -97,10 +97,14 @@ app.factory("DataService", function($http){
     };
 });
 
-app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window', 'DataService', '$location', function($scope, $http, appdata, $log, $window, DataService, $location) {
+app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$window', 'DataService', '$location', function($scope, $http, appdata, $log, $window, DataService, $location) {
         $scope.appdata = appdata;
         $scope.list = '';
-        $scope.dataservice = DataService;        
+        $scope.dataservice = DataService; 
+        $scope.formData = {};
+        $scope.object_id = undefined;
+        $scope.title = appdata.submenu + ' anlegen';
+        $scope.params = {};
                 
         (function (){
             $http.get('/api/user/loggedIn').then( 
@@ -133,7 +137,7 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
                 }
             );
         })();
-        
+                
         //Call Submenu
         $scope.call_submenu = function($name){
 //            $http.get('/api/connection/state').success (function(data) { 
@@ -141,18 +145,17 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
                     if ($name === undefined | $name === null) {
                         $name = 'default';
                     };
+                    appdata.submenu = $name;
                     $http.get('/api/'+$name+'/list').then( function(res) { 
                         $scope.list = res.data;
                         $("#content").fadeOut($scope.dataservice.fading_time, function() {
-                            appdata.submenu = $name;
+//                            appdata.submenu = $name;
                             appdata.content = 'default';
                             $("#submenu").fadeIn($scope.dataservice.fading_time);
                         }); 
                         
                         appdata.msg = $name;
                     });
-                   
-                    
 //                } else {
 //                    $window.location.path('/disconnected.html');
 //                }
@@ -167,16 +170,104 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
             if ($object !== undefined) {
                 appdata.object = $object;
             }
+            if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
+                $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
+                  function(data) { 
+                      if (data.object[0] !== undefined) {
+                          $scope.formData = data.object[0];                    
+                      } else {
+                          $scope.formData = data.object;                   
+                      }
+                      if (appdata.content === 'delete' ){
+                          $scope.title = appdata.submenu + ' löschen';
+                      } else{
+                          $scope.title = appdata.submenu + ' ändern'; 
+                      }
+                      $scope.object_id = appdata.object;
+                      appdata.content = $content;
+                });
+            } else {
+                $http.get('/api/'+appdata.submenu+'/get_new_obj',$scope.params).success( 
+                  function (data) { 
+                      $scope.formData = data.object;
+                      $scope.title = appdata.submenu + ' anlegen'; 
+                      $scope.object_id = undefined;
+                      appdata.content = $content;
+                }).error(
+                  function () {
+                    $scope.formData = '';
+                    $scope.object_id = undefined;
+                    $scope.title = appdata.submenu + ' anlegen';
+                });                
+            }
+            
             $("#submenu").fadeOut($scope.dataservice.fading_time, function() {
                 $("#content").fadeIn($scope.dataservice.fading_time);
-            });
-            appdata.content = $content;
+            });            
         };
         
-        //Reset Content
+        //Reset
         $scope.reset = function(){
-            $scope.call_submenu(appdata.submenu);
             appdata.object = undefined;
+            $scope.call_submenu(appdata.submenu);        
+        };
+
+        //Create or Update
+        $scope.save = function(){
+            if ($scope.object_id === undefined) {
+                $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
+                    appdata.msg = appdata.submenu + ' gespeichert!';
+                    $scope.reset();
+                }).error(function(data, status, headers, config){
+                    alert("Fehler beim Speichern: " + data);
+                });
+            } else {
+                $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
+                    appdata.msg = appdata.submenu + ' gespeichert!';
+                    Materialize.toast(appdata.msg, 4000);
+                    $scope.reset();
+                }).error(function(data, status, headers, config){
+                    alert("Fehler beim Speichern: " + data);
+                }); 
+            }
+        };
+
+        //Delete
+        $scope.delete = function(){
+            if (appdata.object !== undefined){
+                $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
+                    appdata.msg = appdata.submenu + ' gelöscht!';
+                    $scope.reset();
+                }).error(function(data, status, headers, config){
+                    alert("Fehler beim Löschen: " + data);
+                });
+            }
+        };
+
+        $scope.add_entry = function(list, data){
+            $log.debug('list: ' + list);
+            if (list !== undefined){
+                list.push(data);
+            } else {
+                list = [];
+                list.push(data);
+            }
+        };
+
+        $scope.remove_entry = function(list, entry){
+            if (list !== null & list !== undefined & angular.isArray(list)){
+                var index = list.indexOf(entry);
+                list.splice(index,1);
+            }
+        };
+
+        $scope.signup = function(){
+            $http.post('/signup', $scope.formData).success( function(data, status, headers, config){
+                    appdata.msg = 'User registriert!';
+                    $scope.reset();
+                }).error(function(data, status, headers, config){
+                    alert("Fehler beim Registrieren: " + data);
+                }); 
         };
         
         //Log out user and kill session
@@ -193,119 +284,112 @@ app.controller('myController', ['$scope', '$http', 'appdata', '$log', '$window',
 }]);
 
 /* Stammdaten Controller*/
-app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function($scope, $http, appdata, $log, DataService) {
-    $scope.formData = {};
-    $scope.object_id = undefined;
-    $scope.title = appdata.submenu + ' anlegen';
-    $scope.params = {};
-    $scope.is_init = false;
-     
-    //INIT
-    $scope.init = function(){
-                
-        // setting formdata
-        if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
-            $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
-              function(data) { 
-                  if (data.object[0] !== undefined) {
-                      $scope.formData = data.object[0];                    
-                  } else {
-                      $scope.formData = data.object;                   
-                  }
-                  if (appdata.content === 'delete' ){
-                      $scope.title = appdata.submenu + ' löschen';
-                  } else{
-                      $scope.title = appdata.submenu + ' ändern'; 
-                  }
-                  $scope.object_id = appdata.object;
-            });
-        } else {
-            $http.get('/api/'+appdata.submenu+'/get_new_obj',$scope.params).success( 
-              function (data) { 
-                  $log.debug('data: ' + angular.toJson(data.object));
-                  $scope.formData = data.object;
-                  $scope.title = appdata.submenu + ' anlegen'; 
-                  $scope.object_id = undefined;
-            }).error(
-              function () {
-                $scope.formData = '';
-                $scope.object_id = undefined;
-                $scope.title = appdata.submenu + ' anlegen';
-            });
-        }
-        $scope.is_init = true;
-    };
-    
-    //Reset
-    $scope.reset = function(){
-        $scope.call_submenu(appdata.submenu);
-        appdata.object = undefined;
-        $scope.init();
-    };
-        
-    //Create or Update
-    $scope.save = function(){
-        if ($scope.object_id === undefined) {
-            $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
-                appdata.msg = appdata.submenu + ' gespeichert!';
-                $scope.reset();
-            }).error(function(data, status, headers, config){
-                alert("Fehler beim Speichern: " + data);
-            });
-        } else {
-            $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
-                appdata.msg = appdata.submenu + ' gespeichert!';
-                Materialize.toast(appdata.msg, 4000);
-                $scope.reset();
-            }).error(function(data, status, headers, config){
-                alert("Fehler beim Speichern: " + data);
-            }); 
-        }
-    };
-    
-    //Delete
-    $scope.delete = function(){
-        if (appdata.object !== undefined){
-            $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
-                appdata.msg = appdata.submenu + ' gelöscht!';
-                $scope.reset();
-            }).error(function(data, status, headers, config){
-                alert("Fehler beim Löschen: " + data);
-            });
-        }
-        $scope.is_init = false;
-    };
-    
-    $scope.add_entry = function(list, data){
-        $log.debug('list: ' + list);
-        if (list !== undefined){
-            list.push(data);
-        } else {
-            list = [];
-            list.push(data);
-        }
-    };
-  
-    $scope.remove_entry = function(list, entry){
-        if (list !== null & list !== undefined & angular.isArray(list)){
-            var index = list.indexOf(entry);
-            list.splice(index,1);
-        }
-    };
-    
-    $scope.signup = function(){
-        $http.post('/signup', $scope.formData).success( function(data, status, headers, config){
-                appdata.msg = 'User registriert!';
-                $scope.reset();
-            }).error(function(data, status, headers, config){
-                alert("Fehler beim Registrieren: " + data);
-            }); 
-    };
-  
-    if($scope.is_init !== true) {
-        $scope.init();
-    }
-}]);
+//app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function($scope, $http, appdata, $log, DataService) {
+//    $scope.formData = {};
+//    $scope.object_id = undefined;
+//    $scope.title = appdata.submenu + ' anlegen';
+//    $scope.params = {};
+//     
+//    //INIT
+//    (function(){
+//        console.log ('init scope of staticDataCtrl');      
+//        // setting formdata
+//        if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
+//            $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
+//              function(data) { 
+//                  if (data.object[0] !== undefined) {
+//                      $scope.formData = data.object[0];                    
+//                  } else {
+//                      $scope.formData = data.object;                   
+//                  }
+//                  if (appdata.content === 'delete' ){
+//                      $scope.title = appdata.submenu + ' löschen';
+//                  } else{
+//                      $scope.title = appdata.submenu + ' ändern'; 
+//                  }
+//                  $scope.object_id = appdata.object;
+//            });
+//        } else {
+//            $http.get('/api/'+appdata.submenu+'/get_new_obj',$scope.params).success( 
+//              function (data) { 
+//                  $log.debug('data: ' + angular.toJson(data.object));
+//                  $scope.formData = data.object;
+//                  $scope.title = appdata.submenu + ' anlegen'; 
+//                  $scope.object_id = undefined;
+//            }).error(
+//              function () {
+//                $scope.formData = '';
+//                $scope.object_id = undefined;
+//                $scope.title = appdata.submenu + ' anlegen';
+//            });
+//        }
+//    }());
+//    
+//    //Reset
+//    $scope.reset = function(){
+//        appdata.object = undefined;
+//        console.log('appdata object is now undefined');
+//        $scope.call_submenu(appdata.submenu);        
+//    };
+//        
+//    //Create or Update
+//    $scope.save = function(){
+//        if ($scope.object_id === undefined) {
+//            $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
+//                appdata.msg = appdata.submenu + ' gespeichert!';
+//                $scope.reset();
+//            }).error(function(data, status, headers, config){
+//                alert("Fehler beim Speichern: " + data);
+//            });
+//        } else {
+//            $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
+//                appdata.msg = appdata.submenu + ' gespeichert!';
+//                Materialize.toast(appdata.msg, 4000);
+//                $scope.reset();
+//            }).error(function(data, status, headers, config){
+//                alert("Fehler beim Speichern: " + data);
+//            }); 
+//        }
+//    };
+//    
+//    //Delete
+//    $scope.delete = function(){
+//        if (appdata.object !== undefined){
+//            $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
+//                appdata.msg = appdata.submenu + ' gelöscht!';
+//                $scope.reset();
+//            }).error(function(data, status, headers, config){
+//                alert("Fehler beim Löschen: " + data);
+//            });
+//        }
+//    };
+//    
+//    $scope.add_entry = function(list, data){
+//        $log.debug('list: ' + list);
+//        if (list !== undefined){
+//            list.push(data);
+//        } else {
+//            list = [];
+//            list.push(data);
+//        }
+//    };
+//  
+//    $scope.remove_entry = function(list, entry){
+//        if (list !== null & list !== undefined & angular.isArray(list)){
+//            var index = list.indexOf(entry);
+//            list.splice(index,1);
+//        }
+//    };
+//    
+//    $scope.signup = function(){
+//        $http.post('/signup', $scope.formData).success( function(data, status, headers, config){
+//                appdata.msg = 'User registriert!';
+//                $scope.reset();
+//            }).error(function(data, status, headers, config){
+//                alert("Fehler beim Registrieren: " + data);
+//            }); 
+//    };
+//}]);
 
 
 

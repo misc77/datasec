@@ -13,6 +13,7 @@ exports.create = function(req, res){
    console.log('data: ' + req.body);
    var mitarbeiter = new Mitarbeiter();
    mitarbeiter.set('mitarbeiternr', req.body.mitarbeiternr);
+   mitarbeiter.set('display', req.body.mitarbeiternr + '-' + req.body.nachname + ' ' + req.body.vorname + ' (' + req.body.standort.bezeichnung + ')');
    mitarbeiter.set('vorname', req.body.vorname);
    mitarbeiter.set('nachname', req.body.nachname);
    mitarbeiter.set('geburtsdatum', req.body.geburtsdatum);
@@ -108,7 +109,7 @@ exports.save = function (req, res){
             if(req.body.befugniss_init !== null & req.body.befugniss_init !== undefined & req.body.befugniss_init === false){
                 mitarbeiter.befugniss_init = false;
             }
-            
+            mitarbeiter.display = req.body.mitarbeiternr + '-' + req.body.nachname + ' ' + req.body.vorname + ' (' + req.body.standort.bezeichnung + ')'
 //            var protokoll = new Protokoll();
 //            protokoll.set('eintrag', 'Mitarbeiter ' + req.body.mitarbeiter_nr + ' geändert');
 //            protokoll.set('datum', Date.now());

@@ -8,6 +8,7 @@ exports.create = function (req, res){
    console.log('typ: ' + req.body.typ);
    var ressource = new Ressource();
     ressource.set('bezeichnung', req.body.bezeichnung);
+    ressource.set('display', req.body.bezeichnung + ' (' + req.body.typ.display + ')');
     ressource.set('beschreibung', req.body.beschreibung); 
     ressource.set('typ', req.body.typ);
     ressource.set('aktiv', req.body.aktiv);
@@ -42,6 +43,7 @@ exports.save = function (req, res){
             
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 ressource.bezeichnung = req.body.bezeichnung;
+                ressource.display = req.body.bezeichnung + ' (' + req.body.typ.display + ')';
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 ressource.beschreibung = req.body.beschreibung;

@@ -5,11 +5,9 @@ var Model = require('../models/models.js');
 var Daten = Model.Daten;
 
 exports.create = function (req, res){
-    console.log('sens: ' + req.body.sensibel);
-    console.log('bez: ' + req.body.bezeichnung);
-    
     var daten = new Daten();
     daten.set('bezeichnung', req.body.bezeichnung);
+    daten.set('display', req.body.bezeichnung);
     daten.set('sensibel', req.body.sensibel); 
     daten.save(function(err){
         if(err){
@@ -39,6 +37,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 daten.bezeichnung = req.body.bezeichnung;
+                daten.display = req.body.bezeichnung;
             }
             if (req.body.sensibel === undefined | req.body.sensibel === null ){
                 daten.sensibel = false;

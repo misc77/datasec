@@ -8,6 +8,7 @@ exports.create = function (req, res){
    console.log('daten: ' + req.body.toString());
    var zutrittsmittel = new Zutrittsmittel();
     zutrittsmittel.set('bezeichnung', req.body.bezeichnung);
+    zutrittsmittel.set('display', req.body.bezeichnung);
     zutrittsmittel.set('beschreibung', req.body.beschreibung); 
     zutrittsmittel.set('status', req.body.status);
     zutrittsmittel.set('ausgabe', req.body.ausgabe);
@@ -40,6 +41,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 zutrittsmittel.bezeichnung = req.body.bezeichnung;
+                zutrittsmittel.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 zutrittsmittel.beschreibung = req.body.beschreibung;

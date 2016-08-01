@@ -7,6 +7,7 @@ var ZutrittsmittelStatus = Model.ZutrittsmittelStatus;
 exports.create = function (req, res){
    var status = new ZutrittsmittelStatus();
     status.set('bezeichnung', req.body.bezeichnung);
+    status.set('display', req.body.bezeichnung);
     status.set('beschreibung', req.body.beschreibung); 
     status.set('gueltig', req.body.gueltig);
     status.save(function(err){
@@ -37,6 +38,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 status.bezeichnung = req.body.bezeichnung;
+                status.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
                 status.beschreibung = req.body.beschreibung;

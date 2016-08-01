@@ -7,6 +7,7 @@ var RessourcenTyp = Model.RessourcenTyp;
 exports.create = function (req, res){
    var ressourcentyp = new RessourcenTyp();
     ressourcentyp.set('bezeichnung', req.body.bezeichnung);
+    ressourcentyp.set('display', req.body.bezeichnung);
     ressourcentyp.set('aktiv', req.body.aktiv);
     ressourcentyp.save(function(err){
         if(err){
@@ -36,6 +37,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 ressourcentyp.bezeichnung = req.body.bezeichnung;
+                ressourcentyp.display = req.body.bezeichnung;
             }
             if (req.body.aktiv === undefined | req.body.aktiv === null ){
                 ressourcentyp.aktiv = false;

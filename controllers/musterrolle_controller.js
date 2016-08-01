@@ -8,6 +8,7 @@ var Aufgabe = Model.Aufgabe;
 exports.create = function (req, res){
    var musterrolle = new Musterrolle();
     musterrolle.set('bezeichnung',      req.body.bezeichnung);
+    musterrolle.set('display',          req.body.bezeichnung);
     musterrolle.set('aufgabe',          req.body.aufgabe);
     musterrolle.set('tresor_zuo',       req.body.tresor_zuo);
     musterrolle.set('raum_zuo',         req.body.raum_zuo);
@@ -46,6 +47,7 @@ exports.save = function (req, res){
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
                 musterrolle.bezeichnung = req.body.bezeichnung;
+                musterrolle.display = req.body.bezeichnung;
             }
             if (req.body.aufgabe !== undefined & req.body.aufgabe !== null){
                 musterrolle.aufgabe = req.body.aufgabe;
