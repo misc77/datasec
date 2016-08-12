@@ -177,12 +177,15 @@ var self = module.exports = {
                                     var befugniss = new Befugniss();
                                     befugniss.set('mitarbeiter',        mitarbeiter);
                                     befugniss.set('is_init',            true);
-                                    if (musterrolle !== undefined && musterrolle !== null){
+                                    befugniss.set('display',            mitarbeiter.display);
+                                    if (musterrolle !== undefined && musterrolle !== null && musterrolle.length > 0){
                                         console.log('init with musterrolle...');
                                         // init befugniss with musterrolle
                                         fuhrpark = [];
-                                        for (i = 0; i < musterrolle[0].fahrzeugliste.length; i++){
-                                            fuhrpark.push(musterrolle[0].fahrzeugliste[i].fahrzeug);
+                                        if (musterrolle[0].fahrzeugliste !== undefined){
+                                            for (i = 0; i < musterrolle[0].fahrzeugliste.length; i++){
+                                                fuhrpark.push(musterrolle[0].fahrzeugliste[i].fahrzeug);
+                                            }
                                         }
                                         befugniss.set('tresor_zuo',         musterrolle[0].tresor_zuo);
                                         befugniss.set('raum_zuo',           musterrolle[0].raum_zuo);

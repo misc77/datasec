@@ -1,4 +1,4 @@
-                <div id="content" ng-switch="appdata.content">
+                <div ng-switch="appdata.content">
                     <div ng-switch-when="edit_standort">
                         <% include content/standort.ejs %>
                     </div>
@@ -58,6 +58,12 @@
                     </div>
                     <div ng-switch-when="edit_benutzer">
                         <% include content/benutzer.ejs %>                
+                    </div>
+                    <div ng-switch-when="report">
+                        <% include content/report.ejs %>                
+                    </div>
+                    <div ng-switch-when="reporttyp">
+                        <% include content/reporttyp.ejs %>                
                     </div>
                     <div ng-switch-default></div>
                 </div>  

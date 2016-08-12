@@ -1,0 +1,107 @@
+                <div id="content">
+                    <div class="row">    
+                        <form name="reportForm" novalidate class="col s12">
+                            <div class="row">
+                                <h4 class="title">{{title}}</h4>
+                            </div>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <span class="card-title">Report Daten</span>
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s6">
+                                                <i class="material-icons prefix">label</i>
+                                                <input type="text" id="bezeichnung" name="bezeichnung" ng-model="formData.bezeichnung" required class="validate">
+                                                <label class="active" for="bezeichnung">Bezeichnung</label>
+                                                <div class="help-block" ng-messages="reportForm.bezeichnung.$error" ng-if="reportForm.bezeichnung.$touched">
+                                                    <p ng-message="required" >Bezeichnung ist ein Pflichtfeld!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <div class="input-field col s12">
+                                                <i class="material-icons prefix">description</i>
+                                                <input type="text" id="beschreibung" name="beschreibung" ng-model="formData.beschreibung">
+                                                <label class="active" for="beschreibung">Beschreibung</label>     
+                                            </div>  
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="card blue-grey lighten-5 col s12">
+                                <span class="card-title">Basis Selektoren</span>
+                                <div class="card-content">
+                                    <div class="row">
+                                       <div class="input-field col s6">
+                                           <select class="browser-default" 
+                                                   id="standort"
+                                                   name="standort"
+                                                   ng-model="formData.standort" 
+                                                   ng-options="standort as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" 
+                                                   material-select>
+                                                   <option value="" disabled selected>Bitte Standort wählen</option>
+                                           </select>
+                                           <label class="active">Standort</label>
+                                       </div>
+
+                                       <div class="input-field col s6">
+                                           <select class="browser-default validate"
+                                                   name="aufgabe"
+                                                   ng-model="formData.aufgabe" 
+                                                   ng-options="aufgabe as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id">
+                                                   <option value="" disabled selected>Bitte Aufgabe wählen</option>
+                                           </select>
+                                           <label class="active">Aufgabe</label>
+                                       </div>
+                                       <div class="input-field col s6">
+                                           <select class="browser-default validate"
+                                                   name="beschaeftigung"
+                                                   ng-model="formData.abfrage.beschaeftigung" 
+                                                   ng-options="beschaeftigung as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id">
+                                           </select>
+                                           <label class="active">Beschäftigungsverhältnis</label>
+                                       </div>
+                                       <div class="input-field col s6">
+                                           <select class="browser-default validate"
+                                                   name="status"
+                                                   ng-model="formData.abfrage.status" 
+                                                   ng-options="status as status.bezeichnung for status in dataservice.mitarbeiterstatusliste() track by status._id">
+                                               <option value="" disabled selected>Bitte Status wählen</option>
+                                           </select>
+                                           <label class="active">Status</label>
+                                       </div>
+                                       <div class="input-field col s6">
+                                           <select class="browser-default" 
+                                                   name="urlaubsvertretung"
+                                                   ng-model="formData.abfrage.urlaubsvertretung" 
+                                                   ng-options="urlaubsvertretung as urlaubsvertretung.string for urlaubsvertretung in dataservice.mitarbeiterliste() track by urlaubsvertretung._id">
+                                               <option value="" disabled selected>Bitte Urlaubsvertretung wählen</option>
+                                           </select>
+                                           <label class="active">Urlaubsvertretung</label>
+                                       </div>  
+
+                                       <div class="input-field col s3">
+                                           <input type="date" class="datepicker" id="vertretungseit" placeholder="dd.mm.yyyy" ng-model="formData.abfrage.vertretungSeit">
+                                           <label class="active" for="vertretungseit">Vertretung Seit</label> 
+                                       </div>
+                                       <div class="input-field col s3">
+                                           <input type="date" class="datepicker" id="vertretungbis" placeholder="dd.mm.yyyy" ng-model="formData.abfrage.vertretungBis">
+                                           <label class="active" for="vertretungseit">Vertretung Bis</label> 
+                                       </div>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group">
+                                    <a class="waves-effect waves-light btn" ng-if="!reportForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>erstellen</a>
+                                    <a class="waves-effect waves-light btn disabled" ng-if="reportForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>erstellen</a>
+                                    <a class="waves-effect waves-light btn" ng-click="exec_report()"><i class="material-icons left">send</i>testen</a>
+                                    <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>verwerfen</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+

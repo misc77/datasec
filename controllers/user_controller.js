@@ -45,6 +45,7 @@ exports.create = function (req, res){
     user.set('zutrittsmittel', req.body.zutrittsmittel);
     user.set('mitarbeiterstatus', req.body.mitarbeiterstatus);
     user.set('zutrittsmittelstatus', req.body.zutrittsmittelstatus);
+    user.set('reporttyp', req.body.reporttyp);
     user.set('admin', req.body.admin);
     user.save(function(err){
         if(err){
@@ -141,6 +142,11 @@ exports.save = function (req, res){
                 user.datentyp = false;
             } else {
                 user.datentyp = true;
+            }
+            if (req.body.reporttyp === undefined | req.body.reporttyp === null | req.body.reporttyp === false){
+                user.reporttyp = false;
+            } else {
+                user.reporttyp = true;
             }
             if (req.body.ressourcentyp === undefined | req.body.ressourcentyp === null | req.body.ressourcentyp === false){
                 user.ressourcentyp = false;

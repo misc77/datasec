@@ -195,7 +195,8 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
                       appdata.content = $content;
                 }).error(
                   function () {
-                    $scope.formData = '';
+                    console.log('error: setting object to undefined');
+                    $scope.formData = {};
                     $scope.object_id = undefined;
                     $scope.title = appdata.submenu + ' anlegen';
                 });                
@@ -214,9 +215,12 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
 
         //Create or Update
         $scope.save = function(){
+            console.log('object_id ' + $scope.object_id)
             if ($scope.object_id === undefined) {
+                console.log('formData: ' + JSON.stringify($scope.formData));
                 $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                     appdata.msg = appdata.submenu + ' gespeichert!';
+                    Materialize.toast(appdata.msg, 4000);
                     $scope.reset();
                 }).error(function(data, status, headers, config){
                     alert("Fehler beim Speichern: " + data);
@@ -237,6 +241,7 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
             if (appdata.object !== undefined){
                 $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
                     appdata.msg = appdata.submenu + ' gelöscht!';
+                    Materialize.toast(appdata.msg, 4000);
                     $scope.reset();
                 }).error(function(data, status, headers, config){
                     alert("Fehler beim Löschen: " + data);
@@ -282,114 +287,3 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
             }); 
         };
 }]);
-
-/* Stammdaten Controller*/
-//app.controller('staticDataCtrl', ['$scope', '$http', 'appdata', '$log', function($scope, $http, appdata, $log, DataService) {
-//    $scope.formData = {};
-//    $scope.object_id = undefined;
-//    $scope.title = appdata.submenu + ' anlegen';
-//    $scope.params = {};
-//     
-//    //INIT
-//    (function(){
-//        console.log ('init scope of staticDataCtrl');      
-//        // setting formdata
-//        if (appdata.object !== undefined | appdata.object !== $scope.object_id) {
-//            $http.get('/api/'+appdata.submenu+'/get',{params: { id : appdata.object}}).success( 
-//              function(data) { 
-//                  if (data.object[0] !== undefined) {
-//                      $scope.formData = data.object[0];                    
-//                  } else {
-//                      $scope.formData = data.object;                   
-//                  }
-//                  if (appdata.content === 'delete' ){
-//                      $scope.title = appdata.submenu + ' löschen';
-//                  } else{
-//                      $scope.title = appdata.submenu + ' ändern'; 
-//                  }
-//                  $scope.object_id = appdata.object;
-//            });
-//        } else {
-//            $http.get('/api/'+appdata.submenu+'/get_new_obj',$scope.params).success( 
-//              function (data) { 
-//                  $log.debug('data: ' + angular.toJson(data.object));
-//                  $scope.formData = data.object;
-//                  $scope.title = appdata.submenu + ' anlegen'; 
-//                  $scope.object_id = undefined;
-//            }).error(
-//              function () {
-//                $scope.formData = '';
-//                $scope.object_id = undefined;
-//                $scope.title = appdata.submenu + ' anlegen';
-//            });
-//        }
-//    }());
-//    
-//    //Reset
-//    $scope.reset = function(){
-//        appdata.object = undefined;
-//        console.log('appdata object is now undefined');
-//        $scope.call_submenu(appdata.submenu);        
-//    };
-//        
-//    //Create or Update
-//    $scope.save = function(){
-//        if ($scope.object_id === undefined) {
-//            $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
-//                appdata.msg = appdata.submenu + ' gespeichert!';
-//                $scope.reset();
-//            }).error(function(data, status, headers, config){
-//                alert("Fehler beim Speichern: " + data);
-//            });
-//        } else {
-//            $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
-//                appdata.msg = appdata.submenu + ' gespeichert!';
-//                Materialize.toast(appdata.msg, 4000);
-//                $scope.reset();
-//            }).error(function(data, status, headers, config){
-//                alert("Fehler beim Speichern: " + data);
-//            }); 
-//        }
-//    };
-//    
-//    //Delete
-//    $scope.delete = function(){
-//        if (appdata.object !== undefined){
-//            $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
-//                appdata.msg = appdata.submenu + ' gelöscht!';
-//                $scope.reset();
-//            }).error(function(data, status, headers, config){
-//                alert("Fehler beim Löschen: " + data);
-//            });
-//        }
-//    };
-//    
-//    $scope.add_entry = function(list, data){
-//        $log.debug('list: ' + list);
-//        if (list !== undefined){
-//            list.push(data);
-//        } else {
-//            list = [];
-//            list.push(data);
-//        }
-//    };
-//  
-//    $scope.remove_entry = function(list, entry){
-//        if (list !== null & list !== undefined & angular.isArray(list)){
-//            var index = list.indexOf(entry);
-//            list.splice(index,1);
-//        }
-//    };
-//    
-//    $scope.signup = function(){
-//        $http.post('/signup', $scope.formData).success( function(data, status, headers, config){
-//                appdata.msg = 'User registriert!';
-//                $scope.reset();
-//            }).error(function(data, status, headers, config){
-//                alert("Fehler beim Registrieren: " + data);
-//            }); 
-//    };
-//}]);
-
-
-

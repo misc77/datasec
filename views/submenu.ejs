@@ -60,8 +60,10 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display + ' *init*' }}</a></td>
-                        <td><a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display }}</a></td>
+                        <td>
+                            <a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display + ' *init*' }}</a>
+                            <a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display + '' }}</a>
+                        </td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                 </tbody>
@@ -437,6 +439,34 @@
             </table>
         </div>
 
+        <!-- Auswertungen -->
+        <div ng-switch-when="auswertungen" id="submenu" class="card-panel blue-grey lighten-4">
+            <h4>Auswertungen</h4>
+            <table class="highlight">
+                <tbody >
+                   <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('report', item._id)">{{ item.display }}</a></td>
+                    </tr>
+                    <tr><br/></tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('report')">Neue Auswertung</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Auswertungstype -->
+        <div ng-switch-when="reporttyp" id="submenu" class="card-panel blue-grey lighten-4">
+            <h4>Auswertungstypen</h4>
+            <table class="highlight">
+                <tbody >
+                   <tr ng-repeat="item in list | filter:filter">
+                        <td><a class="indigo-text netvocat" ng-click="call_content('reporttyp', item._id)">{{ item.display }}</a></td>
+                    </tr>
+                    <tr><br/></tr>
+                    <tr><td colspan="2"><a class="btn waves-effect waves-light" ng-click="call_content('reporttyp')">Neuer Typ anlegen</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+            
         <!-- Default --> 
         <div ng-switch-default>
             <p></p>

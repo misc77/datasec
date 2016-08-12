@@ -4,19 +4,47 @@
 
 Prio 1: Funktion
 
+A.) Vergabe Berechtigungen (Befugnisse) bereits schon in der Mitarbeiter Maske
+    => per Button: Generiere Berechtigungen (aus Musterrolle)
+A1.) Hinterlegung der aktiven Menüpunkte
+A3.) Zutrittsmittel per Zutrittsmitteltyp auf Objekte wie Tresor, Raum, etc. beschränken.
+    Zutrittsmittel an entsprechende Objekte fix zuordnen.
+A4.) Erweiterung der KFZ-Daten um Identnummer
+
+A5.) Zusammenfassung Datenarten in Berechtigungen-Dialog
+A6.) Nach speichern der Änderung, keine modifikation der REssourcen außer Löschen.
+A7.) Status des Zutrittsmittels in Bezeichnung.
+A8.) Mouse-over mit Detailinformationen
+A9.) Visualisierung Datenarten an den jeweiligen Ressourcen, Tresoren etc.
+
+b.) Submenu umgestalten: Button anlage und import im Header
+b2.) Excel import für alle daten
+b3.) Hinterlegung Excel-Vorlagen unter dem jeweiligen Punkt im Submenu
 
 C.) Fachliche Validierungen (z.B.: Prüfung auf unterschriebene Dokumente etc.)
-B2.) Datenschutzdokumente
+
+c2.) Dokumentenverwaltung
+    * Vorlagen unter Datenschutzdokumenten 
+    * Ausgefüllte Datenschutzdokumente am Mitarbeiter hinterlegen
+    * Separate Dokumente für Zutrittsmittel (Ausgabe, Rückgabe und Verlustmeldung)
+
 D.) Logging (Protokoll bzw. Historisierung)
+
 F.) Konzept Reports/Auswertungen
     * dynamischer Report: Basis daten Mitarbeiter, dann Datenarten
     * vorgefertigte Reports: Welcher Mitarbeiter hat auf welche Kundendaten Zugriff
-    * 
+    * Management Übersicht der Zugriffe auf welche Datenarten.
+    * Reports auch nach Namen/Vornamen
+    * Aufschlüsselung der Datenarten der zugeteilten Ressourcen.
+  
+G.) Regelwerk zur Prüfung welche Dokument unterzeichnet werden müssen. 
+    => Hinterlegung welche Dokumente notwendig sind an der Musterrolle
+    => Druck und Upload bei Anlage/Modifikation Mitarbeiter
 
 
 Prio 2: Visualisierung
 
-1.) Bearbeitung und Anzeige Datumswerte
+1.) Bearbeitung und Anzeige Datumswerte und Select Boxen
 
 
 Prio 3: Administration

@@ -2,25 +2,25 @@
  * Initation
  */
 var Model = require('../models/models.js');
-var Daten = Model.Daten;
+var ReportType = Model.ReportType;
 
 exports.create = function (req, res){
-    var daten = new Daten();
-    daten.set('bezeichnung', req.body.bezeichnung);
-    daten.set('display', req.body.bezeichnung);
-    daten.set('beschreibung', req.body.beschreibung);
-    daten.set('sensibel', req.body.sensibel); 
-    daten.save(function(err){
+   var reportType = new ReportType();
+    reportType.set('bezeichnung', req.body.bezeichnung);
+    console.log(req.body.bezeichnung);
+    reportType.set('beschreibung', req.body.beschreibung); 
+    reportType.set('display', req.body.bezeichnung);
+    reportType.save(function(err){
         if(err){
             console.log('err: ' + err);
         } else {
-            res.json(daten);
+            res.json(reportType);
         }
     });
 };
 
 exports.delete = function (req, res){
-    Daten.findOneAndRemove({_id: req.body._id}, function(err){
+    ReportType.findOneAndRemove({_id: req.body._id}, function(err){
         if (err){
             console.log('err: ' + err);
         } else {
@@ -30,62 +30,64 @@ exports.delete = function (req, res){
 };
 
 exports.save = function (req, res){
-    Daten.findOne({_id: req.body._id}).exec(function(err, daten) {
+    ReportType.findOne({_id: req.body._id}).exec(function(err, reportType) {
         if (err) {
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
             if (req.body.bezeichnung !== undefined & req.body.bezeichnung !== null) {
-                daten.bezeichnung = req.body.bezeichnung;
-                daten.display = req.body.bezeichnung;
+                reportType.bezeichnung = req.body.bezeichnung;
+                reportType.display = req.body.bezeichnung;
             }
             if (req.body.beschreibung !== undefined & req.body.beschreibung !== null) {
-                daten.beschreibung = req.body.beschreibung;
+                reportType.beschreibung = req.body.beschreibung;
             }
-            if (req.body.sensibel === undefined | req.body.sensibel === null ){
-                daten.sensibel = false;
-            } else {
-                daten.sensibel = true;
-            }
-            daten.save(
+            reportType.save(
                 function(err){
                     if(err){
                         console.log('err: ' + err);
                     } else {
-                        res.json(daten);
+                        res.json(reportType);
                     }
                 }
             );
         }
     }); 
-
-    
 };
 
 exports.list = function(req, res){
-    Daten.find().exec(function(err, daten) {
+    console.log('in list');
+    ReportType.find().exec(function(err, reportTypen) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
-            res.send(daten);
+            res.send(reportTypen);
         }
     });
 };
 
 exports.get = function(req, res){
-    Daten.find({_id: req.query['id']}).exec(function(err, daten) {
+    console.log('in get');
+    ReportType.find({_id: req.query['id']}).exec(function(err, reportType) {
         if (err) {
             console.log('err: ' + err);
             return res.status(400).send({
                 msg: err.getErrorMessage(err)
             });
         } else {
-            console.log('standort: ' + daten );
-            res.json({object : daten});
+            res.json({object : reportType});
         }
     });
+};
+
+exports.get_new_obj = function(req, res){
+    console.log('in get_new_obj');
+    var reportType = new ReportType();
+    reportType.bezeichnung = 'neu';
+    reportType.beschreibung = 'neu';
+    res.json({object : reportType});
 };

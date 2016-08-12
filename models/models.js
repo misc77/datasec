@@ -15,6 +15,43 @@ var Protokoll = mongoose.model("protokoll", protokollSchema);
 /*****************/
 /* Hauptschemata */
 /*****************/
+/* Report type */
+var reportTypeSchema = new Schema({
+    bezeichnung:  String,
+    display:      String,
+    beschreibung: String
+});
+var ReportType = mongoose.model("reportType", reportTypeSchema);
+
+/* Reports */
+var reportSchema = new Schema({
+    bezeichnung:   String,
+    display:       String,
+    beschreibung:  String,
+    type:          { type: Schema.Types.ObjectId, ref: 'reportType' },
+    raum_zuo:        [ { raum:           {type: Schema.Types.ObjectId, ref: 'raum'}, 
+                         zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
+    tresor_zuo:      [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
+                         zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
+    fahrzeugliste:   [ { fahrzeug:       {type: Schema.Types.ObjectId, ref: 'fahrzeug'} }],
+    hardware_zuo:    [ { hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
+                         berechtigung:   {type: Schema.Types.ObjectId, ref: 'berechtigung'} }],
+    ressource_zuo:   [ { ressource:      {type: Schema.Types.ObjectId, ref: 'ressource'},
+                         rechte:         {type: Schema.Types.ObjectId, ref: 'rechte'} }],
+    byod:              Boolean,
+    fernzugriff:       Boolean,
+    daten:             [{type: Schema.Types.ObjectId, ref:'daten' }],
+    standort:           {type: Schema.Types.ObjectId, ref: 'standort'},
+    aufgabe:            {type: Schema.Types.ObjectId, ref: 'aufgabe'},
+    status:             {type: Schema.Types.ObjectId, ref: 'mitarbeiterStatus'},
+    beschaeftigung:     {type: Schema.Types.ObjectId, ref: 'beschaeftigung'},
+    statusSeit:         Date,
+    rolle:              {type: Schema.Types.ObjectId, ref: 'rolle'},
+    urlaubsvertretung:  {type: Schema.Types.ObjectId, ref: 'mitarbeiter'}                    
+                 
+});
+var Report = mongoose.model("report", reportSchema);
+
 /* Aufgabe */
 var aufgabeSchema = new Schema({
     bezeichnung:    String,
@@ -65,6 +102,7 @@ var DokumentTyp = mongoose.model("dokumentTyp", dokumentTypSchema);
 /* Daten */
 var datenSchema = new Schema({
     bezeichnung:    String,
+    beschreibung:   String,
     display:        String,
     sensibel:       Boolean
 });
@@ -100,6 +138,7 @@ var Hardware = mongoose.model("hardware", hardwareSchema);
 /* RessourcenTyp */
 var ressourcenTypSchema = new Schema({
    bezeichnung:     String,
+   beschreibung:    String,
    display:         String,
    aktiv:           Boolean
 });
@@ -303,6 +342,7 @@ var userSchema = new Schema({
     aufgabe:                Boolean,
     beschaeftigung:         Boolean,
     datentyp:               Boolean,
+    reporttyp:              Boolean,
     ressourcentyp:          Boolean,
     tresor:                 Boolean,
     zutrittsmittel:         Boolean,
@@ -340,4 +380,6 @@ module.exports = {    Musterrolle : Musterrolle
                     , User : User
                     , Zutrittsmittel : Zutrittsmittel
                     , ZutrittsmittelStatus : ZutrittsmittelStatus
-                    , Protokoll : Protokoll};
+                    , Protokoll : Protokoll
+                    , Report: Report
+                    , ReportType: ReportType};

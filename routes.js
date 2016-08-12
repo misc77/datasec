@@ -27,6 +27,8 @@ module.exports = function(app) {
     var mitarbeiterStatus = require('./controllers/mitarbeiterStatus_controller');
     var raum = require('./controllers/raum_controller');
     var befugniss = require('./controllers/befugniss_controller');
+    var report = require('./controllers/report_controller');
+    var reportTyp = require('./controllers/reportType_controller');
     app.use('/static', express.static('./static'))
             .use('/lib', express.static('../lib'));
     
@@ -221,7 +223,27 @@ module.exports = function(app) {
     app.get('/api/mitarbeiter/list',     mitarbeiter.list) ;
     app.get('/api/mitarbeiter/get',      mitarbeiter.get) ;
     
+    /**************************
+     *      Report Routes 
+     ***************************/
+    app.post('/api/auswertungen/create',        report.create );
+    app.post('/api/auswertungen/save',          report.save); 
+    app.post('/api/auswertungen/delete',        report.delete); 
+    app.get('/api/auswertungen/list',           report.list) ;
+    app.get('/api/auswertungen/get',            report.get) ;
+    app.get('/api/auswertungen/get_new_obj',    report.get_new_obj);
+    app.get('/api/auswertungen/query',          report.query);    
     
+    /**************************
+     *      Report Typen Routes 
+     ***************************/
+    app.post('/api/reporttyp/create',        reportTyp.create );
+    app.post('/api/reporttyp/save',          reportTyp.save); 
+    app.post('/api/reporttyp/delete',        reportTyp.delete); 
+    app.get('/api/reporttyp/list',           reportTyp.list) ;
+    app.get('/api/auswertungen/get_new_obj', reportTyp.get_new_obj);
+    app.get('/api/reporttyp/get',            reportTyp.get) ;
+         
     /**************************
      *      USER Routes 
      ***************************/
