@@ -75,15 +75,16 @@ module.exports = function(app) {
     app.get('/api/musterrolle/list',        musterrolle.list) ;
     app.get('/api/musterrolle/get',         musterrolle.get) ;
     app.get('/api/musterrolle/get_new_obj', musterrolle.get_new_obj) ;
+    app.get('/api/musterrolle/exist',       musterrolle.exist);
     
      /**************************
      *      Befugniss Routes 
      ***************************/
-    app.post('/api/befugnisse/create',         befugniss.create); 
-    app.post('/api/befugnisse/save',           befugniss.save); 
-    app.get('/api/befugnisse/list',            befugniss.list) ;
-    app.get('/api/befugnisse/get',             befugniss.get) ;
-    app.get('/api/befugnisse/get_new_obj',     befugniss.get_new_obj) ;
+    app.post('/api/befugnisse/create',         mitarbeiter.create); 
+    app.post('/api/befugnisse/save',           mitarbeiter.save); 
+    app.get('/api/befugnisse/list',            mitarbeiter.list) ;
+    app.get('/api/befugnisse/get',             mitarbeiter.get) ;
+    app.get('/api/befugnisse/get_new_obj',     mitarbeiter.get_init_rights) ;
    
     /**************************
      *      Beschaeftigung Routes 
@@ -217,11 +218,13 @@ module.exports = function(app) {
     /**************************
      *      Mitarbeiter Routes 
      ***************************/
-    app.post('/api/mitarbeiter/create',  mitarbeiter.create );
-    app.post('/api/mitarbeiter/save',    mitarbeiter.save); 
-    app.post('/api/mitarbeiter/delete',  mitarbeiter.delete); 
-    app.get('/api/mitarbeiter/list',     mitarbeiter.list) ;
-    app.get('/api/mitarbeiter/get',      mitarbeiter.get) ;
+    app.post('/api/mitarbeiter/create',         mitarbeiter.create );
+    app.post('/api/mitarbeiter/save',           mitarbeiter.save); 
+    app.post('/api/mitarbeiter/delete',         mitarbeiter.delete); 
+    app.get('/api/mitarbeiter/list',            mitarbeiter.list) ;
+    app.get('/api/mitarbeiter/get',             mitarbeiter.get) ;
+    app.get('/api/mitarbeiter/get_new_obj',     mitarbeiter.get_new_obj) ;
+    app.get('/api/mitarbeiter/get_init_right',  mitarbeiter.get_init_rights);
     
     /**************************
      *      Report Routes 

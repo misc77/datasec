@@ -48,7 +48,7 @@
 
         <!-- Befugnisse -->
         <div ng-switch-when="befugnisse" id="submenu" class="card-panel blue-grey lighten-4" >
-            <h4><i class="material-icons left-align">share</i> Befugnissverwaltung</h4>
+            <h4><i class="material-icons left-align">security</i> Berechtigungen</h4>
             <table class="highlight">
                 <tbody>
                     <tr>
@@ -61,7 +61,7 @@
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
                         <td>
-                            <a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display + ' *init*' }}</a>
+                            <a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display }}<i class="material-icons">priority_high</i></a>
                             <a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_befugnisse', item._id)">{{ item.display + '' }}</a>
                         </td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
@@ -72,7 +72,7 @@
 
         <!-- Muster Rollen --> 
         <div ng-switch-when="musterrolle" id="submenu" class="card-panel blue-grey lighten-4" >
-            <h4>Muster Rollen</h4>
+            <h4><i class="material-icons left-align">people_outline</i>  Muster Rollen</h4>
             <table class="highlight">
                 <tbody>
                     <tr>
@@ -187,7 +187,7 @@
 
         <!-- Mitarbeiter -->
         <div ng-switch-when="mitarbeiter" id="submenu" class="card-panel blue-grey lighten-4" >
-            <h4>Mitarbeiterliste</h4>
+            <h4><i class="material-icons left-align">person</i>  Beschäftigte</h4>
             <table class="highlight">
                 <tbody>
                     <tr>
@@ -199,7 +199,8 @@
                        </td>
                     </tr>
                     <tr ng-repeat="item in list | filter:filter">
-                        <td><a class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.display }}</a></td>
+                        <td><a ng-if="item.befugniss_init === true" class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.display }}<i class="material-icons">priority_high</i></a>
+                            <a ng-if="item.befugniss_init === false" class="indigo-text netvocat" ng-click="call_content('edit_mitarbeiter', item._id)">{{ item.display }}</a></td>
                         <td><a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="call_content('delete', item._id)"><i class="material-icons">remove</i></a></td>
                     </tr>
                     <tr> </tr>
@@ -441,7 +442,7 @@
 
         <!-- Auswertungen -->
         <div ng-switch-when="auswertungen" id="submenu" class="card-panel blue-grey lighten-4">
-            <h4>Auswertungen</h4>
+            <h4><i class="material-icons left-align">assessment</i> Reports</h4>
             <table class="highlight">
                 <tbody >
                    <tr ng-repeat="item in list | filter:filter">

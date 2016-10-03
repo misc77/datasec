@@ -17,7 +17,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper indigo netvocat">
-                    <img src="/static/img/logo.jpg"/><a href="#" class="brand-logo" >DataSec - Berechtigungskonzept</a>
+                    <img src="../static/img/logo.jpg"/><a href="#" class="brand-logo" >DataSec - Berechtigungskonzept</a>
                     <ul id="nav-mobile" class="right hide-on-small-and-down">
                         <li>{{appdata.user.name + ' ( ' + appdata.user.rolle.bezeichnung + ' ) '}}</li>
                         <li><a ng-click="logout()" class="btn-floating btn-large waves-effect waves-light deep-orange darken-4"><i class="material-icons">power_settings_new</i></a></li>
@@ -27,13 +27,13 @@
         </div>
         <div class="row">
             <div class="col s2">
-                <% include nav.ejs %>
+                <% include ../views/nav.ejs %>
             </div>
             <div class="col s3">
-                <% include submenu.ejs %>
+                <% include ../views/submenu.ejs %>
             </div>
             <div class="col s7 ">
-                <% include content.ejs %>
+                <% include ../views/content.ejs %>
             </div>
         </div>
         

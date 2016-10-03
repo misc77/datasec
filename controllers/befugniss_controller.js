@@ -205,6 +205,7 @@ var self = module.exports = {
                                         befugniss.set('byod',             false);
                                         befugniss.set('fernzugriff',      false);
                                     }
+                                    
                                     console.log('object: ' + JSON.stringify((befugniss)));
                                     res.json({object : befugniss});     
                                 }

@@ -38,6 +38,20 @@ exports.delete = function (req, res){
     });
 };
 
+exports.exist = function (req, res) {
+    var aufgabe_id = req.query['aufgabe_id'];
+    var beschaeftigung_id = req.query['beschaeftigung_id'];
+
+    Musterrolle.findOne({ 'aufgabe' : new ObjectId(aufgabe_id), 
+                          'beschaeftigung' : new ObjectId(beschaeftigung_id) }
+                       ).exec( function(err, musterrolle) {
+                           if (err) {
+                               console.log('error during query for Musterrolle! ' + err);
+                           } 
+                       });
+    res.json({result: false});
+};
+
 exports.save = function (req, res){
     Musterrolle.findOne({_id: req.body._id}).exec(function(err, musterrolle) {
         if (err) {

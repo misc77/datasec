@@ -1,130 +1,245 @@
-                    <div id="content">
+                    <div id="content">    
                         <div class="row">
-                            <form name="mitarbeiterForm">
+                            <form name="mitarbeiterForm" ng-cloak novalidate>
                                 <h4 class="title col s5">{{title}}</h4>
-                                <div class="card blue-grey lighten-5 col">
+                                <!-- schreibgeschuetzte Mitarbeiter Stammdaten --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="appdata.content==='edit_befugnisse'">
                                     <div class="card-content">
-<!--                                        <span class="card-title">Mitarbeiter Daten:</span>-->
+                                        <span class="card-title">Mitarbeiter Daten:</span>
+                                        <div class="input-field col s12">
+                                            <input type="text" id="mitarbeiternr" disabled="" ng-model="formData.mitarbeiternr">
+                                            <label class="active" for="mitarbeiternr">Mitarbeiter Nr.</label>
+                                        </div>
+                                        <div class="input-field col s5">
+                                            <input type="text" id="nachname" disabled="" ng-model="formData.nachname">
+                                            <label class="active" for="nachname">Nachname</label>   
+                                        </div>
+                                        <div class="input-field col s5">
+                                            <input type="text" id="vorname" disabled="" ng-model="formData.vorname">
+                                            <label class="active" for="vorname">Vorname</label> 
+                                        </div>
+                                        <div class="input-field col s5">
+                                            <input type="text" id="beschaeftigung" disabled="" ng-model="formData.beschaeftigung.bezeichnung">
+                                            <label class="active" for="beschaeftigung">BeschÃ¤ftigungsverhÃ¤ltniss:</label> 
+                                        </div>
+                                        <div class="input-field col s5">
+                                            <input type="text" id="aufgabe" disabled="" ng-model="formData.aufgabe.bezeichnung">
+                                            <label class="active" for="aufgabe">Aufgabe</label> 
+                                        </div>
+                                        <div class="input-field">
+                                            <input type="checkbox" id="isinit" name="is_init" ng-model="formData.is_init">
+                                            <label for="isinit">Berechtigung initial?</label>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <!-- Editierbare Mitarbeiter Stammdaten --> 
+                                <div class="card blue-grey lighten-5 col" ng-if="appdata.content === 'edit_mitarbeiter'">
+                                    <div class="card-content">
+                                        <span class="card-title">Mitarbeiter Stammdaten:</span>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" id="mitarbeiternr" ng-model="formData.mitarbeiternr" required class="validate">
+                                                <input type="text" id="mitarbeiternr" ng-model="formData.mitarbeiternr" required="" class="validate">
                                                 <label class="active" for="mitarbeiternr">Mitarbeiter Nr.</label>
                                                 <div class="help-block" ng-messages="mitarbeiterForm.mitarbeiternr.$error" ng-if="mitarbeiterForm.mitarbeiternr.$touched">
-                                                    <p ng-message="required" >Mitarbeiter Nummer ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Mitarbeiter Nummer ist ein Pflichtfeld!</p>
                                                 </div>                                            
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input type="text" id="nachname" ng-model="formData.nachname" required class="validate">
+                                                <input type="text" id="nachname" ng-model="formData.nachname" required="" class="validate">
                                                 <label class="active" for="nachname">Nachname</label> 
                                                 <div class="help-block" ng-messages="mitarbeiterForm.nachname.$error" ng-if="mitarbeiterForm.nachname.$touched">
-                                                    <p ng-message="required" >Nachname ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Nachname ist ein Pflichtfeld!</p>
                                                 </div>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" id="vorname" ng-model="formData.vorname" required class="validate">
+                                                <input type="text" id="vorname" ng-model="formData.vorname" required="" class="validate">
                                                 <label class="active" for="vorname">Vorname</label> 
                                                 <div class="help-block" ng-messages="mitarbeiterForm.vorname.$error" ng-if="mitarbeiterForm.vorname.$touched">
-                                                    <p ng-message="required" >Vorname ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Vorname ist ein Pflichtfeld!</p>
                                                 </div>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="date" class="datepicker validate" id="geburtsdatum" ng-model="formData.geburtsdatum" required>
+                                                <input type="date" class="datepicker validate" id="geburtsdatum" ng-model="formData.geburtsdatum" required="" date-format="">
                                                 <label class="active" for="geburtsdatum">Geburtsdatum</label> 
                                                 <div class="help-block" ng-messages="mitarbeiterForm.geburtsdatum.$error" ng-if="mitarbeiterForm.geburtsdatum.$touched">
-                                                    <p ng-message="required" >Geburtsdatum ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Geburtsdatum ist ein Pflichtfeld!</p>
                                                 </div>
                                             </div>
                                             <div class="input-field col s6">
-                                                <input type="text" name="geburtsort" id="geburtsort" ng-model="formData.geburtsort" required class="validate">
+                                                <input type="text" name="geburtsort" id="geburtsort" ng-model="formData.geburtsort" required="" class="validate">
                                                 <label class="active" for="geburtsort">Geburtsort</label> 
                                                 <div class="help-block" ng-messages="mitarbeiterForm.geburtsort.$error" ng-if="mitarbeiterForm.geburtsort.$touched">
-                                                    <p ng-message="required" >Geburtsort ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Geburtsort ist ein Pflichtfeld!</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <select class="browser-default" 
-                                                        id="standort"
-                                                        name="standort"
-                                                        ng-model="formData.standort" 
-                                                        ng-options="standort as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" 
-                                                        required 
-                                                        material-select watch>
-                                                        <option value="" disabled selected>Bitte Standort wählen</option>
+                                                <select class="browser-default" id="standort" name="standort" ng-model="formData.standort" ng-options="standort as standort.bezeichnung for standort in dataservice.standorte() track by standort._id" required="" material-select="" watch="">
+                                                        <option value="" disabled="" selected="">Bitte Standort wÃ¤hlen</option>
                                                 </select>
                                                 <div class="help-block" ng-messages="mitarbeiterForm.standort.$error" ng-if="mitarbeiterForm.standort.$touched">
-                                                    <p ng-message="required" >Standort ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Standort ist ein Pflichtfeld!</p>
                                                 </div>
                                                 <label class="active">Standort</label>
                                             </div>
                                                 
                                             <div class="input-field col s6">
-                                                <select class="browser-default validate"
-                                                        name="aufgabe"
-                                                        ng-model="formData.aufgabe" 
-                                                        ng-options="aufgabe as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id" required>
-                                                        <option value="" disabled selected>Bitte Aufgabe wählen</option>
+                                                <select class="browser-default validate" name="aufgabe" ng-model="formData.aufgabe" ng-options="aufgabe as aufgabe.bezeichnung for aufgabe in dataservice.aufgabenliste() track by aufgabe._id" required="">
+                                                        <option value="" disabled="" selected="">Bitte Aufgabe wählen</option>
                                                 </select>
                                                 <div class="help-block" ng-messages="mitarbeiterForm.aufgabe.$error" ng-if="mitarbeiterForm.aufgabe.$touched">
-                                                    <p ng-message="required" >Aufgabe ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Aufgabe ist ein Pflichtfeld!</p>
                                                 </div>
                                                 <label class="active">Aufgabe</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <select class="browser-default validate"
-                                                        name="beschaeftigung"
-                                                        ng-model="formData.beschaeftigung" 
-                                                        ng-options="beschaeftigung as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id" required>
+                                                <select class="browser-default validate" name="beschaeftigung" ng-model="formData.beschaeftigung" ng-options="beschaeftigung as beschaeftigung.bezeichnung for beschaeftigung in dataservice.beschaeftigungliste() track by beschaeftigung._id" required="">
                                                 </select>
                                                 <div class="help-block" ng-messages="mitarbeiterForm.beschaeftigung.$error" ng-if="mitarbeiterForm.beschaeftigung.$touched">
-                                                    <p ng-message="required" >Beschäftiungsverhältnis ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Beschäftiungsverhältnis ist ein Pflichtfeld!</p>
                                                 </div>
-                                                <label class="active">Beschäftigungsverhältnis</label>
+                                                <label class="active">BeschÃ¤ftigungsverhÃ¤ltnis</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <select class="browser-default validate"
-                                                        name="status"
-                                                        ng-model="formData.status" 
-                                                        ng-options="status as status.bezeichnung for status in dataservice.mitarbeiterstatusliste() track by status._id">
+                                                <select class="browser-default validate" name="status" ng-model="formData.status" ng-options="status as status.bezeichnung for status in dataservice.mitarbeiterstatusliste() track by status._id">
                                                 </select>
                                                 <div class="help-block" ng-messages="mitarbeiterForm.status.$error" ng-if="mitarbeiterForm.status.$touched">
-                                                    <p ng-message="required" >Status ist ein Pflichtfeld!</p>
+                                                    <p ng-message="required">Status ist ein Pflichtfeld!</p>
                                                 </div>
                                                 <label class="active">Status</label>
                                             </div>
                                             <div class="input-field col s6">
-                                                <select class="browser-default" 
-                                                        name="urlaubsvertretung"
-                                                        ng-model="formData.urlaubsvertretung" 
-                                                        ng-options="urlaubsvertretung as urlaubsvertretung.string for urlaubsvertretung in dataservice.mitarbeiterliste() track by urlaubsvertretung._id">
+                                                <select class="browser-default" name="urlaubsvertretung" ng-model="formData.urlaubsvertretung" ng-options="urlaubsvertretung as urlaubsvertretung.string for urlaubsvertretung in dataservice.mitarbeiterliste() track by urlaubsvertretung._id">
                                                 </select>
                                                 <label class="active">Urlaubsvertretung</label>
                                             </div>  
 
                                             <div class="input-field col s3">
-                                                <input type="date" class="datepicker" id="vertretungseit" placeholder="dd.mm.yyyy" ng-model="formData.vertretungSeit">
+                                                <input type="date" class="datepicker" id="vertretungseit" placeholder="dd.mm.yyyy" ng-model="formData.vertretungSeit" date-format="">
                                                 <label class="active" for="vertretungseit">Vertretung Seit</label> 
                                             </div>
                                             <div class="input-field col s3">
-                                                <input type="date" class="datepicker" id="vertretungbis" placeholder="dd.mm.yyyy" ng-model="formData.vertretungBis">
+                                                <input type="date" class="datepicker" id="vertretungbis" placeholder="dd.mm.yyyy" ng-model="formData.vertretungBis" date-format="">
                                                 <label class="active" for="vertretungseit">Vertretung Bis</label> 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-action">
-                                    <div class="col s12">
+                                
+                                <!-- Berechtigungen --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="formData.berechtigung !== undefined">
+                                    <span class="card-title">Tresorzugriff</span>
+                                    <div class="card-content">
                                         <div class="input-group">
-                                            <a class="waves-effect waves-light btn" ng-if="!mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
-                                            <a class="waves-effect waves-light btn disabled" ng-if="mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
-                                            <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
+                                            <div class="input-field" ng-repeat="zuo in formData.berechtigung.tresor_zuo">                             
+                                                <select class="browser-default col s5" ng-init="zuo._tresor = { _id: formData.berechtigung.tresorID}" ng-change="formData.berechtigung.tresorID = tresor._id" ng-model="zuo.tresor" ng-options="tresor._id as tresor.bezeichnung for tresor in dataservice.tresorliste() track by tresor._id">
+                                                </select>
+                                                <select class="browser-default col s5" ng-init="zuo._zutrittsmittel = { _id: formData.berechtigung.zutrittsmittelID}" ng-change="formData.berechtigung.zutrittsmittelID = zuo.zutrittsmittel._id" ng-model="zuo.zutrittsmittel" ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.berechtigung.tresor_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
                                         </div>
                                     </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.berechtigung.tresor_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
                                 </div>
+                                <!-- RÃ¤umlichkeiten --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="formData.berechtigung !== undefined">
+                                    <span class="card-title">Zutritt Räumlichkeiten</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.berechtigung.raum_zuo">                             
+                                                <select class="browser-default col s5" ng-init="zuo._raum = { _id: formData.berechtigung.raumID}" ng-change="formData.berechtigung.raumID = raum._id" ng-model="zuo.raum" ng-options="raum._id as raum.bezeichnung for raum in dataservice.raumliste() track by raum._id">
+                                                </select>
+                                                <select class="browser-default col s5" ng-init="zuo._zutrittsmittel = { _id: formData.berechtigung.zutrittsmittelID}" ng-change="formData.berechtigung.zutrittsmittelID = zuo.zutrittsmittel._id" ng-model="zuo.zutrittsmittel" ng-options="zutrittsmittel._id as zutrittsmittel.bezeichnung for zutrittsmittel in dataservice.zutrittsmittelliste() track by zutrittsmittel._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.raum_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.berechtigung.raum_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                <!-- Fuhrpark --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="formData.berechtigung !== undefined">
+                                    <span class="card-title">Fuhrpark</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="fahrzeug in formData.berechtigung.fahrzeugliste">                             
+                                                <select class="browser-default col s5" ng-init="fahrzeug._fahrzeug = { _id: formData.fahrzeugID }" ng-change="formData.fahrzeugID = zuo.fahrzeug._id" ng-model="fahrzeug" ng-options="fzg._id as fzg.kennzeichen for fzg in dataservice.fahrzeugliste() track by fzg._id">
+                                                </select>
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.berechtigung.fahrzeugliste, fahrzeug)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.berechtigung.fahrzeugliste, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                <!-- Ressourcen --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="formData.berechtigung !== undefined">
+                                    <span class="card-title">Berechtigungen auf Ressourcen</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.berechtigung.ressource_zuo">                             
+                                                <select class="browser-default col s5" ng-init="zuo._ressource = { _id: formData.berechtigung.ressourceID}" ng-change="formData.berechtigung.ressourceID = ressource._id" ng-model="zuo.ressource" ng-options="ressource._id as ressource.bezeichnung for ressource in dataservice.ressourcenliste() track by ressource._id">
+                                                </select>
+                                                <select class="browser-default col s5" ng-init="zuo._rechte = { _id: formData.berechtigung.res_rechteID}" ng-change="formData.berechtigung.res_rechteID = zuo.rechte._id" ng-model="zuo.rechte" ng-options="rechte._id as rechte.bezeichnung for rechte in dataservice.rechteliste() track by rechte._id">
+                                                </select>    
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.berechtigung.ressource_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.berechtigung.ressource_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                <!-- Hardware --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="formData.berechtigung !== undefined">
+                                    <span class="card-title">Berechtigung IT-Hardware</span>
+                                    <div class="card-content">
+                                        <div class="input-group">
+                                            <div class="input-field" ng-repeat="zuo in formData.berechtigung.hardware_zuo">                             
+                                                <select class="browser-default col s5" ng-init="zuo._hardware = { _id: formData.berechtigung.hardwareID}" ng-change="formData.berechtigung.hardwareID = hardware._id" ng-model="zuo.hardware" ng-options="hardware._id as hardware.bezeichnung for hardware in dataservice.hardwareliste() track by hardware._id">
+                                                </select>
+                                                <select class="browser-default col s5" ng-init="zuo._rechte = { _id: formData.berechtigung.res_rechteID}" ng-change="formData.berechtigung.res_rechteID = zuo.rechte._id" ng-model="zuo.rechte" ng-options="rechte._id as rechte.bezeichnung for rechte in dataservice.rechteliste() track by rechte._id">
+                                                </select>        
+                                                <a class="btn-floating btn-small waves-effect waves-light red netvocat" ng-click="remove_entry(formData.berechtigung.hardware_zuo, zuo)"><i class="material-icons">remove</i></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="add_entry(formData.berechtigung.hardware_zuo, {})"><i class="material-icons">add</i></a>
+                                    </div>
+                                </div>
+                                <!-- Sonstige Berechtigungen --> 
+                                <div class="card blue-grey lighten-5 col s12" ng-if="formData.berechtigung !== undefined">
+                                    <span class="card-title">Sonstige Berechtigungen</span>
+                                    <div class="card-content">
+                                        <div class="input-group col s5">
+                                            <input type="checkbox" id="byod" name="byod" ng-model="formData.berechtigung.byod">
+                                            <label for="byod">BYOD</label>
+                                        </div>
+                                        <div class="input-group col s5">
+                                            <input type="checkbox" name="fernzugriff" id="fernzugriff" ng-model="formData.berechtigung.fernzugriff">
+                                            <label for="fernzugriff">Fernzugriff</label>
+                                        </div>
+                                    </div>
+                                </div>                              
+                                
+                                <div class="col s12">
+                                    <div class="input-group">
+                                        <a class="waves-effect waves-light btn deep-orange darken-4" ng-if="!mitarbeiterForm.$invalid && formData.berechtigung === undefined" ng-click="init_rights(formData.aufgabe._id, formData.beschaeftigung._id)"><i class="material-icons left">security</i>Berechtigung initialisieren</a>
+                                        <a class="waves-effect waves-light btn" ng-if="!mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                        <a class="waves-effect waves-light btn disabled" ng-if="mitarbeiterForm.$invalid" ng-click="save()"><i class="material-icons left">save</i>speichern</a>
+                                        <a class="waves-effect waves-light btn" ng-click="reset()"><i class="material-icons left">cancel</i>schliessen</a>
+                                    </div>
+                                </div>                              
                             </form>
                         </div>
-                    </div>    
-     
+                    </div>

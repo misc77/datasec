@@ -1,5 +1,17 @@
 /* Main Controller */
 var app = angular.module('datasec', ['ngMessages']);
+
+app.directive('dateFormat', function(){ 
+        return {
+            require: 'ngModel', 
+            link: function(scope, element, attr, ngModelCtrl) {
+                ngModelCtrl.$formatters.length = 0;
+                ngModelCtrl.$parsers.length = 0;
+            }
+        };
+    });
+                
+
 app.value('appdata', { msg: '', content: 'default', submenu: 'default', object: undefined, user:null, show_static_data:false, show_data:false, show_status:false});
 
 app.factory("DataService", function($http){
@@ -23,6 +35,7 @@ app.factory("DataService", function($http){
     var ressourcenliste = {};
     var is_init = true;
     var fading_time;
+    var message_time;
     
     return {
         is_init : function() { return is_init; },
@@ -64,6 +77,8 @@ app.factory("DataService", function($http){
         ressourcenliste: function() { return ressourcenliste; },
         set_ressourcenliste: function(val) { ressourcenliste = val; },
         fading_time: function() { return fading_time; },
+        set_message_time : function(val) { message_time = val; },
+        message_time: function() { return message_time; },
         
         init: function() {
             if (is_init){
@@ -87,6 +102,7 @@ app.factory("DataService", function($http){
                 $http.get('/api/rechte/list').then( function(res) { rechteliste = res.data; });
                 this.is_init = false;
                 fading_time = 750;
+                message_time = 1000;
             }
         },
         
@@ -215,9 +231,10 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
 
         //Create or Update
         $scope.save = function(){
-            console.log('object_id ' + $scope.object_id)
+            console.log('object_id ' + $scope.object_id);
             if ($scope.object_id === undefined) {
                 console.log('formData: ' + JSON.stringify($scope.formData));
+                Materialize.toast('create: ' + appdata.submenu  + '   '  + JSON.stringify($scope.formData), 4000);
                 $http.post('/api/' + appdata.submenu + '/create', $scope.formData).success( function(data, status, headers, config){
                     appdata.msg = appdata.submenu + ' gespeichert!';
                     Materialize.toast(appdata.msg, 4000);
@@ -228,10 +245,11 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
             } else {
                 $http.post('/api/' + appdata.submenu + '/save', $scope.formData).success( function(data, status, headers, config){
                     appdata.msg = appdata.submenu + ' gespeichert!';
-                    Materialize.toast(appdata.msg, 4000);
+                    Materialize.toast(appdata.msg, $scope.dataservice.message_time);
                     $scope.reset();
                 }).error(function(data, status, headers, config){
-                    alert("Fehler beim Speichern: " + data);
+                    appdata.msg = 'Fehler beim Speichern: ' + data;
+                    Materialize.toast(appdata.msg, $scope.dataservice.message_time);
                 }); 
             }
         };
@@ -241,7 +259,7 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
             if (appdata.object !== undefined){
                 $http.post('/api/' + appdata.submenu + '/delete', $scope.formData).success( function(data, status, headers, config){
                     appdata.msg = appdata.submenu + ' gelöscht!';
-                    Materialize.toast(appdata.msg, 4000);
+                    Materialize.toast(appdata.msg, $scope.dataservice.message_time);
                     $scope.reset();
                 }).error(function(data, status, headers, config){
                     alert("Fehler beim Löschen: " + data);
@@ -265,6 +283,46 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
                 list.splice(index,1);
             }
         };
+        
+        $scope.init_rights = function(aufgabe_id, beschaeftigung_id) {
+            console.log('in init_rights');
+            console.log('Data: ' + aufgabe_id + ' ' + beschaeftigung_id);
+            if (aufgabe_id !== undefined & beschaeftigung_id !== undefined) {
+                $http.get('/api/mitarbeiter/get_init_right',{params: { aufgabe_id : aufgabe_id, beschaeftigung_id : beschaeftigung_id}}).success( 
+                    function (data) { 
+                        console.log('data: ' + JSON.stringify(data.object));
+                        $scope.formData.berechtigung = data.object;           
+                    }).error(
+                      function () {
+                        appdata.msg = 'Error: Initialisierung Berechtigung fehlgeschlagen!';
+                        Materialize.toast(appdata.msg, $scope.dataservice.message_time);
+                        console.log('error: setting object to undefined');
+                    });   
+            } else {
+                appdata.msg = 'Error: Initialisierung Berechtigung fehlgeschlagen! Aufgabe und Beschäftigung nicht definiert!';
+                alert(appdata.msg);
+                console.log('Error: Initialisierung Berechtigung fehlgeschlagen! Aufgabe und Beschäftigung nicht definiert!');
+            }
+        };
+
+        $scope.musterrolle_is_new = function(aufgabe_id, beschaeftigung_id) {
+            console.log('in musterrolle_exists');
+            if (aufgabe_id !== undefined & beschaeftigung_id !== undefined) {
+                $http.get('/api/musterrolle/exists',{params: { aufgabe_id : aufgabe_id, beschaeftigung_id : beschaeftigung_id}}).success( 
+                    function (data) { 
+                        if (data === true) {
+                            appdata.msg = 'Musterrolle für gewählte Aufgabe-Beschäftigungskombination existiert bereits!';
+                            Materialize.toast(appdata.msg, $scope.dataservice.message_time);
+                        } 
+                        return !data;           
+                    }).error(
+                      function () {
+                        appdata.msg = 'Error: Initialisierung Berechtigung fehlgeschlagen!';
+                        Materialize.toast(appdata.msg, $scope.dataservice.message_time);
+                        console.log('error: setting object to undefined');
+                    });   
+            } 
+        }
 
         $scope.signup = function(){
             $http.post('/signup', $scope.formData).success( function(data, status, headers, config){
@@ -281,9 +339,10 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
             $http.get('/logout').success( 
                 function(data, status, headers, config){
                     appdata.msg = 'Erfolgreich abgemeldet!';
-                    $window.location.reload();
+                    $window.location.reload();                    
                 }).error(function(data, status, headers, config){
-                    alert("Fehler beim Abmelden: " + data);
+                    appdata.msg = 'Fehler beim Abmelden: '+ data;
+                    Materialize.toast(appdata.msg, $scope.dataservice.message_time);
             }); 
         };
 }]);

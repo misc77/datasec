@@ -164,6 +164,7 @@ var mitarbeiterSchema = new Schema({
     nachname:           String,
     string:             String,
     geburtsdatum:       Date,
+    geburtsort:         String,
     standort:           {type: Schema.Types.ObjectId, ref: 'standort'},
     aufgabe:            {type: Schema.Types.ObjectId, ref: 'aufgabe'},
     status:             {type: Schema.Types.ObjectId, ref: 'mitarbeiterStatus'},
@@ -174,6 +175,18 @@ var mitarbeiterSchema = new Schema({
     vertretungSeit:     Date,
     vertretungBis:      Date,
     befugniss_init:     Boolean,
+    berechtigung:       {   raum_zuo:       [ { raum:           {type: Schema.Types.ObjectId, ref: 'raum'}, 
+                                                zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
+                            tresor_zuo:     [ { tresor:         {type: Schema.Types.ObjectId, ref: 'tresor'},
+                                                zutrittsmittel: {type: Schema.Types.ObjectId, ref: 'zutrittsmittel' } }],
+                            fahrzeugliste:  [ { fahrzeug:       {type: Schema.Types.ObjectId, ref: 'fahrzeug'} }],
+                            hardware_zuo:   [ { hardware:       {type: Schema.Types.ObjectId, ref: 'hardware'},
+                                                rechte:         {type: Schema.Types.ObjectId, ref: 'rechte'} }],
+                            ressource_zuo:  [ { ressource:      {type: Schema.Types.ObjectId, ref: 'ressource'},
+                                                rechte:         {type: Schema.Types.ObjectId, ref: 'rechte'} }],
+                            byod:           Boolean,
+                            fernzugriff:    Boolean 
+                       },
     protokoll:      [{ type: Schema.Types.ObjectId, ref: 'protokoll' }]
 });
 var Mitarbeiter = mongoose.model("mitarbeiter", mitarbeiterSchema);
