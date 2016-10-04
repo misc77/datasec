@@ -1,7 +1,16 @@
                     <div id="content">  
                         <div class="row">
                             <form name="fahrzeugForm" novalidate>
-                                <h4 class="title col s5">{{title}}</h4>
+                                <div class="row">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td><h4 class="title">{{title}}</h4></td>
+                                                <td><a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="reset()"><i class="material-icons">close</i></a></td>                            
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <div class="card blue-grey lighten-5 col s12">
                                     <div class="card-content">
                                         <div class="input-field col s12">
@@ -10,6 +19,13 @@
                                             <div class="help-block" ng-messages="fahrzeugForm.kennzeichen.$error" ng-if="fahrzeugForm.kennzeichen.$touched">
                                                 <p ng-message="required" >Kennzeichen ist ein Pflichtfeld!</p>
                                             </div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input type="text" id="identnummer" placeholder="Identnummer des Fahrzeugs" ng-model="formData.identnummer">
+                                            <label class="active" for="identnummer">Identnummer</label>
+                                            <!--<div class="help-block" ng-messages="fahrzeugForm.idetnummer.$error" ng-if="fahrzeugForm.identnummer.$touched">
+                                                <p ng-message="required" >Identnummer ist ein Pflichtfeld!</p>
+                                            </div>-->
                                         </div>
                                         <div class="input-field col s12">
                                             <input type="text" id="beschreibung" placeholder="Beschreibung des Fahrzeugs" ng-model="formData.beschreibung">

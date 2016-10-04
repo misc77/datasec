@@ -9,6 +9,7 @@ exports.create = function (req, res){
     fahrzeug.set('standort', req.body.standort);
     fahrzeug.set('aktiv', req.body.aktiv);
     fahrzeug.set('navigation', req.body.navigation);
+    fahrzeug.set('identnummer', req.body.identnummer);
     fahrzeug.set('reset', req.body.reset);
     fahrzeug.save(function(err){
         if(err){
@@ -45,6 +46,9 @@ exports.save = function (req, res){
             }
             if (req.body.standort !== undefined & req.body.standort !== null) {
                 fahrzeug.standort = req.body.standort;
+            }
+            if (req.body.identnummer !== undefined & req.body.identnummer !== null) {
+                fahrzeug.identnummer = req.body.identnummer;
             }
             if (req.body.aktiv === undefined | req.body.aktiv === null | req.body.aktiv === false){
                 fahrzeug.aktiv = false;

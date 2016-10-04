@@ -4,12 +4,15 @@
 
 Prio 1: Funktion
 
-A.) Vergabe Berechtigungen (Befugnisse) bereits schon in der Mitarbeiter Maske
-    => per Button: Generiere Berechtigungen (aus Musterrolle)
+---A.) Vergabe Berechtigungen (Befugnisse) bereits schon in der Mitarbeiter Maske
+--    => per Button: Generiere Berechtigungen (aus Musterrolle)
+--A4.) Erweiterung der KFZ-Daten um Identnummer
+-- Close Buttons an Submenu und Content ergänzt
+-- Subemnu und Content verbreitert
+
 A1.) Hinterlegung der aktiven Menüpunkte
 A3.) Zutrittsmittel per Zutrittsmitteltyp auf Objekte wie Tresor, Raum, etc. beschränken.
     Zutrittsmittel an entsprechende Objekte fix zuordnen.
-A4.) Erweiterung der KFZ-Daten um Identnummer
 
 A5.) Zusammenfassung Datenarten in Berechtigungen-Dialog
 A6.) Nach speichern der Änderung, keine modifikation der REssourcen außer Löschen.

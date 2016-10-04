@@ -345,4 +345,9 @@ app.controller('DataSecController', ['$scope', '$http', 'appdata', '$log', '$win
                     Materialize.toast(appdata.msg, $scope.dataservice.message_time);
             }); 
         };
+        
+        $scope.hide_submenu = function() {
+            appdata.submenu = undefined;
+            $("#submenu").fadeOut($scope.dataservice.fading_time, function() {}); 
+        }
 }]);

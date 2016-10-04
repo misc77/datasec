@@ -1,6 +1,15 @@
                     <div id="content">
                         <form name="tresorForm" novalidate>
-                            <h4 class="title col s5">{{title}}</h4>
+                            <div class="row">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td><h4 class="title">{{title}}</h4></td>
+                                            <td><a class="btn-floating btn-small waves-effect waves-light indigo netvocat" ng-click="reset()"><i class="material-icons">close</i></a></td>                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="card blue-grey lighten-5 col s12">
                                 <div class="card-content">
                                     <div class="row">

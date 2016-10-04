@@ -114,6 +114,7 @@ var fahrzeugSchema = new Schema({
     display:        String,
     beschreibung:   String,
     standort:       {type: Schema.Types.ObjectId, ref: 'standort'},
+    identnummer:    String,
     aktiv:          Boolean,
     navigation:     Boolean,
     reset:          Boolean,
